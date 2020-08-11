@@ -1,0 +1,228 @@
+html, body {
+  background-image: linear-gradient(#f2e6ff,#ffffff);
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: repeat-x;
+}
+
+#pop-up {
+	overflow:visible;
+	padding-bottom:15px;
+    z-index: 3;
+	position:fixed;
+	left:10%;
+	top:80px;
+	width:80%;
+}
+
+#mySidebar{
+	display:none; 
+	position:relative; 
+	top:57.5px;
+	background-color:#e6e6e6;
+	width:70%;
+	height:100%;
+	border:1px solid #cccccc;
+	overflow:auto;
+	z-index: 2;
+}
+
+#mySidebar tr{
+	display:block;
+}
+
+#mySidebar td{
+	display:inline-block; 
+	width:255px; 
+}
+
+#close{
+	width:60px;
+	height:60px;
+	position:absolute;
+	top:-20px;
+	right:-20px;
+	border:5px solid;
+	border-radius:50px;
+}
+
+#main {
+  position:relative;
+  top:70px;
+  width:380px;
+  z-index : 0;
+  margin-bottom:15px;
+  border:0px;
+  background:#fefefe;
+  box-shadow: 0px 3px 10px #888888;
+}
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+}
+
+
+
+img {
+	display: block;
+}
+
+img.top {
+  position:relative;
+  top:73px;
+  z-index: 0;
+  width: 394px;
+  height:160px;
+}
+
+
+.hidden {
+display: none;
+}
+
+
+
+
+div.main img{
+  position:relative;
+  margin:5px;
+}
+
+div.main h1{
+	font-weight: bold;
+	font-size:2em;
+	color:white;
+	position:relative;
+}
+
+div.main p{
+	text-align:left;
+    padding-left:5px;
+	padding-right:5px;
+	font-weight: normal;
+	font-size:1em;
+	color:black;
+	position:relative;
+	top:-30px;
+}
+
+div.plus{
+  position:relative;
+  top:70px;
+  width:380px;
+  z-index : 0;
+  height:50px;
+  background-color: #004d99;
+  color:white;
+  margin-bottom:15px;
+  border-radius:2px;
+  box-shadow: 0px 3px 10px #888888;
+}
+
+div.plus h1{
+	position:relative;
+	top:4px;
+	font-weight: bold;
+	font-size:2em;
+}
+
+div.plus button {
+	width: 30px;
+	height:30px;
+    color: white;
+	font-size:30px;
+    background-color: #004d99;
+	border-style: none;
+}
+
+* {box-sizing: border-box;}
+.mySlides {display: none;}
+
+img.slideshow {
+	margin-left:82px;
+	position:relative;
+	left:-72px;
+	display:block;
+	width:380px;
+	height:230px;
+}
+
+ul.nav{
+	background-color: #000066;
+	z-index: 2;
+	position: fixed;
+	top:30px;
+	padding: 2px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+li img{
+	margin:2px;
+}
+
+
+/* Slideshow container */
+.slideshow-container {
+  display: block;
+  width:100%;
+  height: 230px;
+  position: relative;
+  top:75px;
+  background-color: black;
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  position:relative;
+  top:65px;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
