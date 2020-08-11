@@ -15,9 +15,6 @@
   
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="javascript1.js"></script>
-<style>
-
-</style>
 </head>
 <body>
 
