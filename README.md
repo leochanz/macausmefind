@@ -8,15 +8,15 @@
   <link rel="stylesheet" href="swiper.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="javascript1.js"></script>
-</head>
-<body>
-
-<script>// Require variables to be declared prior to use
+<script>
+	// Require variables to be declared prior to use
 var button // Represents the 'button' div
 var payload // Represents the div that will be hidden
 
@@ -50,7 +50,59 @@ function w3_close() {
 }
 
 
-</script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+
+// Store
+localStorage.setItem("lastname", "Smith");
+
+// Retrieve
+document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+
+$(document).ready(function(){
+    var newElem = $("<div>I am new element!</div>");
+    $("body").insertAfter(newElem);
+
+});
+
+var newElem = $("<div>I am new element!</div>");
+    $("body").insertAfter(newElem);
+
+
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+  // Store
+  localStorage.setItem("lastname", "Smith");
+  // Retrieve
+  document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+} else {
+  document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+
+
+
+</script>	
+
+</head>
+<body>
+
 
 
 
@@ -156,44 +208,6 @@ function w3_close() {
 </div>
 </center>
 
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
-
-// Store
-localStorage.setItem("lastname", "Smith");
-
-// Retrieve
-document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-
-$(document).ready(function(){
-    var newElem = $("<div>I am new element!</div>");
-    $("body").insertAfter(newElem);
-
-});
-
-var newElem = $("<div>I am new element!</div>");
-    $("body").insertAfter(newElem);
-
-
-</script>
 
 
 <div class="panel panel-primary center" id="main">
@@ -237,17 +251,6 @@ Back to Top
 
 
 
-<script>
-// Check browser support
-if (typeof(Storage) !== "undefined") {
-  // Store
-  localStorage.setItem("lastname", "Smith");
-  // Retrieve
-  document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-} else {
-  document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-}
-</script>
 
 
 </body>
