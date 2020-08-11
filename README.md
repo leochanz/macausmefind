@@ -8,11 +8,9 @@
   <link rel="stylesheet" href="swiper.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="javascript1.js"></script>
 </head>
