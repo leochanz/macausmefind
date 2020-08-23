@@ -3,8 +3,9 @@ $(document).ready(function(){
 	
 $('.tab-content').hide();
 $('.tabs > a').hide();
-$('.tab-content:first').show();
-$('.tab-content::nth-child(2)').show();
+$('.tabs > a:first').show();
+$('.tabs > a:nth-child(2)').show();
+
 
 // show the first tab.
 $('.tab-content:first').show();
