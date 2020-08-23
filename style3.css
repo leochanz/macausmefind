@@ -1,5 +1,5 @@
 html, body {
-  background-image: linear-gradient(#f2e6ff,#ffffff);
+  background-color: #f2e6ff;
   width:100%;
   margin-left: auto;
   margin-right: auto;
@@ -47,9 +47,9 @@ html, body {
 	border-radius:50px;
 }
 
-#main {
+.main {
+  margin-top:20px;
   position:relative;
-  top:70px;
   width:380px;
   z-index : 0;
   margin-bottom:15px;
@@ -64,6 +64,68 @@ html, body {
   text-align:center;
 }
 
+.tab{
+	display:inline-block;
+	padding:0px;
+	float:left;
+	width:20%;
+	height:36px;
+	color:black;
+	background-color: #e6e6e6;
+	font-size:1em;
+}
+
+.tab span:not(.closs_button){
+	display:inline-block;
+    width:100%;
+	overflow:hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tab p{
+	display:inline-block;
+    width:100%;
+	overflow:hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tab:before {
+	content: '';
+	position: relative;
+	top:-25px;
+	left:-10px;
+	width: 0;
+	height: 0;
+	border-style:solid;
+    z-index:10px;
+    border-width: 0 0 36px 10px;
+    border-color: transparent transparent #e6e6e6 transparent;
+}
+
+
+.active{
+	text-decoration:none;
+	font-weight:bold;
+    color: white;
+	display:inline-block;
+	background-color: #000000;
+	font-size:1em;
+}
+
+.active:before {
+	content: '';
+	position: relative;
+	top:-25px;
+	left:-10px;
+	width: 0;
+	height: 0;
+	border-style:solid;
+    z-index:10px;
+    border-width: 0 0 36px 10px;
+    border-color: transparent transparent #707070 transparent;
+}
 
 
 img {
@@ -86,19 +148,19 @@ display: none;
 
 
 
-div.main img{
+.main img{
   position:relative;
   margin:5px;
 }
 
-div.main h1{
+.main h1{
 	font-weight: bold;
 	font-size:2em;
 	color:white;
 	position:relative;
 }
 
-div.main p{
+.main p{
 	text-align:left;
     padding-left:5px;
 	padding-right:5px;
@@ -106,37 +168,8 @@ div.main p{
 	font-size:1em;
 	color:black;
 	position:relative;
-	top:-30px;
 }
 
-div.plus{
-  position:relative;
-  top:70px;
-  width:380px;
-  z-index : 0;
-  height:50px;
-  background-color: #004d99;
-  color:white;
-  margin-bottom:15px;
-  border-radius:2px;
-  box-shadow: 0px 3px 10px #888888;
-}
-
-div.plus h1{
-	position:relative;
-	top:4px;
-	font-weight: bold;
-	font-size:2em;
-}
-
-div.plus button {
-	width: 30px;
-	height:30px;
-    color: white;
-	font-size:30px;
-    background-color: #004d99;
-	border-style: none;
-}
 
 * {box-sizing: border-box;}
 .mySlides {display: none;}
@@ -148,31 +181,6 @@ img.slideshow {
 	display:block;
 	width:380px;
 	height:230px;
-}
-
-ul.nav{
-	background-color: #000066;
-	z-index: 2;
-	position: fixed;
-	top:30px;
-	padding: 2px;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  opacity: 0.7;
-}
-
-li img{
-	margin:2px;
 }
 
 
@@ -226,3 +234,6 @@ li img{
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
+
+	
+	
