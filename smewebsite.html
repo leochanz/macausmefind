@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-  <title>macausmefind</title>
-  <link rel="stylesheet" href="style3.css">
-  <link rel="stylesheet" href="swiper.min.css">
+  <title>發現中小企</title>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  
@@ -14,7 +13,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <script src="javascript1.js"></script>
+  <script type="text/javascript" src="main.js"></script>
 <style>
 
 </style>
@@ -54,12 +53,11 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
 
-
 </script>
 
 
 
-<div class="w3-bar" style="background-color: #2d2d86; position:fixed; z-index: 2;">
+<div class="w3-bar" style="background-color: #2d2d86; position:fixed; z-index: 2; top:0px;">
   <a href="#" class="w3-bar-item w3-button w3-left">
   <button class="w3-button w3-large" style="background-color:#9f9fdf;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
   </a>
@@ -72,6 +70,7 @@ function w3_close() {
   <button class="w3-button w3-large" style="background-color:#9f9fdf;" onclick=""><i class="fas fa-cog"></i></button>
   </a>
 </div>
+
 
 <div id="pop-up" class="payload w3-card-4 w3-animate-top w3-light-blue w3-bottombar w3-border-cyan" 
      style="">
@@ -89,7 +88,7 @@ function w3_close() {
 
 </div>
 
-<div class="w3-sidebar w3-bar-block w3-animate-left"  id="mySidebar">
+<div class="w3-sidebar w3-bar-block w3-animate-left sidebar"  id="mySidebar">
  <table class="w3-table">
   <thead class="thead-light">
   <tr class="w3-light-grey" style="display:block; width:100%; height:60px;">
@@ -106,29 +105,18 @@ function w3_close() {
    <td style="width:70px;"><button class="w3-button w3-green w3-mobile w3-large"><i class="fas fa-search"></i></button></td>
   </tr>
   <tr  class="w3-margin-top">
-      <td><a href="file:///C:/Users/kench/OneDrive/%E6%A1%8C%E9%9D%A2/website/smewebsite.html"  class="w3-bar-item w3-light-grey w3-button w3-leftbar w3-border-indigo">
-	  <i class="fas fa-home">首頁</a></td>
+      <td><a href="#main"  class="w3-bar-item w3-light-grey w3-button w3-leftbar w3-border-indigo">
+	  <i class="fas fa-home"></i>首頁</a></td>
   </tr>
   <tr>
       <td><a href="#about" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="fas fa-info-circle"></i>關於網頁</a></td>
   </tr>
-  <tr>
-      <td><a href="#developer" class="w3-bar-item w3-light-grey w3-button">
-	  <i class="fas fa-user-friends"></i>成員</a></td>
-  </tr>
-  <tr>
-      <td><a href="#contact" class="w3-bar-item w3-light-grey w3-button">
-	  <i class="fas fa-phone"></i>聯絡</a></td>
-  </tr>
   <tr class="w3-margin-top">
-      <td><a href="file:///C:/Users/kench/OneDrive/%E6%A1%8C%E9%9D%A2/website/smewebsite-form.html" class="w3-bar-item w3-light-grey w3-button">
+      <td><a href="#form" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="fas fa-plus"></i>新增帖文</a></td>
   </tr>
-  <tr>
-      <td><a href="#delete" class="w3-bar-item w3-light-grey w3-button">
-	  <i class="fas fa-trash"></i>刪除帖文</a></td>
-  </tr>
+
   <tr>
       <td><a href="#heart" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="far fa-star"></i>收藏</a></td>
@@ -137,50 +125,7 @@ function w3_close() {
 </table>
 </div>
 
-<center><div class="slideshow-container">
-
-<div class="mySlides fade">
-  <img src="img1.jpg" class="slideshow" >
-</div>
-
-<div class="mySlides fade">
-  <img src="img2.jpg" class="slideshow" >
-</div>
-
-<div class="mySlides fade">
-  <img src="img3.png" class="slideshow" >
-</div>
-
-</div>
-<br>
-
-<div style="text-align:center">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-</div>
-</center>
-
 <script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
 
 // Store
 localStorage.setItem("lastname", "Smith");
@@ -194,18 +139,41 @@ $(document).ready(function(){
 
 });
 
+
 var newElem = $("<div>I am new element!</div>");
     $("body").insertAfter(newElem);
 
-
 </script>
 
+ <div class="tabs w3-bar" style="width:100%; margin-top:75px; background: #f2e6ff;">
+  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#main" id="main">
+  <i class="fas fa-home"></i>首頁
+  </a>
+  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#about" id="about">
+  <span class="closs_button" href="#about"><i class="fas fa-times-circle"></i></span>關於
+  </a>
+  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#form" id="form">
+  <span class="closs_button" href="#form"><i class="fas fa-times-circle"></i></span>新增
+  </a>
+  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#heart" id="heart">
+  <span class="closs_button" href="#heart"><i class="fas fa-times-circle"></i></span>收藏
+  </a>
+  </div>
 
-<div class="panel panel-primary center" id="main">
+<hr style="border:5px solid #707070; margin:0px;">
+
+
+<div class="w3-container" id="abc" style="width:100%; background-color:#fafafa; padding:0px;">
+ 
+
+<div class="tab-content panel panel-primary center main" id="main" style=" border:0px; box-shadow: 0px 3px 10px #888888;">
   <div class="panel-heading center" style="background-color:#004d99;">
 	<h1><i class="fas fa-utensils"></i>光輝咖啡</h1>
+	
   </div>
+
   <div class="panel-body w3-left-align">
+ 
 	<div>
 	  <img src="shop1.jpg" width="360px" height="200px" class="center">
 	</div>
@@ -234,6 +202,158 @@ var newElem = $("<div>I am new element!</div>");
 	  </p>
 	</div>  
   </div>
+</div>
+
+<div class='tab-content' id="about">
+<p>
+dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
+dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
+dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
+</p>
+<div id="out"></div>
+
+</div>
+
+
+<div class='tab-content' id="form">
+<form action="https://formsubmit.co/chanchengleong@gmail.com" id="sme-form" method="post"
+      class="panel panel-primary center main" 
+	  style=" border:0px; box-shadow: 0px 3px 10px #888888;">
+  <div class="panel-heading center" style="background-color:#004d99;">
+	<select name="sme-type" form="sme-form" class="w3-input w3-text-black" >
+	    <option value="" disabled selected>--選擇中小企類型--</option>
+	  <optgroup label="飲食">
+	    <option value="restaurant">餐廳</option>
+		<option value="takeaway">外賣店</option>
+		<option value="bakery">餅店</option>
+	  </optgroup>
+	  <optgroup label="零售">
+         <option value="grocery">雜貨店/超市</option>
+         <option value="c-store">便利店</option>
+		 <option value="store">專賣店</option>
+      </optgroup>
+	  <optgroup label="服務">
+         <option value="p-service">個人服務</option>
+         <option value="t-service">運輸</option>
+		 <option value="i-service">保險/地產</option>
+		 <option value="c-service">商用服務</option>
+      </optgroup>
+		 <option value="education">教育</option>
+         <option value="entertainment">娛樂</option>
+		 <option value="other">其他</option>
+    </select>
+	<input name="sme-name" type="text" class="w3-input w3-text-black" placeholder="名稱">
+  </div>
+  <div class="panel-body w3-left-align">
+	<div>
+	  <input name="sme-image" type="file" accept=".bmp, .jpeg, .jp2, .gif, .tiff, .png, .exif, .wbmp, .mbm">
+	</div>
+	<div class="w3-margin-top">
+	  <p>地址:
+	  <input name="sme-location" class="w3-input" id="latlng" placeholder="位置" disabled></input>
+	  <input name="sme-address" class="w3-input"  id="formattedAddress" placeholder="地址" disabled></input>
+	  </p>
+	  
+	  <div id="get_location" class="w3-button w3-green ">
+       <i class="fas fa-map-marker-alt"></i>
+	   自動獲取位置
+	   </div>
+	</div>
+	<div class="w3-margin-top">
+	  <p style="word-wrap: break-word;">連結:
+	  <font color="blue"><i class="fas fa-link"></i></font>
+	  <input name="sme-link" type="url" class="w3-input w3-text-black" placeholder="連結">
+	  </input>
+	  </p>
+	</div>
+	<div>
+	<p>留言:</p>
+	  <textarea name="sme-comment" form="sme-form" class="w3-input w3-border"></textarea>
+	</div> 
+  </div>
+ <button type="submit" class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge">
+ <i class="fas fa-plus"></i>新增帖文
+ </button>
+ </form>
+</div>
+
+<script>
+
+var request = new XMLHttpRequest()
+
+// Open a new connection, using the GET request on the URL endpoint
+request.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0', true)
+
+request.onload = function () {
+  // Begin accessing JSON data here
+}
+
+// Send request
+request.send();
+
+
+if('geolocation' in navigator) {
+  console.log('geolocation available');
+  navigator.geolocation.getCurrentPosition(position => {
+    console.log(position);
+
+    var lat = position.coords.latitude;
+	
+	var lng = position.coords.longitude;
+	var latlng = lat + ',' + lng;
+	
+	
+	$("#get_location").click(function(){
+	  $('#latlng').val(latlng); 
+});
+	
+  });
+} else {
+  console.log('geolocation not available')
+  $("#get_location").click(function(){
+	  $('#latitude').val('geolocation not available');
+	  $('formattedAddress').val(formattedAddress);
+});
+};
+
+navigator.geolocation.getCurrentPosition(position => {
+var lat = position.coords.latitude;
+var lng = position.coords.longitude;
+var latlng = lat + ',' + lng;
+
+
+geocode();
+
+function geocode() {
+	var key = "AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0";
+    alert('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=' + key); 
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=' + key)
+    .then(function(response){
+        //log full response
+        console.log(response);
+
+    var formattedAddress = response.data.results[0].formatted_address;
+    
+      })
+    .catch(function(error){
+    console.log(error);
+    })
+  }
+
+});
+
+</script>
+
+
+<div class='tab-content' id="heart">
+<p>
+dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
+dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
+dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
+</p>
+</div>
+
+
 </div>
 
 <a href="#top" style="position: fixed; right: 20px; bottom: 20px">
