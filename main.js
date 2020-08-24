@@ -24,14 +24,14 @@ if('geolocation' in navigator) {
 
 	$("#get_location").click(function(){
 	  $('#map-popup').show();
+	  $("#get_location").hide();
     });
 });
 
 } else {
   console.log('geolocation not available')
   $("#get_location").click(function(){
-	  $('#latitude').val('geolocation not available');
-	  $('formattedAddress').val(formattedAddress);
+	  $('#latlng').val('geolocation not available');
 });
 };
 
@@ -104,6 +104,7 @@ function geocode(latlng0) {
 			$('#latlng').val(latlng); 
 			$('#formattedAddress').val(formattedAddress);
 			$('#map-popup').hide();
+			$("#get_location").show();
 			
 			return false;
         });		
