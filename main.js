@@ -1,79 +1,114 @@
+var request = new XMLHttpRequest()
 
-$(document).ready(function(){
+// Open a new connection, using the GET request on the URL endpoint
+request.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0', true)
+
+request.onload = function () {
+  // Begin accessing JSON data here
+}
+
+// Send request
+request.send();
+
+
+if('geolocation' in navigator) {
+  console.log('geolocation available');
+  navigator.geolocation.getCurrentPosition(position => {
+    
+	console.log(position);
+    var lat = position.coords.latitude;
+	var lng = position.coords.longitude;
+	var latlng = lat + ',' + lng;
 	
-$('.tab-content').hide();
-$('.tabs > a').hide();
-$('.tabs > a:first').show();
-$('.tabs > a:nth-child(3)').show();
+	initMap(lat,lng);
 
-
-// show the first tab.
-$('.tab-content:first').show();
-
-// indicate first tab is active.
-$('.tabs > a').removeClass('active');
-$('.tabs > a:first').addClass('active');
-
-$('.sidebar a').click(function(){
-  // get the href, which is #tab1, #tab2 or #tab3
-  var href = $(this).attr('href');
-  
-  
-  // show only the target tab.
-  $('.tabs > a' + href + '').show();
-
-  $('.tabs > a').removeClass('active');
-  $('.tabs > a' + href + '').addClass('active');
-  
-  $('.tab-content').hide();
-  $('div' + href +'').show();
-  
-  $('.sidebar').hide();
-  
-  // disable default browser behavior.
-  return false;
+	$("#get_location").click(function(){
+	  $('#map-popup').show();
+    });
 });
 
-// when click on the tab link.
-$('.tabs > a').click(function(){
-  // get the href, which is #tab1, #tab2 or #tab3
-  var href = $(this).attr('href');
-  
-  // hide all tabs.
-  $('.tab-content').hide();
-  
-  // show only the target tab.
-  $('div' + href +'').show();
-  
-  // indicate target tab is active.
-  $('.tabs > a').removeClass('active');
-  $(this).addClass('active');
-  
-  // disable default browser behavior.
-  return false;
+} else {
+  console.log('geolocation not available')
+  $("#get_location").click(function(){
+	  $('#latitude').val('geolocation not available');
+	  $('formattedAddress').val(formattedAddress);
 });
+};
 
-$('.closs_button').click(function(){
-  // get the href, which is #tab1, #tab2 or #tab3
-  var href = $(this).attr('href');
+
+let map;
+let markers = [];
+
+function initMap(latitude,longitude) {
+
+  const haightAshbury = {
+   lat: latitude,
+   lng: longitude
+  };
   
-  // hide all tabs.
-  $(href).hide();
-  
-  // show only the target tab.
-  
-  // indicate target tab is active.
-  $('.tabs > a').removeClass('active');
-  $('.tabs > a:first').addClass('active');
-  $('.tab-content:first').show();
-  
-  // disable default browser behavior.
-  return false;
-});
-
-});
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 18,
+    center: haightAshbury,
+    //mapTypeId: "terrain"
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+  }); // This event listener will call addMarker() when the map is clicked.
 
 
+  map.addListener("click", event => {
+    clearMarkers();
+    markers = [];
+    addMarker(event.latLng);
+	latlng0 = new String(event.latLng);
+	var latlng = latlng0.substring(latlng0.indexOf("(")+1, latlng0.indexOf(")"));
+	geocode(latlng);
+  }); // Adds a marker at the center of the map.
+
+  addMarker(haightAshbury);
+ // Adds a marker to the map and push to the array.
+}
+
+function addMarker(location) {
+  const marker = new google.maps.Marker({
+    position: location,
+	title: "1",
+    map: map
+  });
+  markers.push(marker);
+} // Sets the map on all markers in the array.
+
+function setMapOnAll(map) {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+} // Removes the markers from the map, but keeps them in the array.
+
+function clearMarkers() {
+  setMapOnAll(null);
+} // Shows any markers currently in the array.
 
 
+
+	
+function geocode(latlng0) {
+
+	var latlng = latlng0;
+	let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ latlng +'&language=zh-TW&key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug' 
+	
+	fetch(url)
+	.then( response => response.json() )
+	.then( data => {
+        var formattedAddress = data.results[0].formatted_address;
+		$('#confirmAddress').text(formattedAddress);
+
+        $("#confirm").click(function(){
+			$('#latlng').val(latlng); 
+			$('#formattedAddress').val(formattedAddress);
+			$('#map-popup').hide();
+			
+			return false;
+        });		
+		
+	})
+	.catch( err => console.warn(err.message));
+}
 
