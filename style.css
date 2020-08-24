@@ -6,14 +6,35 @@ html, body {
   background-repeat: repeat-x;
 }
 
+#darkscreen{
+  z-index:4;
+  width:100%;
+  height:100%;
+  background-color: black;
+  opacity: 0.7;
+}
+
 #pop-up {
 	overflow:visible;
 	padding-bottom:15px;
-    z-index: 3;
+    z-index: 5;
 	position:fixed;
 	left:10%;
 	top:80px;
 	width:80%;
+	text-align:left;
+}
+
+#map-popup {
+	overflow:visible;
+	padding-bottom:15px;
+    z-index: 5;
+	width:370px;
+	margin-top:10px;
+	padding-top:10px;
+	padding-bottom:0px;
+	position:relative;
+	left:-10px;
 }
 
 #mySidebar{
@@ -21,11 +42,11 @@ html, body {
 	position:relative; 
 	top:57.5px;
 	background-color:#e6e6e6;
-	width:290px;
+	width:300px;
 	height:100%;
 	border:1px solid #cccccc;
 	overflow:auto;
-	z-index: 2;
+	z-index: 3;
 }
 
 #mySidebar tr{
@@ -45,17 +66,6 @@ html, body {
 	right:-20px;
 	border:5px solid;
 	border-radius:50px;
-}
-
-.main {
-  margin-top:20px;
-  position:relative;
-  width:380px;
-  z-index : 0;
-  margin-bottom:15px;
-  border:0px;
-  background:#fefefe;
-  box-shadow: 0px 3px 10px #888888;
 }
 
 .center{
@@ -110,9 +120,10 @@ html, body {
 	font-weight:bold;
     color: white;
 	display:inline-block;
-	background-color: #000000;
+	background-color: #717171;
 	font-size:1em;
 }
+
 
 .active:before {
 	content: '';
@@ -124,51 +135,27 @@ html, body {
 	border-style:solid;
     z-index:10px;
     border-width: 0 0 36px 10px;
-    border-color: transparent transparent #707070 transparent;
+    border-color: transparent transparent #717171 transparent;
 }
-
-
-img {
-	display: block;
-}
-
-img.top {
-  position:relative;
-  top:73px;
-  z-index: 0;
-  width: 394px;
-  height:160px;
-}
-
 
 .hidden {
 display: none;
 }
 
 
-
-
-.main img{
+.main {
+  margin-top:20px;
   position:relative;
-  margin:5px;
+  width:380px;
+  z-index : 0;
+  margin-bottom:15px;
+  border:0px;
+  background:#fefefe;
+  box-shadow: 0px 3px 10px #888888;
 }
 
-.main h1{
-	font-weight: bold;
-	font-size:2em;
-	color:white;
-	position:relative;
-}
 
-.main p{
-	text-align:left;
-    padding-left:5px;
-	padding-right:5px;
-	font-weight: normal;
-	font-size:1em;
-	color:black;
-	position:relative;
-}
+
 
 
 * {box-sizing: border-box;}
@@ -208,9 +195,6 @@ img.slideshow {
   transition: background-color 0.6s ease;
 }
 
-.active {
-  background-color: #717171;
-}
 
 /* Fading animation */
 .fade {
