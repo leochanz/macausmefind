@@ -4,46 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>發現中小企</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js">
+
+  <link rel="stylesheet" href="style3.css">
+  <link rel="stylesheet" href="map.css">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
- 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script type="text/javascript" src="main.js"></script>
-<style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
 
-</style>
-</head>
-<body>
+<script>
+var button 
+var payload 
 
-<script>// Require variables to be declared prior to use
-var button // Represents the 'button' div
-var payload // Represents the div that will be hidden
-
-
-// Called when the 'button' div is clicked.
-// Toggles the 'payload' div's membership of the 'hidden' class.
 function togglePayload() {
 payload.classList.toggle('hidden');
 }
 
-
-// Sets everything up. Called automatically when the page loads.
 function init() {
-// Connect the button variable with the button div
-button = document.querySelector('.button')
 
-// Connect the payload variable with the payload div
+button = document.querySelector('.button')
 payload = document.querySelector('.payload')
 
-// Call the togglePayload function when the button div is clicked
 button.onclick = togglePayload;
 }
-// Run the init function when the page loads.
 document.addEventListener("DOMContentLoaded", init, false);
 
 function w3_open() {
@@ -53,21 +45,93 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
 
+$(document).ready(function(){
+
+$('#map-popup').hide();
+	
+$('.tab-content').hide();
+$('.tabs > a').hide();
+$('.tabs > a:first').show();
+$('.tabs > a:nth-child(3)').show();
 
 
+// show the first tab.
+$('.tab-content:first').show();
 
+// indicate first tab is active.
+$('.tabs > a').removeClass('active');
+$('.tabs > a:first').addClass('active');
+
+$('.sidebar a').click(function(){
+  // get the href, which is #tab1, #tab2 or #tab3
+  var href = $(this).attr('href');
+  
+  
+  // show only the target tab.
+  $('.tabs > a' + href + '').show();
+
+  $('.tabs > a').removeClass('active');
+  $('.tabs > a' + href + '').addClass('active');
+  
+  $('.tab-content').hide();
+  $('div' + href +'').show();
+  
+  $('.sidebar').hide();
+  
+  // disable default browser behavior.
+  return false;
+});
+
+// when click on the tab link.
+$('.tabs > a').click(function(){
+  // get the href, which is #tab1, #tab2 or #tab3
+  var href = $(this).attr('href');
+  
+  // hide all tabs.
+  $('.tab-content').hide();
+  
+  // show only the target tab.
+  $('div' + href +'').show();
+  
+  // indicate target tab is active.
+  $('.tabs > a').removeClass('active');
+  $(this).addClass('active');
+  
+  // disable default browser behavior.
+  return false;
+});
+
+$('.closs_button').click(function(){
+  // get the href, which is #tab1, #tab2 or #tab3
+  var href = $(this).attr('href');
+  
+  // hide all tabs.
+  $(href).hide();
+  
+  // show only the target tab.
+  
+  // indicate target tab is active.
+  $('.tabs > a').removeClass('active');
+  $('.tabs > a:first').addClass('active');
+  $('.tab-content:first').show();
+  
+  // disable default browser behavior.
+  return false;
+});
+
+
+});
 </script>
+  </head>
+<body>
 
 
-
-<div class="w3-bar" style="background-color: #2d2d86; position:fixed; z-index: 2; top:0px;">
+<div class="w3-bar" style="background-color: #2d2d86; position:fixed; z-index: 10; top:0px;">
   <a href="#" class="w3-bar-item w3-button w3-left">
   <button class="w3-button w3-large" style="background-color:#9f9fdf;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
   </a>
   <a href="#" class="w3-bar-item" style="float:both;" >
-  <span style="font-family:Brush Script Std;
-               color:white;
-		       font-size:1.75em;">MacauSMEfind</span>
+  <span style="font-family:Brush Script Std;color:white;font-size:1.75em;">MacauSMEfind</span>
   </a>
   <a href="#" class="w3-bar-item w3-button w3-right">
   <button class="w3-button w3-large" style="background-color:#9f9fdf;" onclick=""><i class="fas fa-cog"></i></button>
@@ -75,8 +139,7 @@ function w3_close() {
 </div>
 
 
-<div id="pop-up" class="payload w3-card-4 w3-animate-top w3-light-blue w3-bottombar w3-border-cyan" 
-     style="">
+<div id="pop-up" class="payload w3-card-4 w3-animate-top w3-light-blue w3-bottombar w3-border-cyan">
 <p>
 <button id="close" class="button w3-button w3-circle w3-black w3-border-light-blue w3-right btn-lg" >
         
@@ -91,7 +154,7 @@ function w3_close() {
 
 </div>
 
-<div class="w3-sidebar w3-bar-block w3-animate-left sidebar"  id="mySidebar">
+<div class="w3-sidebar w3-bar-block w3-animate-left sidebar" id="mySidebar">
  <table class="w3-table">
   <thead class="thead-light">
   <tr class="w3-light-grey" style="display:block; width:100%; height:60px;">
@@ -128,25 +191,6 @@ function w3_close() {
 </table>
 </div>
 
-<script>
-
-// Store
-localStorage.setItem("lastname", "Smith");
-
-// Retrieve
-document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-
-$(document).ready(function(){
-    var newElem = $("<div>I am new element!</div>");
-    $("body").insertAfter(newElem);
-
-});
-
-
-var newElem = $("<div>I am new element!</div>");
-    $("body").insertAfter(newElem);
-
-</script>
 
  <div class="tabs w3-bar" style="width:100%; margin-top:75px; background: #f2e6ff;">
   <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#main" id="main">
@@ -178,16 +222,15 @@ var newElem = $("<div>I am new element!</div>");
   <div class="panel-body w3-left-align">
  
 	<div>
-	  <img src="shop1.jpg" width="360px" height="200px" class="center" style="object-fit: cover;">
+	  <img src="shop1.jpg" width="360px" height="200px" class="center">
 	</div>
 	<div class="w3-margin-top">
-	  <p>地址:
-	  <a href="https://www.google.com/maps/place/%E5%85%89%E8%BC%9D%E5%92%96%E5%95%A1/@22.2020255,113.548387,15z/data=!4m2!3m1!1s0x0:0xbb1ca8825ca52177?sa=X&ved=2ahUKEwicx-qij-vqAhUQfd4KHey-DroQ_BIwE3oECBIQCA" style="text-decoration:none;">
-	  <font color="red"><i class="fas fa-map-marker-alt"></i></font>澳門高士德大馬路33號C號</a></p>
+	<p>坐標：22.202236,113.548395</p>
 	</div>
 	<div>
-	  <p style="word-wrap: break-word;">連結:<a href="https://www.facebook.com/pages/%E5%85%89%E8%BC%9D%E5%92%96%E5%95%A1/159967070726097">
-	  https://www.facebook.com/pages/光輝咖啡/159967070726097</p></a>
+	  <p>地址:<font color="red"><i class="fas fa-map-marker-alt"></i></font>
+	  <a href="https://www.google.com/maps/place/%E5%85%89%E8%BC%9D%E5%92%96%E5%95%A1/@22.2020255,113.548387,15z/data=!4m2!3m1!1s0x0:0xbb1ca8825ca52177?sa=X&ved=2ahUKEwicx-qij-vqAhUQfd4KHey-DroQ_BIwE3oECBIQCA" style="text-decoration:none;">
+	  澳門高士德大馬路33號C號</a></p>
 	</div>
 	<div>
 	  <p>留言：今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，
@@ -195,15 +238,6 @@ var newElem = $("<div>I am new element!</div>");
 	  一陣煎肉，烘包香氣傳來。短短二十分鐘就有五十多個外賣客真不簡單。豬扒包，脆香肉濃又不油膩雲吞撈，
 	  醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q</p>
 	</div>
-	<div>
-	  <p>評分：
-	  <i class="fas fa-star"></i>
-	  <i class="fas fa-star"></i>
-	  <i class="fas fa-star"></i>
-	  <i class="fas fa-star"></i>
-	  <i class="fas fa-star-half-alt"></i>
-	  </p>
-	</div>  
   </div>
 </div>
 
@@ -253,23 +287,25 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	</div>
 	<div class="w3-margin-top">
 	  <p>地址:
-	  <input name="sme-location" class="w3-input" id="latlng" placeholder="位置" disabled></input>
-	  <input name="sme-address" class="w3-input"  id="formattedAddress" placeholder="地址" disabled></input>
+	  <input name="sme-location" class="w3-input" id="latlng" placeholder="坐標" disabled></input>
+	  <input name="sme-address" class="w3-input"  id="formattedAddress" placeholder="地址"></input>
 	  </p>
 	  
 	  <div id="get_location" class="w3-button w3-green ">
        <i class="fas fa-map-marker-alt"></i>
 	   自動獲取位置
 	   </div>
+	   
+	   
+	   <div id="map-popup" class="w3-card w3-white">
+           <div id="map" style="width:360px;height:300px;margin-top:5px;" class="center"></div>
+           <p id="confirmAddress" style="margin-left:5px;">請在地圖上確認中小企位置.</p>
+		   <button id="confirm" class="w3-white w3-text-blue" style="border:0px;margin-bottom:10px;">CONFIRM</button>
+       </div>
+	   
+	   
 	</div>
 	<div class="w3-margin-top">
-	  <p style="word-wrap: break-word;">連結:
-	  <font color="blue"><i class="fas fa-link"></i></font>
-	  <input name="sme-link" type="url" class="w3-input w3-text-black" placeholder="連結">
-	  </input>
-	  </p>
-	</div>
-	<div>
 	<p>留言:</p>
 	  <textarea name="sme-comment" form="sme-form" class="w3-input w3-border"></textarea>
 	</div> 
@@ -279,74 +315,6 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
  </button>
  </form>
 </div>
-
-<script>
-
-var request = new XMLHttpRequest()
-
-// Open a new connection, using the GET request on the URL endpoint
-request.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0', true)
-
-request.onload = function () {
-  // Begin accessing JSON data here
-}
-
-// Send request
-request.send();
-
-
-if('geolocation' in navigator) {
-  console.log('geolocation available');
-  navigator.geolocation.getCurrentPosition(position => {
-    console.log(position);
-
-    var lat = position.coords.latitude;
-	
-	var lng = position.coords.longitude;
-	var latlng = lat + ',' + lng;
-	
-	
-	$("#get_location").click(function(){
-	  $('#latlng').val(latlng); 
-});
-	
-  });
-} else {
-  console.log('geolocation not available')
-  $("#get_location").click(function(){
-	  $('#latitude').val('geolocation not available');
-	  $('formattedAddress').val(formattedAddress);
-});
-};
-
-navigator.geolocation.getCurrentPosition(position => {
-var lat = position.coords.latitude;
-var lng = position.coords.longitude;
-var latlng = lat + ',' + lng;
-
-
-geocode();
-
-function geocode() {
-	var key = "AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0";
-    alert('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=' + key); 
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=' + key)
-    .then(function(response){
-        //log full response
-        console.log(response);
-
-    var formattedAddress = response.data.results[0].formatted_address;
-    
-      })
-    .catch(function(error){
-    console.log(error);
-    })
-  }
-
-});
-
-</script>
-
 
 <div class='tab-content' id="heart">
 <p>
@@ -365,7 +333,27 @@ Back to Top
 
 
 
+
 <script>
+
+
+
+// Store
+localStorage.setItem("lastname", "Smith");
+
+// Retrieve
+document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+
+$(document).ready(function(){
+    var newElem = $("<div>I am new element!</div>");
+    $("body").insertAfter(newElem);
+
+});
+
+
+var newElem = $("<div>I am new element!</div>");
+    $("body").insertAfter(newElem);
+
 // Check browser support
 if (typeof(Storage) !== "undefined") {
   // Store
@@ -375,6 +363,8 @@ if (typeof(Storage) !== "undefined") {
 } else {
   document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
+
+
 </script>
 
 
