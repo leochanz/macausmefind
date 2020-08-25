@@ -27,7 +27,16 @@ if('geolocation' in navigator) {
 	  $('#map-popup').show();
 	  $('#darkscreen').show();
 	  $("#get_location").hide();
+	  
 	  return false;
+    });
+	
+	$('#cancel').click(function(){
+
+      $('#map-popup').hide();
+      $('#get_location').show();
+      $('#darkscreen').hide();
+      return false;
     });
   })
 } else {
@@ -100,12 +109,12 @@ function geocode(latitudeandlongtitude) {
 		$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
-		$('#map-popup').hide();
-		$("#get_location").show();
-		$('#latlng').val(latlng); 
-		$('#address').val(formattedAddress);
-		$('#darkscreen').hide();
-		return false;
+			$('#map-popup').hide();
+			$("#get_location").show();
+			$('#latlng').val(latlng); 
+			$('#address').val(formattedAddress);
+			$('#darkscreen').hide();
+			return false;
         });		
 		
 	})
