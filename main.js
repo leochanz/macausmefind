@@ -89,9 +89,9 @@ function clearMarkers() {
 
 
 	
-function geocode(latlng0) {
+function geocode(latitudeandlongtitude) {
 
-	var latlng = latlng0;
+	var latlng = latitudeandlongtitude;
 	let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ latlng +'&language=zh-TW&key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug' 
 	
 	fetch(url)
