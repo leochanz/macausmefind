@@ -50,7 +50,7 @@ $(document).ready(function(){
 $('#introduction').hide();
 $('#map-popup').hide();
 $('#darkscreen').hide();
-
+$('#mySidebar').hide();
 
 $('#sortdown').click(function(){
   $('#introduction').show();
@@ -90,8 +90,6 @@ $('.sidebar a').click(function(){
   
   $('.tab-content').hide();
   $('div' + href +'').show();
-  
-  $('.sidebar').hide();
   
   // disable default browser behavior.
   return false;
