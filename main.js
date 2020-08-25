@@ -27,6 +27,7 @@ if('geolocation' in navigator) {
 	  $('#map-popup').show();
 	  $('#darkscreen').show();
 	  $("#get_location").hide();
+	  return false;
     });
   })
 } else {
