@@ -1,5 +1,6 @@
 var request = new XMLHttpRequest()
 
+
 // Open a new connection, using the GET request on the URL endpoint
 request.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0', true)
 
@@ -24,10 +25,10 @@ if('geolocation' in navigator) {
 
 	$("#get_location").click(function(){
 	  $('#map-popup').show();
+	  $('#darkscreen').show();
 	  $("#get_location").hide();
     });
-});
-
+  })
 } else {
   console.log('geolocation not available')
   $("#get_location").click(function(){
@@ -85,9 +86,6 @@ function setMapOnAll(map) {
 function clearMarkers() {
   setMapOnAll(null);
 } // Shows any markers currently in the array.
-
-
-
 	
 function geocode(latitudeandlongtitude) {
 
@@ -101,12 +99,12 @@ function geocode(latitudeandlongtitude) {
 		$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
-			$('#latlng').val(latlng); 
-			$('#formattedAddress').val(formattedAddress);
-			$('#map-popup').hide();
-			$("#get_location").show();
-			
-			return false;
+		$('#map-popup').hide();
+		$("#get_location").show();
+		$('#latlng').val(latlng); 
+		$('#address').val(formattedAddress);
+		$('#darkscreen').hide();
+		return false;
         });		
 		
 	})
