@@ -108,14 +108,20 @@ $('.closs_button').click(function(){
   // hide all tabs.
   $(href).hide();
   
-  // show only the target tab.
-  
   // indicate target tab is active.
   $('.tabs > a').removeClass('active');
   $('.tabs > a:first').addClass('active');
   $('.tab-content:first').show();
   
   // disable default browser behavior.
+  return false;
+});
+
+$('#cancel').click(function(){
+
+  $('#map-popup').hide();
+  $('#get_location').show();
+
   return false;
 });
 
@@ -210,7 +216,7 @@ $('.closs_button').click(function(){
 <hr style="border:5px solid #707070; margin:0px;">
 
 
-<div class="w3-container" id="abc" style="width:100%; background-color:#fafafa; padding:0px;">
+<div class="w3-container" style="width:100%; background-color:#fcfcfc; padding:0px;">
  
 
 <div class="tab-content panel panel-primary center main" id="main" style=" border:0px; box-shadow: 0px 3px 10px #888888;">
@@ -287,7 +293,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	</div>
 	<div class="w3-margin-top">
 	  <p>地址:
-	  <input name="sme-location" class="w3-input" id="latlng" placeholder="坐標" disabled></input>
+	  <input name="sme-location" class="w3-input" id="latlng" placeholder="坐標"></input>
 	  <input name="sme-address" class="w3-input"  id="formattedAddress" placeholder="地址"></input>
 	  </p>
 	  
@@ -299,7 +305,10 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	   <div id="map-popup" class="w3-card w3-white">
            <div id="map" style="width:360px;height:300px;margin-top:5px;" class="center"></div>
            <p id="confirmAddress" style="margin-left:5px;">請在地圖上確認中小企位置.</p>
+		   <p>
 		   <button id="confirm" class="w3-white w3-text-blue" style="border:0px;margin-bottom:10px;">CONFIRM</button>
+		   <button id="cancel" class="w3-white w3-text-grey" style="border:0px;margin-bottom:10px;float:right;">CANCEL</button>
+		   </p>
        </div>
 	   
 	   
