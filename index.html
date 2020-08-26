@@ -125,6 +125,13 @@ $("#finalsubmit").click(function(){
     $('#darkscreen').hide();
 });
 
+$("#finalcancel").click(function(){
+	$('#confirm-popup').hide();
+    $('#darkscreen').hide();
+	
+	return false;
+});
+
 });
 </script>
   </head>
@@ -372,9 +379,12 @@ $('#preview').click( function() {
    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
    <p>
    <button id="finalsubmit" type="submit" form="smeform" formaction="https://formsubmit.co/chanchengleong@gmail.com"
-           class="w3-button w3-blue w3-text-white center" style="border:0px;margin-bottom:10px; width:50%;" >
+           class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:40%;" >
    提交表單</button>
-
+   
+   <button id="finalcancel"
+           class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:40%;" >
+   返回</button>
    </p>
    </div>
 
