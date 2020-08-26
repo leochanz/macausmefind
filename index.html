@@ -51,31 +51,16 @@ $('#introduction').hide();
 $('#map-popup').hide();
 $('#darkscreen').hide();
 $('#mySidebar').hide();
-
-$('#sortdown').click(function(){
-  $('#introduction').show();
-  $('#sortdown').hide();
-  
-  return false;
-});
-	
-$('#sortup').click(function(){
-  $('#introduction').hide();
-  $('#sortdown').show();
-  
-  return false;
-});
+$('#instruction').hide();
+$('#imgPreview').hide();
 	
 $('.tab-content').hide();
 $('.tabs > a').hide();
 $('.tabs > a:first').show();
 $('.tabs > a:nth-child(2)').show();
 
-
-// show the first tab.
 $('.tab-content:first').show();
 
-// indicate first tab is active.
 $('.tabs > a').removeClass('active');
 $('.tabs > a:first').addClass('active');
 
@@ -97,16 +82,14 @@ $('.sidebar a').click(function(){
 
 // when click on the tab link.
 $('.tabs > a').click(function(){
-  // get the href, which is #tab1, #tab2 or #tab3
+  $('#instruction').hide();
+
   var href = $(this).attr('href');
   
-  // hide all tabs.
   $('.tab-content').hide();
   
-  // show only the target tab.
   $('div' + href +'').show();
-  
-  // indicate target tab is active.
+
   $('.tabs > a').removeClass('active');
   $(this).addClass('active');
   
@@ -115,7 +98,8 @@ $('.tabs > a').click(function(){
 });
 
 $('.closs_button').click(function(){
-  // get the href, which is #tab1, #tab2 or #tab3
+  $('#instruction').hide();
+  
   var href = $(this).attr('href');
   
   // hide all tabs.
@@ -127,6 +111,26 @@ $('.closs_button').click(function(){
   $('.tab-content:first').show();
   
   // disable default browser behavior.
+  return false;
+});
+
+$('.tabs > a:nth-child(2)').click(function(){
+  $('#instruction').show();
+  
+  return false;
+});
+
+$('#sortdown').click(function(){
+  $('#introduction').show();
+  $('#sortdown').hide();
+  
+  return false;
+});
+	
+$('#sortup').click(function(){
+  $('#introduction').hide();
+  $('#sortdown').show();
+  
   return false;
 });
 
@@ -187,6 +191,7 @@ $('.closs_button').click(function(){
 
 
 <!--Introduction-->
+
 <h2 class="toptext" style="margin-top:70px;font-weight:bold;">發現中小企</h3>
 
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
@@ -197,16 +202,17 @@ $('.closs_button').click(function(){
 <i class="fas fa-sort-up" id="sortup" 
    style="float:right;color: #a64dff;position:relative;right:10px; top:-15px;"></i>
 <h5 class="w3-left-align w3-text-black toptext" style="font-family:微軟正黑體;padding-left: 10px;word-warp:break-word;">
-發現中小企是由個人開發網頁，目標是提供一個穩定的平台讓使用者記錄並分享他們在澳門所見的
+"發現中小企"網站的目標是提供一個穩定的平台讓使用者記錄並分享他們在澳門所見的
 中小企業，從而共同分發掘澳門不為人知的有趣企業。</h5>
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
 </div>
 
+<div id="instruction">
 <h4 class="toptext w3-margin-top">步驟1. 開啟手機gps
 <br>([設定]->[私隱]->[定位服務])</h4>
-<h4 class="toptext">步驟2. 開啟「新增」介面</h3>
-<h4 class="toptext">步驟3. 把中小企拍照上傳，獲取位置並填寫資料</h3>
-<h4 class="toptext">步驟4. 點擊「新增帖文」，便可以在首頁看到你的帖文</h3>
+<h4 class="toptext">步驟2. 把中小企拍照上傳，獲取位置並填寫資料</h4>
+<h4 class="toptext">步驟3. 點擊「新增帖文」，便可以在首頁看到你的帖文</h4>
+</div>
 
 
 <!--Tabs-->
@@ -233,22 +239,21 @@ $('.closs_button').click(function(){
 <div class="w3-container" style="width:100%; background-color:#fcfcfc; padding:0px;">
  
 <!--Main-->
-<div class="tab-content panel panel-primary center main" id="main" style=" border:0px; box-shadow: 0px 3px 10px #888888;">
-  <div class="panel-heading center" style="background-color:#004d99;">
+<div class="tab-content panel panel-primary center main" id="main">
+  <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i>光輝咖啡</h1>
 	
   </div>
 
   <div class="panel-body w3-left-align">
- 
 	<div>
-	  <img src="shop1.jpg" width="360px" height="200px" class="center">
+	  <img src="shop1.jpg" class="center" >
 	</div>
 	<div class="w3-margin-top">
 	<p>坐標：22.202236,113.548395</p>
 	</div>
 	<div>
-	  <p>地址:<font color="red"><i class="fas fa-map-marker-alt"></i></font>
+	  <p>地址:<i class="fas fa-map-marker-alt" style="color:red;"></i>
 	  <a href="https://www.google.com/maps/place/%E5%85%89%E8%BC%9D%E5%92%96%E5%95%A1/@22.2020255,113.548387,15z/data=!4m2!3m1!1s0x0:0xbb1ca8825ca52177?sa=X&ved=2ahUKEwicx-qij-vqAhUQfd4KHey-DroQ_BIwE3oECBIQCA" style="text-decoration:none;">
 	  澳門高士德大馬路33號C號</a></p>
 	</div>
@@ -305,8 +310,37 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
   <div class="panel-body w3-left-align">
 	
 	<div>
-	  <input name="圖片" type="file" accept=".bmp, .jpeg, .jp2, .gif, .tiff, .png, .exif, .wbmp, .mbm" id="photo" required>
+	  <input type="file" id="myFileInput" name="圖片" required>
+	  <p>
+	  <span id="preview" style="width:62px;height:30px;padding:2px 0px;" class="w3-white w3-text-indigo">圖片檢示:</span>
+	  <img id="imgPreview" src="" alt="Preview">
+	  </p>
+	  <input name="圖片url" type="hidden" id="imageurl">
 	</div>
+	
+<script>
+document.querySelector("#myFileInput").addEventListener("change", function() {
+	const reader = new FileReader();
+	
+	reader.addEventListener("load", () => {
+		localStorage.setItem("recent-image", reader.result);
+        $('#imageurl').val(reader.result);		
+	});
+	
+	reader.readAsDataURL(this.files[0]);
+	
+});
+
+$('#preview').click( function() {
+    $('#imgPreview').show();
+    const recentImageDataUrl = localStorage.getItem("recent-image");
+	
+	if(recentImageDataUrl) {
+	    document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
+	}
+});
+	
+</script>
 	
 	<div class="w3-margin-top">
 	  <p>地址:
@@ -355,34 +389,9 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 <script>
 
-
-
-// Store
-localStorage.setItem("lastname", "Smith");
-
-// Retrieve
-document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-
-$(document).ready(function(){
-    var newElem = $("<div>I am new element!</div>");
-    $("body").insertAfter(newElem);
-
-});
-
-
-var newElem = $("<div>I am new element!</div>");
-    $("body").insertAfter(newElem);
-
-// Check browser support
-if (typeof(Storage) !== "undefined") {
-  // Store
-  localStorage.setItem("lastname", "Smith");
-  // Retrieve
-  document.getElementById("result").innerHTML = localStorage.getItem("lastname");
-} else {
-  document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-}
 </script>
 
 </body>
 </html>
+
+
