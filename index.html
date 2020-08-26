@@ -120,6 +120,18 @@ $('.tabs > a:nth-child(2)').click(function(){
   return false;
 });
 
+$("#finalsubmit").click(function(){
+	$('#confirm-popup').hide();
+    $('#darkscreen').hide();
+});
+
+$("#finalcancel").click(function(){
+	$('#confirm-popup').hide();
+    $('#darkscreen').hide();
+	
+	return false;
+});
+
 });
 </script>
   </head>
@@ -304,7 +316,30 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	  <img id="imgPreview" src="" alt="Preview">
 	  <input name="圖片url" type="hidden" id="imageurl">
 	</div>
+	
+<script>
+document.querySelector("#myFileInput").addEventListener("change", function() {
+	const reader = new FileReader();
+	
+	reader.addEventListener("load", () => {
+		localStorage.setItem("recent-image", reader.result);
+        $('#imageurl').val(reader.result);		
+	});
+	
+	reader.readAsDataURL(this.files[0]);
+	
+});
 
+$('#preview').click( function() {
+    $('#imgPreview').show();
+    const recentImageDataUrl = localStorage.getItem("recent-image");
+	
+	if(recentImageDataUrl) {
+	    document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
+	}
+});
+	
+</script>
 	
 	<div class="w3-margin-top">
 	  <p>地址:
@@ -376,5 +411,3 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 </body>
 </html>
-
-
