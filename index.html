@@ -349,6 +349,7 @@ $('#preview').click( function() {
 		   </p>
        </div>
 	</div>
+	
 	<div id="darkscreen"></div>
 	
 	<div class="w3-margin-top">
@@ -357,7 +358,7 @@ $('#preview').click( function() {
 	</div> 
   </div>
   
-   <button type="submit" class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" 
+   <button class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" 
            id="submit" onclick="onSubmitPressed()">
    <i class="fas fa-plus"></i>新增帖文
    </button>
@@ -366,7 +367,7 @@ $('#preview').click( function() {
    <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
    <p>
-   <button id="finalsubmit"  form="smeform" formaction="https://formsubmit.co/chanchengleong@gmail.com"
+   <button id="finalsubmit" type="submit" form="smeform" formaction="https://formsubmit.co/chanchengleong@gmail.com"
            class="w3-button w3-blue w3-text-white center" style="border:0px;margin-bottom:10px; width:50%;" >
    提交表單</button>
 
@@ -396,5 +397,3 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 </body>
 </html>
-
-
