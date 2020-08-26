@@ -120,4 +120,3 @@ function geocode(latitudeandlongtitude) {
 	})
 	.catch( err => console.warn(err.message));
 }
-
