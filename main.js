@@ -121,15 +121,8 @@ function geocode(latitudeandlongtitude) {
 	.catch( err => console.warn(err.message));
 }
 
-var myjsonObj = '[{"type":"restaurant", "name":"mcdonalds"},{"type":"service", "name":"taobao"}]';
-
-var jsObj = JSON.parse(myjsonObj); 
-
-//console.log(jsObj[0].type);
-//console.log(jsObj[1].name);
-
 var formArray = [];
-var submittimes = 0;
+var smeform = document.getElementById('smeform');
 
 //form validation
 function onSubmitPressed() {
@@ -167,23 +160,6 @@ function onSubmitPressed() {
 	
 	    smeform.reset()
 	    $('#imgPreview').hide();
-	  
-	    $("#finalsubmit").click(function(){
-	      $('#confirm-popup').hide();
-          $('#darkscreen').hide();
-		  smeform.reset()
-		  $('#imgPreview').hide();
-        });
-		
-		$("#finalcancel").click(function(){
-		  event.preventDefault();
-	      $('#confirm-popup').hide();
-          $('#darkscreen').hide();
-	      smeform.reset()
-		  $('#imgPreview').hide();
-	      return false;
-        });
-
 	  };
 	};
 };
@@ -220,11 +196,19 @@ function addToMain(number) {
     $("div #main").append(newMainElement);
 };
 
-$('.tabs > a:first').click(function(){
-  addToMain();
-  
-  return false;
-});
+function loadMain() {
+	var number = localStorage.getItem('submittimes');
+	for (i = 0; i < number; i++) {
+        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+		
+		if ( submityesorno && submityesorno == 'NO') {
+            addToMain(i);
+			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+		};
+    }
+};
+
 
 $(document).ready(function(){
 	
@@ -233,30 +217,34 @@ $(document).ready(function(){
         localStorage.setItem( 'submittimes' , 0 );
     } 
 	
-	var number = localStorage.getItem('submittimes');
-	localStorage.getItem 
-	for (i = 0; i < number; i++) {
-		var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-        addToMain(i);
-		localStorage.setItem( formArraySubmittedNameGet , 'YES' );
-    }
+	loadMain();
 	
-	$('.tabs > a:nth-child(1)').click(function(){
-        var number = localStorage.getItem('submittimes');
-	    for (i = 0; i < number; i++) {
-        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-		
-		if ( submityesorno && submityesorno == 'NO') {
-            addToMain(i);
-			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-		};
-        }
+	$('.tabs > a:first').click(function(){
+        loadMain();
 	});
 	
 	$('#submit').click(function(){
         onSubmitPressed();
 	});
+	
+	$("#finalsubmit").click(function(){
+	      $('#confirm-popup').hide();
+          $('#darkscreen').hide();
+		  smeform.reset()
+		  $('#imgPreview').hide();
+		  loadMain();
+    });
+		
+	$("#finalcancel").click(function(){
+		  event.preventDefault();
+		  
+	      $('#confirm-popup').hide();
+          $('#darkscreen').hide();
+	      smeform.reset()
+		  $('#imgPreview').hide();
+		  loadMain();
+		  
+	      return false;
+    });
 });
 
