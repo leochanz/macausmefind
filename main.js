@@ -16,7 +16,7 @@ if('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     
 	console.log(position);
-    var lat = position.coords.latitude;
+        var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var latlng = lat + ',' + lng;
 	
@@ -127,7 +127,7 @@ var smeform = document.getElementById('smeform');
 //form validation
 function onSubmitPressed() {
 	
-	event.preventDefault();
+    event.preventDefault();
 		
     var smeform = document.getElementById('smeform');
 	
@@ -168,20 +168,20 @@ function onSubmitPressed() {
 
 function addToMain(number) {
 		
-    var formArrayName = 'formArray' + number + '';
+        var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-    var name = formdata.name;
+        var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-    var newMainElement = `
+        var newMainElement = `
 	<div class="panel panel-primary center main">
-    <div class="panel-heading center">
+        <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
-    </div>
-    <div class="panel-body w3-left-align">
+        </div>
+        <div class="panel-body w3-left-align">
 	<div><img src="${imageurl}"></div>
 	<div class="w3-margin-top">
 	<p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p></div>
@@ -191,9 +191,8 @@ function addToMain(number) {
 	<div><i class="fas fa-pen"></i>留言：<br>
 	<div class="w3-border comment" style="width:100%;">${comment}</div>
 	</div>
-    </div>
-    </div>
-	`;
+        </div>
+        </div>`;
 	
     $("div #main").append(newMainElement);
 };
@@ -222,11 +221,12 @@ $(document).ready(function(){
 	loadMain();
 	
 	$('.tabs > a:first').click(function(){
-        loadMain();
+                loadMain();
 	});
 	
 	$('#submit').click(function(){
-        onSubmitPressed();
+		alert("Hello World!");
+                onSubmitPressed();
 	});
 	
 	$("#finalsubmit").click(function(){
