@@ -1,6 +1,5 @@
- 
-body {
-    background-image: linear-gradient(#f2e6ff, white);
+ body {
+    background-image: linear-gradient(#f2e6ff,#f2e6ff);
     width:100%;
     height:200%;
     background-repeat: repeat-x;
@@ -103,11 +102,22 @@ body {
   position:relative;
   width:380px;
   z-index : 0;
-  margin-bottom:15px;
-  border:0px;
+  margin-bottom:10px;
   background:#fefefe;
-  box-shadow: 0px 3px 10px #888888;
+  border:0px !important;
+  box-shadow: 0px 3px 10px #888888 !important;
 }
+
+.main .panel-heading{background-color:#004d99 !important;}
+
+.main img{
+  width:360px;
+  height:250px;
+  position:relative;
+  left:-5px;
+  object-fit: cover;
+}
+	
 
 #darkscreen{
   position:fixed;
@@ -139,10 +149,17 @@ body {
 	padding-top:10px;
 	padding-bottom:0px;
 	position:absolute;
-	top:-20%;
+	top:10%;
 	left:0px;
 }
 
+#imgPreview {
+	position:relative;
+	left:-5px;
+	width:360px;
+	height:250px;
+	object-fit: cover;
+}
 
 
 .hidden {
@@ -209,6 +226,3 @@ img.slideshow {
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
-
-	
-	
