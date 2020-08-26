@@ -16,7 +16,7 @@ if('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     
 	console.log(position);
-        var lat = position.coords.latitude;
+    var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var latlng = lat + ',' + lng;
 	
@@ -106,32 +106,30 @@ function geocode(latitudeandlongtitude) {
 	.then( response => response.json() )
 	.then( data => {
         var formattedAddress = data.results[0].formatted_address;
-	$('#confirmAddress').text(formattedAddress);
+		$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
-		$('#map-popup').hide();
-		$("#get_location").show();
-		$('#latlng').val(latlng); 
-		$('#address').val(formattedAddress);
-		$('#darkscreen').hide();
-		return false;
+			$('#map-popup').hide();
+			$("#get_location").show();
+			$('#latlng').val(latlng); 
+			$('#address').val(formattedAddress);
+			$('#darkscreen').hide();
+			return false;
         });		
 		
 	})
 	.catch( err => console.warn(err.message));
 }
 
+	
 var formArray = [];
-var smeform = document.getElementById('smeform');
 
 //form validation
 function onSubmitPressed() {
 	
-    alert("Hello World!");
+	event.preventDefault();
 	
-    event.preventDefault();
-		
-    var smeform = document.getElementById('smeform');
+	var smeform = document.getElementById('smeform');
 	
     var type = $('#type').val();
     var name = $('#name').val();
@@ -141,47 +139,47 @@ function onSubmitPressed() {
     var comment = $('#comment').val();
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	    if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  
-	          var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	          formArray.push(formObj);
+	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    formArray.push(formObj);
 		
-	          $('#confirm-popup').show();
-	          $('#darkscreen').show();
+	    $('#confirm-popup').show();
+	    $('#darkscreen').show();
 	  
-	          var submittimes = localStorage.getItem( 'submittimes' );
+	    var submittimes = localStorage.getItem( 'submittimes' );
 	
-	          var formArrayName = 'formArray' + submittimes + ''; 
-	          var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	    var formArrayName = 'formArray' + submittimes + ''; 
+	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
 	
-	          submittimes++;
+	    submittimes++;
 	
-	          localStorage.setItem( 'submittimes' , submittimes );
-	          localStorage.setItem( formArraySubmittedName , 'NO' );
-	          localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	    localStorage.setItem( 'submittimes' , submittimes );
+	    localStorage.setItem( formArraySubmittedName , 'NO' );
+	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 	
-	          smeform.reset()
-	          $('#imgPreview').hide();
-	     };
+	    smeform.reset()
+	    $('#imgPreview').hide();
+	  };
 	};
 };
 
 function addToMain(number) {
 		
-        var formArrayName = 'formArray' + number + '';
+    var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-        var name = formdata.name;
+    var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-        var newMainElement = `
+    var newMainElement = `
 	<div class="panel panel-primary center main">
-        <div class="panel-heading center">
+    <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
-        </div>
-        <div class="panel-body w3-left-align">
+    </div>
+    <div class="panel-body w3-left-align">
 	<div><img src="${imageurl}"></div>
 	<div class="w3-margin-top">
 	<p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p></div>
@@ -191,8 +189,9 @@ function addToMain(number) {
 	<div><i class="fas fa-pen"></i>留言：<br>
 	<div class="w3-border comment" style="width:100%;">${comment}</div>
 	</div>
-        </div>
-        </div>`;
+    </div>
+    </div>
+	`;
 	
     $("div #main").append(newMainElement);
 };
@@ -200,14 +199,14 @@ function addToMain(number) {
 function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-            var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-	    if ( submityesorno && submityesorno == 'NO') {
-                addToMain(i);
-	        localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-	    };
-        }  
+		if ( submityesorno && submityesorno == 'NO') {
+            addToMain(i);
+			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+		};
+    }
 };
 
 
@@ -216,36 +215,59 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-        } 
+    } 
 	
 	loadMain();
 	
 	$('.tabs > a:first').click(function(){
-                loadMain();
+        loadMain();
 	});
 	
 	$('#submit').click(function(){
-                onSubmitPressed();
+        onSubmitPressed();
 	});
 	
 	$("#finalsubmit").click(function(){
-	        $('#confirm-popup').hide();
-                $('#darkscreen').hide();
-                smeform.reset()
-	        $('#imgPreview').hide();
-	        loadMain();
-        });
+		
+		var smeform = document.getElementById('smeform');
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
+		smeform.reset()
+		$('#imgPreview').hide();
+		loadMain();
+    });
 		
 	$("#finalcancel").click(function(){
-	        event.preventDefault();
-			  
-	        $('#confirm-popup').hide();
-                $('#darkscreen').hide();
-	        smeform.reset()
-                $('#imgPreview').hide();
-                loadMain();
+		event.preventDefault();
 		  
-	         return false;
-        });
-});
+		var smeform = document.getElementById('smeform');
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
+	    smeform.reset()
+		$('#imgPreview').hide();
+		loadMain();
+		  
+	    return false;
+    });
+	
+	document.querySelector("#myFileInput").addEventListener("change", function() {
+	const reader = new FileReader();
+	
+	reader.addEventListener("load", () => {
+		localStorage.setItem("recent-image", reader.result);
+        $('#imageurl').val(reader.result);		
+	});
+	
+	reader.readAsDataURL(this.files[0]);
+	
+    });
 
+    $('#preview').click( function() {
+        $('#imgPreview').show();
+        const recentImageDataUrl = $('#imageurl').val();
+	
+	    if(recentImageDataUrl) {
+	        document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
+	    }
+    });
+});
