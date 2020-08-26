@@ -16,7 +16,7 @@ if('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     
 	console.log(position);
-    var lat = position.coords.latitude;
+        var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var latlng = lat + ',' + lng;
 	
@@ -29,9 +29,9 @@ if('geolocation' in navigator) {
 	  $("#get_location").hide();
 	  
 	  return false;
-    });
+        });
 	
-	$('#cancel').click(function(){
+      $('#cancel').click(function(){
 
       $('#map-popup').hide();
       $('#get_location').show();
@@ -61,7 +61,7 @@ function initMap(latitude,longitude) {
     zoom: 18,
     center: haightAshbury,
     //mapTypeId: "terrain"
-	mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   }); // This event listener will call addMarker() when the map is clicked.
 
 
@@ -69,9 +69,9 @@ function initMap(latitude,longitude) {
     clearMarkers();
     markers = [];
     addMarker(event.latLng);
-	latlng0 = new String(event.latLng);
-	var latlng = latlng0.substring(latlng0.indexOf("(")+1, latlng0.indexOf(")"));
-	geocode(latlng);
+    latlng0 = new String(event.latLng);
+    var latlng = latlng0.substring(latlng0.indexOf("(")+1, latlng0.indexOf(")"));
+    geocode(latlng);
   }); // Adds a marker at the center of the map.
 
   addMarker(haightAshbury);
@@ -81,7 +81,7 @@ function initMap(latitude,longitude) {
 function addMarker(location) {
   const marker = new google.maps.Marker({
     position: location,
-	title: "1",
+    title: "1",
     map: map
   });
   markers.push(marker);
@@ -106,7 +106,7 @@ function geocode(latitudeandlongtitude) {
 	.then( response => response.json() )
 	.then( data => {
         var formattedAddress = data.results[0].formatted_address;
-	$('#confirmAddress').text(formattedAddress);
+		$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
 			$('#map-popup').hide();
@@ -121,55 +121,54 @@ function geocode(latitudeandlongtitude) {
 	.catch( err => console.warn(err.message));
 }
 
+	
 var formArray = [];
-var smeform = document.getElementById('smeform');
 
 //form validation
 function onSubmitPressed() {
 	
     event.preventDefault();
-		
+	
     var smeform = document.getElementById('smeform');
 	
     var type = $('#type').val();
     var name = $('#name').val();
-	var imageurl = $('#imageurl').val();
+    var imageurl = $('#imageurl').val();
     var coordinates = $('#latlng').val();
     var address = $('#address').val();
     var comment = $('#comment').val();
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	    if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
-		  
-		  alert("This form is now complete!");
+	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  
-	          var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	          formArray.push(formObj);
+	    alert("This form is now complete!");
 		
-	          $('#confirm-popup').show();
-	          $('#darkscreen').show();
+            smeform.reset();
+	    $('#imgPreview').hide();
+		
+	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    formArray.push(formObj);
+		
+	    $('#confirm-popup').show();
+	    $('#darkscreen').show();
 	  
-	          var submittimes = localStorage.getItem( 'submittimes' );
+	    var submittimes = localStorage.getItem( 'submittimes' );
 	
-	          var formArrayName = 'formArray' + submittimes + ''; 
-	          var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	    var formArrayName = 'formArray' + submittimes + ''; 
+	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
 	
-	          submittimes++;
+	    submittimes++;
 	
-	          localStorage.setItem( 'submittimes' , submittimes );
-	          localStorage.setItem( formArraySubmittedName , 'NO' );
-	          localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-	
-	          smeform.reset()
-	          $('#imgPreview').hide();
-	     };
+	    localStorage.setItem( 'submittimes' , submittimes );
+	    localStorage.setItem( formArraySubmittedName , 'NO' );
+	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	  };
 	};
-    return false;
 };
 
 function addToMain(number) {
 		
-        var formArrayName = 'formArray' + number + '';
+    var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
         var name = formdata.name;
 	var imageurl = formdata.imageurl;
@@ -206,7 +205,7 @@ function loadMain() {
 		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
 		if ( submityesorno && submityesorno == 'NO') {
-                        addToMain(i);
+            addToMain(i);
 			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 		};
     }
@@ -218,7 +217,7 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-        } 
+    } 
 	
 	loadMain();
 	
@@ -226,28 +225,27 @@ $(document).ready(function(){
         loadMain();
 	});
 	
-	$('#submit').click(function(){
-        onSubmitPressed();
-	});
-	
 	$("#finalsubmit").click(function(){
-	        $('#confirm-popup').hide();
-                $('#darkscreen').hide();
-                smeform.reset()
-	        $('#imgPreview').hide();
-	        loadMain();
-        });
+		
+		var smeform = document.getElementById('smeform');
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
+		smeform.reset()
+		$('#imgPreview').hide();
+		loadMain();
+    });
 		
 	$("#finalcancel").click(function(){
-	        event.preventDefault();
-			  
-	        $('#confirm-popup').hide();
-                $('#darkscreen').hide();
-	        smeform.reset()
-                $('#imgPreview').hide();
-                loadMain();
+		event.preventDefault();
 		  
-	        return false;
-        });
-});
+		var smeform = document.getElementById('smeform');
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
+	    smeform.reset()
+		$('#imgPreview').hide();
+		loadMain();
+		  
+	    return false;
+    });
 
+});
