@@ -65,7 +65,8 @@ $('#clearstorage').click(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-    } 
+    }
+    $('.tabs > a:first').click();	
 });
 
 $('#sortdown').click(function(){
