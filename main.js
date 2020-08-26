@@ -145,33 +145,35 @@ function onSubmitPressed() {
     var address = $('#address').val();
     var comment = $('#comment').val();
 	
-	if( type !== "" && name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
+	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  
-	  var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	  formArray.push(formObj);
+	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    formArray.push(formObj);
 		
-	  $('#confirm-popup').show();
-	  $('#darkscreen').show();
+	    $('#confirm-popup').show();
+	    $('#darkscreen').show();
 	  
-	  var submittimes = localStorage.getItem( 'submittimes' );
+	    var submittimes = localStorage.getItem( 'submittimes' );
 	
-	  var formArrayName = 'formArray' + submittimes + ''; 
-	  var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	    var formArrayName = 'formArray' + submittimes + ''; 
+	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
 	
-	  submittimes++;
+	    submittimes++;
 	
-	  localStorage.setItem( 'submittimes' , submittimes );
-	  localStorage.setItem( formArraySubmittedName , 'NO' );
-	  localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	    localStorage.setItem( 'submittimes' , submittimes );
+	    localStorage.setItem( formArraySubmittedName , 'NO' );
+	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 	
-	  smeform.reset()
-	  $('#imgPreview').hide();
+	    smeform.reset()
+	    $('#imgPreview').hide();
 	  
-	  $("#finalsubmit").click(function(){
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-      });
+	    $("#finalsubmit").click(function(){
+	      $('#confirm-popup').hide();
+          $('#darkscreen').hide();
+        });
 
+	  };
 	};
 };
 
