@@ -224,7 +224,6 @@ $(document).ready(function(){
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-	    alert(formArraySubmittedNameGet);
 
             addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
