@@ -127,6 +127,8 @@ var smeform = document.getElementById('smeform');
 //form validation
 function onSubmitPressed() {
 	
+    alert("Hello World!");
+	
     event.preventDefault();
 		
     var smeform = document.getElementById('smeform');
@@ -225,7 +227,6 @@ $(document).ready(function(){
 	});
 	
 	$('#submit').click(function(){
-		alert("Hello World!");
                 onSubmitPressed();
 	});
 	
