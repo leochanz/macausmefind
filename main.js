@@ -171,6 +171,8 @@ function onSubmitPressed() {
 	    $("#finalsubmit").click(function(){
 	      $('#confirm-popup').hide();
           $('#darkscreen').hide();
+		  smeform.reset()
+		  $('#imgPreview').hide();
         });
 
 	  };
