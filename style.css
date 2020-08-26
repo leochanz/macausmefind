@@ -1,4 +1,5 @@
- body {
+ 
+body {
     background-image: linear-gradient(#f2e6ff, white);
     width:100%;
     height:200%;
@@ -11,6 +12,37 @@
 	padding-left: 10px;	
     font-weight: normal;
 }
+
+#settingbubble {
+	z-index:11;
+    position: fixed;
+	right:5px;
+	top:60px;
+    background: #dfdfdf;
+    color: black;
+    font-size: 20px;
+    line-height: 120px;
+    text-align: center;
+    width: 100px;
+    height: 65px;
+    border-radius: 10px;
+    padding: 0px;
+}
+#settingbubble:after {
+	z-index:11;
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 1;
+    border-style: solid;
+    border-color: #dfdfdf transparent;
+    border-width: 0 20px 20px;
+    top: -20px;
+    left: 50%;
+    margin-left: -20px;
+}
+
 
 #mySidebar{
 	display:none; 
