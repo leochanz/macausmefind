@@ -139,28 +139,30 @@ function onSubmitPressed() {
     var comment = $('#comment').val();
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	    if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+		  
+		  alert("Hello World!");
 	  
-	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	    formArray.push(formObj);
+	          var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	          formArray.push(formObj);
 		
-	    $('#confirm-popup').show();
-	    $('#darkscreen').show();
+	          $('#confirm-popup').show();
+	          $('#darkscreen').show();
 	  
-	    var submittimes = localStorage.getItem( 'submittimes' );
+	          var submittimes = localStorage.getItem( 'submittimes' );
 	
-	    var formArrayName = 'formArray' + submittimes + ''; 
-	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	          var formArrayName = 'formArray' + submittimes + ''; 
+	          var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
 	
-	    submittimes++;
+	          submittimes++;
 	
-	    localStorage.setItem( 'submittimes' , submittimes );
-	    localStorage.setItem( formArraySubmittedName , 'NO' );
-	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	          localStorage.setItem( 'submittimes' , submittimes );
+	          localStorage.setItem( formArraySubmittedName , 'NO' );
+	          localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 	
-	    smeform.reset()
-	    $('#imgPreview').hide();
-	  };
+	          smeform.reset()
+	          $('#imgPreview').hide();
+	     };
 	};
 };
 
@@ -215,7 +217,7 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-    } 
+        } 
 	
 	loadMain();
 	
@@ -228,23 +230,25 @@ $(document).ready(function(){
 	});
 	
 	$("#finalsubmit").click(function(){
-	      $('#confirm-popup').hide();
-          $('#darkscreen').hide();
-		  smeform.reset()
-		  $('#imgPreview').hide();
-		  loadMain();
-    });
+		alert("Hello World!");
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+                smeform.reset()
+	        $('#imgPreview').hide();
+	        loadMain();
+        });
 		
 	$("#finalcancel").click(function(){
-		  event.preventDefault();
+	        event.preventDefault();
+		
+		alert("Hello World!");		  
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+	        smeform.reset()
+                $('#imgPreview').hide();
+                loadMain();
 		  
-	      $('#confirm-popup').hide();
-          $('#darkscreen').hide();
-	      smeform.reset()
-		  $('#imgPreview').hide();
-		  loadMain();
-		  
-	      return false;
-    });
+	         return false;
+        });
 });
 
