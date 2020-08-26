@@ -106,7 +106,7 @@ function geocode(latitudeandlongtitude) {
 	.then( response => response.json() )
 	.then( data => {
         var formattedAddress = data.results[0].formatted_address;
-		$('#confirmAddress').text(formattedAddress);
+	$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
 			$('#map-popup').hide();
@@ -127,7 +127,7 @@ var smeform = document.getElementById('smeform');
 //form validation
 function onSubmitPressed() {
 	
-	event.preventDefault();
+    event.preventDefault();
 		
     var smeform = document.getElementById('smeform');
 	
@@ -164,13 +164,14 @@ function onSubmitPressed() {
 	          $('#imgPreview').hide();
 	     };
 	};
+    return false;
 };
 
 function addToMain(number) {
 		
-    var formArrayName = 'formArray' + number + '';
+        var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-    var name = formdata.name;
+        var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
