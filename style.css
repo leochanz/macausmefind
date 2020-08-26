@@ -1,5 +1,6 @@
- body {
-    background-image: linear-gradient(#f2e6ff,#f2e6ff);
+ 
+body {
+    background-image: linear-gradient(#f2e6ff, white);
     width:100%;
     height:200%;
     background-repeat: repeat-x;
@@ -110,6 +111,7 @@
 
 .main .panel-heading{background-color:#004d99 !important;}
 
+
 .main img{
   width:360px;
   height:250px;
@@ -117,7 +119,12 @@
   left:-5px;
   object-fit: cover;
 }
-	
+
+.main .comment{
+	width:100%;
+	background-color:#ffffff;
+	padding:7.5px;"
+}	
 
 #darkscreen{
   position:fixed;
@@ -142,6 +149,18 @@
 }
 
 #map-popup {
+	overflow:visible;
+	padding-bottom:15px;
+    z-index: 5;
+	width:380px;
+	padding-top:10px;
+	padding-bottom:0px;
+	position:absolute;
+	top:10%;
+	left:0px;
+}
+
+#confirm-popup {
 	overflow:visible;
 	padding-bottom:15px;
     z-index: 5;
