@@ -22,24 +22,9 @@
     ></script>
 
 <script>
-var button 
-var payload 
-
-function togglePayload() {
-payload.classList.toggle('hidden');
-}
-
-function init() {
-
-button = document.querySelector('.button')
-payload = document.querySelector('.payload')
-
-button.onclick = togglePayload;
-}
-document.addEventListener("DOMContentLoaded", init, false);
-
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
+	
 }
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
@@ -49,6 +34,7 @@ $(document).ready(function(){
 
 $('#introduction').hide();
 $('#map-popup').hide();
+$('#confirm-popup').hide();
 $('#darkscreen').hide();
 $('#mySidebar').hide();
 $('#instruction').hide();
@@ -63,6 +49,20 @@ $('.tab-content:first').show();
 
 $('.tabs > a').removeClass('active');
 $('.tabs > a:first').addClass('active');
+
+$('#sortdown').click(function(){
+  $('#introduction').show();
+  $('#sortdown').hide();
+  
+  return false;
+});
+	
+$('#sortup').click(function(){
+  $('#introduction').hide();
+  $('#sortdown').show();
+  
+  return false;
+});
 
 $('.sidebar a').click(function(){
   // get the href, which is #tab1, #tab2 or #tab3
@@ -120,19 +120,7 @@ $('.tabs > a:nth-child(2)').click(function(){
   return false;
 });
 
-$('#sortdown').click(function(){
-  $('#introduction').show();
-  $('#sortdown').hide();
-  
-  return false;
-});
-	
-$('#sortup').click(function(){
-  $('#introduction').hide();
-  $('#sortdown').show();
-  
-  return false;
-});
+
 
 });
 </script>
@@ -196,11 +184,11 @@ $('#sortup').click(function(){
 
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
 <i class="fas fa-sort-down" id="sortdown" 
-   style="float:right;color: #a64dff;position:relative; right:30px;"></i>
+   style="float:right;color: #a64dff;position:relative; right:10px;"></i>
 
 <div id="introduction" style="margin-top:20px;">
 <i class="fas fa-sort-up" id="sortup" 
-   style="float:right;color: #a64dff;position:relative;right:30px; top:-15px;"></i>
+   style="float:right;color: #a64dff;position:relative;right:10px; top:-15px;"></i>
 <h5 class="w3-left-align w3-text-black toptext" style="font-family:微軟正黑體;padding-left: 10px;word-warp:break-word;">
 "發現中小企"網站的目標是提供一個穩定的平台讓使用者記錄並分享他們在澳門所見的
 中小企業，從而共同分發掘澳門不為人知的有趣企業。</h5>
@@ -239,31 +227,30 @@ $('#sortup').click(function(){
 <div class="w3-container" style="width:100%; background-color:#fcfcfc; padding:0px;">
  
 <!--Main-->
-<div class="tab-content panel panel-primary center main" id="main">
-  <div class="panel-heading center">
+<div class="tab-content" id="main">
+<div class="panel panel-primary center main">
+    <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i>光輝咖啡</h1>
-	
-  </div>
-
-  <div class="panel-body w3-left-align">
-	<div>
-	  <img src="shop1.jpg" class="center" >
-	</div>
+    </div>
+    <div class="panel-body w3-left-align">
+	<div><img src="shop1.jpg"></div>
 	<div class="w3-margin-top">
-	<p>坐標：22.202236,113.548395</p>
-	</div>
+	<p><i class="fas fa-globe" style="color:blue"></i>：22.202236,113.548395</p></div>
 	<div>
-	  <p>地址:<i class="fas fa-map-marker-alt" style="color:red;"></i>
-	  <a href="https://www.google.com/maps/place/%E5%85%89%E8%BC%9D%E5%92%96%E5%95%A1/@22.2020255,113.548387,15z/data=!4m2!3m1!1s0x0:0xbb1ca8825ca52177?sa=X&ved=2ahUKEwicx-qij-vqAhUQfd4KHey-DroQ_BIwE3oECBIQCA" style="text-decoration:none;">
-	  澳門高士德大馬路33號C號</a></p>
+	  <p><i class="fas fa-map-marker-alt" style="color:red"></i>：澳門高士德大馬路33號C號</p>
 	</div>
-	<div>
-	  <p>留言：今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，
-	  食物質素差，唔衛生。其實都不其然，玻璃肚的我對食和衛生都有一定要求。一踏進店給人一種被時間遺忘，
-	  一陣煎肉，烘包香氣傳來。短短二十分鐘就有五十多個外賣客真不簡單。豬扒包，脆香肉濃又不油膩雲吞撈，
-	  醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q</p>
+	<div><i class="fas fa-pen"></i>留言：<br>
+	<div class="w3-border comment">
+	今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，
+	食物質素差，唔衛生。其實都不其然，玻璃肚的我對食和衛生都有一定要求。一踏進店給人一種被時間遺忘，
+	一陣煎肉，烘包香氣傳來。短短二十分鐘就有五十多個外賣客真不簡單。豬扒包，脆香肉濃又不油膩雲吞撈，
+	醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q
 	</div>
-  </div>
+	</div>
+    </div>
+</div>
+
+
 </div>
 
 <!--About-->
@@ -277,14 +264,15 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 
 <!--Form-->
+<!--action="https://formsubmit.co/chanchengleong@gmail.com"-->
 <div class='tab-content' id="form">
-<form action="https://formsubmit.co/chanchengleong@gmail.com" method="post" id="sme-form"
+<form method="post" id="smeform"
       class="panel panel-primary center main" 
 	  style=" border:0px; box-shadow: 0px 3px 10px #888888;">
   <div class="panel-heading center" style="background-color:#004d99;">
-	<select name="類型" form="sme-form" class="w3-input w3-text-black" id="type" required>
+	<select name="類型" form="smeform" class="w3-input w3-text-black" id="type">
 	    <option value="" disabled selected>--選擇中小企類型--</option>
-	  <optgroup label="飲食">
+	    <optgroup label="飲食">
 	    <option value="餐廳">餐廳</option>
 		<option value="外賣店">外賣店</option>
 		<option value="餅店">餅店</option>
@@ -304,15 +292,15 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
          <option value="娛樂">娛樂</option>
 		 <option value="其他">其他</option>
     </select>
-	<input name="名稱" type="text" class="w3-input w3-text-black" placeholder="名稱" id="name" required>
+	<input name="名稱" type="text" class="w3-input w3-text-black" placeholder="名稱" id="name">
   </div>
   
   <div class="panel-body w3-left-align">
 	
 	<div>
-	  <input type="file" id="myFileInput" name="圖片" accept="image/*,.pdf" required>
+	  <input type="file" id="myFileInput" name="圖片" accept="image/*,.pdf">
 	  <p>
-	  <div id="preview" style="width:62px;height:30px;padding:2px 0px;" class="w3-white w3-text-indigo w3-margin-top">圖片檢示:</div>
+	  <span id="preview" style="width:62px;height:30px;padding:2px 0px;" class="w3-white w3-text-indigo">圖片檢示:</span>
 	  <img id="imgPreview" src="" alt="Preview">
 	  </p>
 	  <input name="圖片url" type="hidden" id="imageurl">
@@ -345,7 +333,7 @@ $('#preview').click( function() {
 	<div class="w3-margin-top">
 	  <p>地址:
 	  <input name="坐標" class="w3-input" placeholder="坐標" id="latlng"></input>
-	  <input name="地址" class="w3-input" placeholder="地址" id="address" required></input>
+	  <input name="地址" class="w3-input" placeholder="地址" id="address"></input>
 	  </p>
 	  
 	  <div id="get_location" class="w3-button w3-green"><i class="fas fa-map-marker-alt"></i>獲取位置</div>
@@ -353,7 +341,8 @@ $('#preview').click( function() {
 	   
 	   <div id="map-popup" class="w3-conatiner w3-white">
            <div id="map" style="width:370px;height:300px;border:1px solid #8c8c8c;" class="center"></div>
-           <p id="confirmAddress" style="margin-left:5px;">請在地圖上確認中小企位置.</p>
+           <p style="margin-left:5px;">請在地圖上確認中小企位置：</p>
+		   <p id="confirmAddress" style="margin-left:5px;"></p>
 		   <p>
 		   <button id="confirm" class="w3-white w3-text-blue" style="border:0px;margin-bottom:10px;">CONFIRM</button>
 		   <button id="cancel" class="w3-white w3-text-grey" style="border:0px;margin-bottom:10px;float:right;">CANCEL</button>
@@ -364,14 +353,28 @@ $('#preview').click( function() {
 	
 	<div class="w3-margin-top">
 	<p>意見:</p>
-	  <textarea name="意見" form="sme-form" class="w3-input w3-border" id="comment" required></textarea>
+	  <textarea name="意見" form="smeform" class="w3-input w3-border" id="comment"></textarea>
 	</div> 
   </div>
   
-   <button type="submit" class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" id="submit">
+   <button type="submit" class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" 
+           id="submit" onclick="onSubmitPressed()">
    <i class="fas fa-plus"></i>新增帖文
    </button>
- </form>
+   
+   <div id="confirm-popup" class="w3-conatiner w3-white">
+   <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
+   <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
+   <p>
+   <button id="finalsubmit"  form="smeform" formaction="https://formsubmit.co/chanchengleong@gmail.com"
+           class="w3-button w3-blue w3-text-white center" style="border:0px;margin-bottom:10px; width:50%;" >
+   提交表單</button>
+
+   </p>
+   </div>
+
+</form>
+ 
 </div>
 
 
