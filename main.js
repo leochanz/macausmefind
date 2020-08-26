@@ -1,6 +1,5 @@
 var request = new XMLHttpRequest()
 
-
 // Open a new connection, using the GET request on the URL endpoint
 request.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCWBgY-PLEL7qHq2kHr7qnea7kHUirVAg0', true)
 
@@ -22,6 +21,7 @@ if('geolocation' in navigator) {
 	var latlng = lat + ',' + lng;
 	
 	initMap(lat,lng);
+	geocode(latlng);
 
 	$("#get_location").click(function(){
 	  $('#map-popup').show();
@@ -120,3 +120,130 @@ function geocode(latitudeandlongtitude) {
 	})
 	.catch( err => console.warn(err.message));
 }
+
+var myjsonObj = '[{"type":"restaurant", "name":"mcdonalds"},{"type":"service", "name":"taobao"}]';
+
+var jsObj = JSON.parse(myjsonObj); 
+
+//console.log(jsObj[0].type);
+//console.log(jsObj[1].name);
+
+var formArray = [];
+var submittimes = 0;
+
+//form validation
+function onSubmitPressed() {
+	
+	event.preventDefault();
+		
+    var smeform = document.getElementById('smeform');
+	
+    var type = $('#type').val();
+    var name = $('#name').val();
+	var imageurl = $('#imageurl').val();
+    var coordinates = $('#latlng').val();
+    var address = $('#address').val();
+    var comment = $('#comment').val();
+	
+	if( type !== "" && name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	  
+	  var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	  formArray.push(formObj);
+		
+	  $('#confirm-popup').show();
+	  $('#darkscreen').show();
+	  
+	  var submittimes = localStorage.getItem( 'submittimes' );
+	
+	  var formArrayName = 'formArray' + submittimes + ''; 
+	  var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	
+	  submittimes++;
+	
+	  localStorage.setItem( 'submittimes' , submittimes );
+	  localStorage.setItem( formArraySubmittedName , 'NO' );
+	  localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	
+	  smeform.reset()
+	  $('#imgPreview').hide();
+	  
+	  $("#finalsubmit").click(function(){
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
+      });
+
+	};
+};
+
+function addToMain(number) {
+		
+    var formArrayName = 'formArray' + number + '';
+	var formdata = JSON.parse(localStorage.getItem(formArrayName));
+    var name = formdata.name;
+	var imageurl = formdata.imageurl;
+	var coordinates = formdata.latlng;
+	var address = formdata.address;
+	var comment = formdata.comment;
+	
+    var newMainElement = `
+	<div class="panel panel-primary center main">
+    <div class="panel-heading center">
+	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
+    </div>
+    <div class="panel-body w3-left-align">
+	<div><img src="${imageurl}"></div>
+	<div class="w3-margin-top">
+	<p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p></div>
+	<div>
+	  <p><i class="fas fa-map-marker-alt" style="color:red"></i>：${address}</p>
+	</div>
+	<div><i class="fas fa-pen"></i>留言：<br>
+	<div class="w3-border comment" style="width:100%;">${comment}</div>
+	</div>
+    </div>
+    </div>
+	`;
+	
+    $("div #main").append(newMainElement);
+};
+
+$('.tabs > a:first').click(function(){
+  addToMain();
+  
+  return false;
+});
+
+$(document).ready(function(){
+	
+	var submittimes = localStorage.getItem( 'submittimes' );
+	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
+        localStorage.setItem( 'submittimes' , 0 );
+    } 
+	
+	var number = localStorage.getItem('submittimes');
+	localStorage.getItem 
+	for (i = 0; i < number; i++) {
+		var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+        addToMain(i);
+		localStorage.setItem( formArraySubmittedNameGet , 'YES' );
+    }
+	
+	$('.tabs > a:nth-child(1)').click(function(){
+        var number = localStorage.getItem('submittimes');
+	    for (i = 0; i < number; i++) {
+        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+		
+		if ( submityesorno && submityesorno == 'NO') {
+            addToMain(i);
+			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+		};
+        }
+	});
+	
+	$('#submit').click(function(){
+        onSubmitPressed();
+	});
+});
+
