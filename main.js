@@ -123,6 +123,7 @@ function geocode(latitudeandlongtitude) {
 
 	
 var formArray = [];
+const localStorage = window.localStorage;
 
 //form validation
 function onSubmitPressed() {
