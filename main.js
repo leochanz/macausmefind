@@ -218,9 +218,17 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-    } 
+        } 
 	
-	loadMain();
+	var number = localStorage.getItem('submittimes');
+	for (i = 0; i < number; i++) {
+        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+	    alert(formArraySubmittedNameGet);
+
+            addToMain(i);
+	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+        };
 	
 	$('.tabs > a:first').click(function(){
         loadMain();
