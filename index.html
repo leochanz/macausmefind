@@ -196,8 +196,8 @@ $('.tabs > a:nth-child(2)').click(function(){
 <div id="instruction">
 <h4 class="toptext w3-margin-top">步驟1. 開啟手機gps
 <br>([設定]->[私隱]->[定位服務])</h4>
-<h4 class="toptext">步驟2. 把中小企拍照上傳，獲取位置並填寫資料</h4>
-<h4 class="toptext">步驟3. 點擊「新增帖文」，便可以在首頁看到你的帖文</h4>
+<h4 class="toptext">步驟2. 把中小企拍照，獲取位置並填寫資料，每一欄都必填</h4>
+<h4 class="toptext">步驟3. 按下「新增帖文」，便可以在首頁看到你的帖文</h4>
 </div>
 
 
@@ -304,30 +304,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	  <img id="imgPreview" src="" alt="Preview">
 	  <input name="圖片url" type="hidden" id="imageurl">
 	</div>
-	
-<script>
-document.querySelector("#myFileInput").addEventListener("change", function() {
-	const reader = new FileReader();
-	
-	reader.addEventListener("load", () => {
-		localStorage.setItem("recent-image", reader.result);
-        $('#imageurl').val(reader.result);		
-	});
-	
-	reader.readAsDataURL(this.files[0]);
-	
-});
 
-$('#preview').click( function() {
-    $('#imgPreview').show();
-    const recentImageDataUrl = localStorage.getItem("recent-image");
-	
-	if(recentImageDataUrl) {
-	    document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
-	}
-});
-	
-</script>
 	
 	<div class="w3-margin-top">
 	  <p>地址:
@@ -367,11 +344,11 @@ $('#preview').click( function() {
    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
    <p>
    <button id="finalsubmit" type="submit" form="smeform" formaction="https://formsubmit.co/chanchengleong@gmail.com"
-           class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:40%;" >
+           class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
    提交表單</button>
    
    <button id="finalcancel"
-           class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:40%;" >
+           class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:42.5%;" >
    返回</button>
    </p>
    </div>
@@ -399,3 +376,5 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 </body>
 </html>
+
+
