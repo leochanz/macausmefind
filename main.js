@@ -121,15 +121,15 @@ function geocode(latitudeandlongtitude) {
 	.catch( err => console.warn(err.message));
 }
 
-	
 var formArray = [];
+var smeform = document.getElementById('smeform');
 
 //form validation
 function onSubmitPressed() {
 	
 	event.preventDefault();
-	
-	var smeform = document.getElementById('smeform');
+		
+    var smeform = document.getElementById('smeform');
 	
     var type = $('#type').val();
     var name = $('#name').val();
@@ -139,28 +139,30 @@ function onSubmitPressed() {
     var comment = $('#comment').val();
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	    if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+		  
+		  alert("This form is now complete!");
 	  
-	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	    formArray.push(formObj);
+	          var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	          formArray.push(formObj);
 		
-	    $('#confirm-popup').show();
-	    $('#darkscreen').show();
+	          $('#confirm-popup').show();
+	          $('#darkscreen').show();
 	  
-	    var submittimes = localStorage.getItem( 'submittimes' );
+	          var submittimes = localStorage.getItem( 'submittimes' );
 	
-	    var formArrayName = 'formArray' + submittimes + ''; 
-	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	          var formArrayName = 'formArray' + submittimes + ''; 
+	          var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
 	
-	    submittimes++;
+	          submittimes++;
 	
-	    localStorage.setItem( 'submittimes' , submittimes );
-	    localStorage.setItem( formArraySubmittedName , 'NO' );
-	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	          localStorage.setItem( 'submittimes' , submittimes );
+	          localStorage.setItem( formArraySubmittedName , 'NO' );
+	          localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 	
-	    smeform.reset()
-	    $('#imgPreview').hide();
-	  };
+	          smeform.reset()
+	          $('#imgPreview').hide();
+	     };
 	};
 };
 
@@ -203,7 +205,7 @@ function loadMain() {
 		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
 		if ( submityesorno && submityesorno == 'NO') {
-            addToMain(i);
+                        addToMain(i);
 			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 		};
     }
@@ -215,7 +217,7 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-    } 
+        } 
 	
 	loadMain();
 	
@@ -228,46 +230,23 @@ $(document).ready(function(){
 	});
 	
 	$("#finalsubmit").click(function(){
-		
-		var smeform = document.getElementById('smeform');
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-		smeform.reset()
-		$('#imgPreview').hide();
-		loadMain();
-    });
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+                smeform.reset()
+	        $('#imgPreview').hide();
+	        loadMain();
+        });
 		
 	$("#finalcancel").click(function(){
-		event.preventDefault();
+	        event.preventDefault();
+			  
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+	        smeform.reset()
+                $('#imgPreview').hide();
+                loadMain();
 		  
-		var smeform = document.getElementById('smeform');
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-	    smeform.reset()
-		$('#imgPreview').hide();
-		loadMain();
-		  
-	    return false;
-    });
-	
-	document.querySelector("#myFileInput").addEventListener("change", function() {
-	const reader = new FileReader();
-	
-	reader.addEventListener("load", () => {
-		localStorage.setItem("recent-image", reader.result);
-        $('#imageurl').val(reader.result);		
-	});
-	
-	reader.readAsDataURL(this.files[0]);
-	
-    });
-
-    $('#preview').click( function() {
-        $('#imgPreview').show();
-        const recentImageDataUrl = $('#imageurl').val();
-	
-	    if(recentImageDataUrl) {
-	        document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
-	    }
-    });
+	        return false;
+        });
 });
+
