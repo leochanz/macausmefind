@@ -174,6 +174,15 @@ function onSubmitPressed() {
 		  smeform.reset()
 		  $('#imgPreview').hide();
         });
+		
+		$("#finalcancel").click(function(){
+		  event.preventDefault();
+	      $('#confirm-popup').hide();
+          $('#darkscreen').hide();
+	      smeform.reset()
+		  $('#imgPreview').hide();
+	      return false;
+        });
 
 	  };
 	};
