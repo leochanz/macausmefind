@@ -156,7 +156,7 @@ body {
 	padding-top:10px;
 	padding-bottom:0px;
 	position:absolute;
-	top:10%;
+	bottom:10%;
 	left:0px;
 }
 
@@ -168,7 +168,7 @@ body {
 	padding-top:10px;
 	padding-bottom:0px;
 	position:absolute;
-	top:10%;
+	bottom:10%;
 	left:0px;
 }
 
@@ -245,3 +245,6 @@ img.slideshow {
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
+
+	
+	
