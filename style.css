@@ -123,7 +123,8 @@ body {
 .main .comment{
 	width:100%;
 	background-color:#ffffff;
-	padding:7.5px;"
+	padding:7.5px;
+	border-radius:2px;
 }	
 
 #darkscreen{
@@ -245,3 +246,6 @@ img.slideshow {
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
+
+	
+	
