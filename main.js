@@ -106,15 +106,15 @@ function geocode(latitudeandlongtitude) {
 	.then( response => response.json() )
 	.then( data => {
         var formattedAddress = data.results[0].formatted_address;
-		$('#confirmAddress').text(formattedAddress);
+	$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
-			$('#map-popup').hide();
-			$("#get_location").show();
-			$('#latlng').val(latlng); 
-			$('#address').val(formattedAddress);
-			$('#darkscreen').hide();
-			return false;
+		$('#map-popup').hide();
+		$("#get_location").show();
+		$('#latlng').val(latlng); 
+		$('#address').val(formattedAddress);
+		$('#darkscreen').hide();
+		return false;
         });		
 		
 	})
@@ -142,8 +142,6 @@ function onSubmitPressed() {
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	    if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
-		  
-		  alert("Hello World!");
 	  
 	          var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	          formArray.push(formObj);
@@ -202,14 +200,14 @@ function addToMain(number) {
 function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+            var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-		if ( submityesorno && submityesorno == 'NO') {
-            addToMain(i);
-			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-		};
-    }
+	    if ( submityesorno && submityesorno == 'NO') {
+                addToMain(i);
+	        localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+	    };
+        }  
 };
 
 
@@ -231,7 +229,6 @@ $(document).ready(function(){
 	});
 	
 	$("#finalsubmit").click(function(){
-		alert("Hello World!");
 	        $('#confirm-popup').hide();
                 $('#darkscreen').hide();
                 smeform.reset()
@@ -241,8 +238,7 @@ $(document).ready(function(){
 		
 	$("#finalcancel").click(function(){
 	        event.preventDefault();
-		
-		alert("Hello World!");		  
+			  
 	        $('#confirm-popup').hide();
                 $('#darkscreen').hide();
 	        smeform.reset()
