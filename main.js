@@ -247,13 +247,15 @@ $(document).ready(function(){
 		event.preventDefault();
 		  
 		var smeform = document.getElementById('smeform');
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-	    smeform.reset()
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+	        smeform.reset()
 		$('#imgPreview').hide();
 		loadMain();
+		
+		$('.tabs > a:first').click();
 		  
-	    return false;
+	        return false;
     });
 
 });
