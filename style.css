@@ -1,4 +1,5 @@
- body {
+ 
+body {
     background-image: linear-gradient(#f2e6ff, #f2e6ff);
     width:100%;
     height:200%;
@@ -17,7 +18,7 @@
     position: fixed;
 	right:5px;
 	top:60px;
-    background: #dfdfdf;
+    background: #ffffff;
     color: black;
     font-size: 20px;
     line-height: 120px;
@@ -35,7 +36,7 @@
     width: 0;
     z-index: 1;
     border-style: solid;
-    border-color: #dfdfdf transparent;
+    border-color: #ffffff transparent;
     border-width: 0 20px 20px;
     top: -20px;
     left: 50%;
@@ -156,6 +157,11 @@
 	padding:7.5px;
 	border-radius:2px;
 }	
+
+.error{
+  border: 2px solid FIREBRICK;
+  box-shadow: 0 0 8px FIREBRICK;
+}
 
 #darkscreen{
   position:fixed;
