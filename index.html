@@ -30,6 +30,23 @@ function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
 
+function lsTest(){
+    var test = 'test';
+    try {
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
+
+if(lsTest() === true){
+    alert("localstorage is available on your device");
+}else{
+    alert("localstorage is unavailable on your device");
+}
+
 $(document).ready(function(){
 
 $('#example').hide();
@@ -71,7 +88,7 @@ $('#clearstorage').click(function(){
         localStorage.setItem( 'submittimes' , 0 );
 		$('#example').show();
     }
-    location.reload();
+    window.location.reload();
 });
 
 $('#sortdown').click(function(){
@@ -88,11 +105,14 @@ $('#sortup').click(function(){
   return false;
 });
 
-$('.sidebar a').click(function(){
+$('.sidebar a:not(#clearstorage)').click(function(){
   // get the href, which is #tab1, #tab2 or #tab3
   var href = $(this).attr('href');
   
   // show only the target tab.
+  $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+  $(this).addClass('w3-leftbar w3-border-indigo');
+  
   $('.tabs > span' + href + '').show();
   $('.tabs > span').removeClass('active');
   $('.tabs > span' + href + '').addClass('active');
@@ -120,6 +140,8 @@ $('.tabs > span').click(function(){
   $('.tabs > span').removeClass('active');
   $(this).addClass('active');
   
+  $('.sidebar a[href="' + href + '"]').click();
+  
   // disable default browser behavior.
   return false;
 });
@@ -137,11 +159,14 @@ $('.closs_button').click(function(){
   $('.tabs > span:first').addClass('active');
   $('.tab-content:first').show();
   
+  $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+  $('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
+  
   // disable default browser behavior.
   return false;
 });
 
-$('.tabs > span:nth-child(2)').click(function(){
+  $('.tabs > span:nth-child(2)').click(function(){
   $('#instruction').show();
   
   return false;
@@ -202,12 +227,11 @@ $('.tabs > span:nth-child(2)').click(function(){
       <td><a href="#form" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="fas fa-plus"></i>新增帖文</a></td>
   </tr>
-
   <tr>
       <td><a href="#record" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="far fa-clipboard"></i>記錄</a></td>
   </tr>
-
+	  
   </tbody>
 </table>
 </div>
