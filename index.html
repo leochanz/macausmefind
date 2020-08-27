@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -293,7 +294,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 <!--action="https://formsubmit.co/chanchengleong@gmail.com"-->
 <div class='tab-content' id="form">
 
-<form id="smeform" method="POST"
+<form id="smeform" method="POST" action="https://formsubmit.co/chanchengleong@gmail.com"
       class="panel panel-primary center main" 
 	  style=" border:0px; box-shadow: 0px 3px 10px #888888;">
   <div class="panel-heading center" style="background-color:#004d99;">
@@ -384,7 +385,8 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	</div> 
   </div>
   
-   <button class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" id="submit" onclick="event.preventDefault()">
+   <button class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" 
+           id="submit" onclick="onSubmitPressed()">
    <i class="fas fa-plus"></i>新增帖文
    </button>
    
@@ -392,11 +394,11 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
    <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
    <p>
-   <button id="finalsubmit" type="submit" form="smeform" method="POST" action="https://formsubmit.co/chanchengleong@gmail.com"
+   <button id="finalsubmit" type="submit" form="smeform"
            class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
    提交表單</button>
    
-   <button id="finalcancel" onclick="event.preventDefault()"
+   <button id="finalcancel"
            class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:42.5%;" >
    返回</button>
    </p>
