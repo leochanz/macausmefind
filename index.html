@@ -297,10 +297,11 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 <!--action="https://formsubmit.co/chanchengleong@gmail.com"-->
 <div class='tab-content' id="form">
 
-<form id="smeform" class="panel panel-primary center main" 
-	  style=" border:0px; box-shadow: 0px 3px 10px #888888;">
+<div class="panel panel-primary center main" 
+     style=" border:0px; box-shadow: 0px 3px 10px #888888;">
+<form id="smeform" >
   <div class="panel-heading center" style="background-color:#004d99;">
-	<select name="類型" form="smeform" class="w3-input w3-text-black" id="type">
+	<select form="smeform" class="w3-input w3-text-black" id="type">
 	    <option disabled selected>--選擇中小企類型--</option>
 	    <optgroup label="飲食">
 	    <option value="餐廳">餐廳</option>
@@ -322,13 +323,14 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
          <option value="娛樂">娛樂</option>
 		 <option value="其他">其他</option>
     </select>
-	<input name="名稱" type="text" class="w3-input w3-text-black" placeholder="名稱" id="name">
+	<input type="text" class="w3-input w3-text-black" placeholder="名稱" id="name">
   </div>
   
   <div class="panel-body w3-left-align">
 	
 	<div>
-	  <input type="file" id="myFileInput" name="圖片" accept="image/*,.pdf">
+	  <input type="file" id="myFileInput" accept="image/*,.pdf">
+	  <input type="hidden" id="imageurl">
 	</div>
 	<div class="w3-margin-top">
 	  <span id="preview" style="width:62px;height:30px;padding:2px 0px; margin-top:10px;" class="w3-white w3-text-indigo">圖片檢示:</span>
@@ -341,7 +343,8 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	const reader = new FileReader();
 	
 	reader.addEventListener("load", () => {
-		localStorage.setItem("recent-image", reader.result);	
+		localStorage.setItem("recent-image", reader.result);
+        $('#imageurl').val(reader.result);		
 	});
 	
 	reader.readAsDataURL(this.files[0]);
@@ -361,8 +364,8 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	
 	<div class="w3-margin-top">
 	  <p>地址:
-	  <input name="坐標" class="w3-input" placeholder="坐標" id="latlng"></input>
-	  <input name="地址" class="w3-input" placeholder="地址" id="address"></input>
+	  <input class="w3-input" placeholder="坐標" id="latlng"></input>
+	  <input class="w3-input" placeholder="地址" id="address"></input>
 	  </p>
 	  
 	  <div id="get_location" class="w3-button w3-green"><i class="fas fa-map-marker-alt"></i>獲取位置</div>
@@ -383,7 +386,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	
 	<div class="w3-margin-top">
 	<p>意見:</p>
-	  <textarea name="意見" form="smeform" class="w3-input w3-border" id="comment"></textarea>
+	  <textarea form="smeform" class="w3-input w3-border" id="comment"></textarea>
 	</div> 
   </div>
   
@@ -391,6 +394,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
            id="submit" onclick="onSubmitPressed()">
    <i class="fas fa-plus"></i>新增帖文
    </button>
+</form>
 
 <form method="POST" action="https://formsubmit.co/chanchengleong@gmail.com" class="center" id="finalform">
     <div id="confirm-popup" class="w3-conatiner w3-white">
@@ -412,9 +416,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
     </p>
     </div>
 </form> 
-
-</form>
-
+</div>
 
  
 </div>
