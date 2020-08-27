@@ -33,6 +33,10 @@ function w3_close() {
 
 $(document).ready(function(){
 
+$('#example').hide();
+var submittimes = localStorage.getItem( 'submittimes' );
+if (submittimes == 0){$('#example').show();} 
+	
 $('#settingbubble').hide();
 $('#introduction').hide();
 $('#map-popup').hide();
