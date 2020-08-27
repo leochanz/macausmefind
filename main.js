@@ -171,10 +171,10 @@ function onSubmitPressed() {
 };
 
 function dataTransfer(Obj) {
-	console.log(Obj);
+	alert(Obj);
 	$('#type2').val(Obj.type);
         $('#name2').val(Obj.name);
-
+	$('#imageurl2').val(Obj.imageurl);
 	$('#latlng2').val(Obj.latlng);
 	$('#address2').val(Obj.address);
 	$('#comment2').val(Obj.comment); 
