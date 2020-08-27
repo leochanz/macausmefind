@@ -132,16 +132,32 @@ function onSubmitPressed() {
 	
     var type = $('#type').val();
     var name = $('#name').val();
-    var imagefile = $('#myFileInput').val();
-    var imageurl = $('#imageurl').val();
+	var imagefile = $('#myFileInput').val();
+	var imageurl = $('#imageurl').val();
     var coordinates = $('#latlng').val();
     var address = $('#address').val();
     var comment = $('#comment').val();
 	
+	if (comment === ""){
+		  $('#comment').addClass('error');
+	};
+	
+	if ( type == "" || type === undefined || type === null || type.length == 0){
+		  $('#type').addClass('error');
+	};
+	
+	$('#smeform input*').each(function(){
+		if ($(this).val() == ""){
+		  $(this).addClass('error');
+		};
+	});
+	
+	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
-	  
+	  	  
 	    dataTransfer(type,name,imagefile,coordinates,address,comment);
+		$('#example').hide();
 		
 		document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
@@ -164,12 +180,15 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 	  };
 	};
+	
+	loadMain();
+	
 	return false;
 };
 
 function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	$('#type2').val(type);
-        $('#name2').val(name);
+    $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
@@ -179,12 +198,12 @@ function dataTransfer(type,name,imagefile,latlng,address,comment) {
 function addToMain(number) {
 		
     var formArrayName = 'formArray' + number + '';
-    var formdata = JSON.parse(localStorage.getItem(formArrayName));
+	var formdata = JSON.parse(localStorage.getItem(formArrayName));
     var name = formdata.name;
-    var imageurl = formdata.imageurl;
-    var coordinates = formdata.latlng;
-    var address = formdata.address;
-    var comment = formdata.comment;
+	var imageurl = formdata.imageurl;
+	var coordinates = formdata.latlng;
+	var address = formdata.address;
+	var comment = formdata.comment;
 	
     var newMainElement = `
 	<div class="panel panel-primary center main">
@@ -208,6 +227,7 @@ function addToMain(number) {
     $("div #main").append(newMainElement);
 };
 
+
 function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
@@ -215,7 +235,7 @@ function loadMain() {
 		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
 		if ( submityesorno && submityesorno == 'NO') {
-                        addToMain(i);
+            addToMain(i);
 			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 		};
     }
@@ -227,41 +247,55 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-        } 
+    } 
+	
+	if (submittimes == 0){
+       $('#example').show();
+    } 
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-            var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-            addToMain(i);
+        addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-        };
+    };
 	
-	$('.maintab').click(function(){
-	    loadMain();
+	
+	$('#smeform').keydown(function(){
+        $('#smeform *').removeClass('error');
+    });
+	
+	$('#type, #myFileInput').click(function(){
+        $('#smeform *').removeClass('error');
+    });
+	
+	$('.tabs > span:first').click(function(){
+        loadMain();
 	});
 	
+	
+
 	$("#finalsubmit").click(function(){
 		
-	  $('#confirm-popup').hide();
-          $('#darkscreen').hide();
+		$('#confirm-popup').hide();
+        $('#darkscreen').hide();
 		
-	  $('.maintab').click();
+		$('.tabs > span:first').click();
 
     });
 		
 	$("#finalcancel").click(function(){
 		
-	  event.preventDefault();
+		event.preventDefault();
 		  
-	  $('#confirm-popup').hide();
-          $('#darkscreen').hide();
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
 
-	  $('.maintab').click();
+		$('.tabs > span:first').click();
 		  
-	  return false;
+	    return false;
     });
 
 });
-
