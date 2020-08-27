@@ -179,12 +179,12 @@ function dataTransfer(type,name,imagefile,latlng,address,comment) {
 function addToMain(number) {
 		
     var formArrayName = 'formArray' + number + '';
-	var formdata = JSON.parse(localStorage.getItem(formArrayName));
+    var formdata = JSON.parse(localStorage.getItem(formArrayName));
     var name = formdata.name;
-	var imageurl = formdata.imageurl;
-	var coordinates = formdata.latlng;
-	var address = formdata.address;
-	var comment = formdata.comment;
+    var imageurl = formdata.imageurl;
+    var coordinates = formdata.latlng;
+    var address = formdata.address;
+    var comment = formdata.comment;
 	
     var newMainElement = `
 	<div class="panel panel-primary center main">
