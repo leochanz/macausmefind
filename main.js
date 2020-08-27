@@ -132,8 +132,8 @@ function onSubmitPressed() {
 	
     var type = $('#type').val();
     var name = $('#name').val();
-	var imagefile = $('#myFileInput').val();
-	var imageurl = $('#imageurl').val();
+    var imagefile = $('#myFileInput').val();
+    var imageurl = $('#imageurl').val();
     var coordinates = $('#latlng').val();
     var address = $('#address').val();
     var comment = $('#comment').val();
@@ -141,7 +141,7 @@ function onSubmitPressed() {
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  
-	    dataTransfer(type,name,imagefile,coordinates,address,comment);
+	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 		document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
@@ -167,10 +167,11 @@ function onSubmitPressed() {
 	return false;
 };
 
-function dataTransfer(type,name,imagefile,latlng,address,comment) {
+function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 	$('#type2').val(type);
-    $('#name2').val(name);
+        $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
+	$('#imageurl2').val(imageurl);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
 	$('#comment2').val(comment); 
