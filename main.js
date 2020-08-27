@@ -179,7 +179,7 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-            alert('all of the data, including ' + submittimes + ',' + formArraySubmittedName + ',' formArrayName + 'has been stored into local storage');
+            alert('all of the data have been stored into local storage');
 		  
             loadMain();
 	  };
