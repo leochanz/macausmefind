@@ -235,27 +235,26 @@ $(document).ready(function(){
 	
 	$("#finalsubmit").click(function(){
 		
-		var smeform = document.getElementById('smeform');
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-		smeform.reset()
+		$('#confirm-popup').hide();
+                $('#darkscreen').hide();
+	 
+		document.getElementById('smeform').reset()
 		$('#imgPreview').hide();
-		loadMain();
 		$('.tabs > a:first').click();
     });
 		
 	$("#finalcancel").click(function(){
+		
 		event.preventDefault();
 		  
-		var smeform = document.getElementById('smeform');
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-	    smeform.reset()
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+	        document.getElementById('smeform'.reset()
 		$('#imgPreview').hide();
-		loadMain();
+
 		$('.tabs > a:first').click();
 		  
-	    return false;
+	        return false;
     });
 
 });
