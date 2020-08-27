@@ -152,16 +152,14 @@ function onSubmitPressed() {
 		};
 	});
 	
-	
-	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	if(type !== "" && type !== undefined && type !== null && type.length !== 0 && name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  	  
 	    dataTransfer(type,name,imagefile,coordinates,address,comment);
-		$('#example').hide();
+	    $('#example').hide();
 		
 		document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
-		$('#confirm-popup').show();
+	    $('#confirm-popup').show();
 	    $('#darkscreen').show();
 	  
 		
@@ -178,9 +176,8 @@ function onSubmitPressed() {
 	    localStorage.setItem( 'submittimes' , submittimes );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-		  
+		
 	    loadMain();
-	  };
 	};
 	
 	return false;
@@ -188,7 +185,7 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	$('#type2').val(type);
-    $('#name2').val(name);
+        $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
@@ -197,15 +194,15 @@ function dataTransfer(type,name,imagefile,latlng,address,comment) {
 
 function addToMain(number) {
 		
-    var formArrayName = 'formArray' + number + '';
+        var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-    var name = formdata.name;
+        var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-    var newMainElement = `
+        var newMainElement = `
 	<div class="panel panel-primary center main">
     <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
@@ -268,12 +265,12 @@ $(document).ready(function(){
 	
 	
 	$('#smeform').keydown(function(){
-        $('#smeform *').removeClass('error');
-    });
+            $('#smeform *').removeClass('error');
+        });
 	
 	$('#type, #myFileInput').click(function(){
-        $('#smeform *').removeClass('error');
-    });
+            $('#smeform *').removeClass('error');
+        });
 	
 	$('.tabs > span:first').click(function(){
            $('#instruction').hide();
@@ -289,29 +286,25 @@ $(document).ready(function(){
 		
 	   loadMain();
  
-        return false;
-});
+           return false;
+        });
 	
 
 	$("#finalsubmit").click(function(){
 		
-	$('#confirm-popup').hide();
-        $('#darkscreen').hide();
-		
-		$('.tabs > span:first').click();
+	    $('#confirm-popup').hide();
+            $('#darkscreen').hide();
 
-    });
+        });
 		
 	$("#finalcancel").click(function(){
 		
-		event.preventDefault();
+	    event.preventDefault();
 		  
 	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
-
-		$('.tabs > span:first').click();
+            $('#darkscreen').hide();
 		  
 	    return false;
-    });
+        });
 
 });
