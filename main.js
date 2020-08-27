@@ -206,7 +206,7 @@ function addToMain(number) {
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-       var newMainElement = `
+        var newMainElement = `
 	<div class="panel panel-primary center main">
     <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
@@ -225,7 +225,7 @@ function addToMain(number) {
     </div>
 	`;
 	
-    $("div #main").append(newMainElement);
+       $("div #main").prepend(newMainElement);
 };
 
 
@@ -248,13 +248,8 @@ $(document).ready(function(){
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
             var x = 0;
             localStorage.setItem( 'submittimes' , x );
-	    $('#example').show();
         } 
-	
-	if (submittimes == 0){
-            $('#example').show();
-        } 
-	
+
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
             var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
