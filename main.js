@@ -215,7 +215,7 @@ function loadMain() {
 		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
 		if ( submityesorno && submityesorno == 'NO') {
-            addToMain(i);
+                        addToMain(i);
 			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 		};
     }
@@ -231,12 +231,16 @@ $(document).ready(function(){
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+            var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-        addToMain(i);
+            addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
         };
+	
+	$('.maintab').click(function(){
+	    loadMain();
+	});
 	
 	$("#finalsubmit").click(function(){
 		
