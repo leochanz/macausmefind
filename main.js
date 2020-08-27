@@ -182,8 +182,6 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
             loadMain();
-		  
-	    alert('we just called loadMain()');
 	  };
 	};
 	return false;
@@ -236,9 +234,7 @@ function loadMain() {
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-	alert(formArraySubmittedNameGet + '  exists in local storage');
 	if ( submityesorno && submityesorno == 'NO') {
-	   alert(formArraySubmittedNameGet + '  has not been uploaded');
            addToMain(i);
            localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 	};
