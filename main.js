@@ -218,7 +218,7 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-    } 
+        } 
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
@@ -227,11 +227,18 @@ $(document).ready(function(){
 		
         addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-    };
+        };
 	
 	$('.tabs > a:first').click(function(){
         loadMain();
 	});
+	
+	$("#finalsubmit").click(function(){
+		event.preventDefault();
+		onSubmitPressed();
+		
+		return false;
+        });
 	
 	$("#finalsubmit").click(function(){
 		
@@ -241,7 +248,7 @@ $(document).ready(function(){
 		document.getElementById('smeform').reset()
 		$('#imgPreview').hide();
 		$('.tabs > a:first').click();
-    });
+        });
 		
 	$("#finalcancel").click(function(){
 		
@@ -255,6 +262,6 @@ $(document).ready(function(){
 		$('.tabs > a:first').click();
 		  
 	        return false;
-    });
+       });
 
 });
