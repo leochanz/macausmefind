@@ -142,15 +142,13 @@ function onSubmitPressed() {
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  
-	    alert("This form is now complete!");
+	    dataTransfer(type,name,imageurl,coordinates,address,comment);
 		
 		smeform.reset()
 	    $('#imgPreview').hide();
 		
 	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
-		
-	    dataTransfer(formObj)
 		
 	    $('#confirm-popup').show();
 	    $('#darkscreen').show();
@@ -170,14 +168,14 @@ function onSubmitPressed() {
 	return false;
 };
 
-function dataTransfer(Obj) {
-	alert(Obj);
-	$('#type2').val(Obj.type);
-        $('#name2').val(Obj.name);
-	$('#imageurl2').val(Obj.imageurl);
-	$('#latlng2').val(Obj.latlng);
-	$('#address2').val(Obj.address);
-	$('#comment2').val(Obj.comment); 
+function dataTransfer(type,name,imageurl,latlng,address,comment) {
+	alert(type,name,latlng,address,comment);
+	$('#type2').val(type);
+    $('#name2').val(name);
+	$('#imageurl2').val(imageurl);
+	$('#latlng2').val(latlng);
+	$('#address2').val(address);
+	$('#comment2').val(comment); 
 };
 
 function addToMain(number) {
