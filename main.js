@@ -157,11 +157,11 @@ function onSubmitPressed() {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  	  
 	    dataTransfer(type,name,imagefile,coordinates,address,comment);
-		$('#example').hide();
+	    $('#example').hide();
 		
-		document.getElementById('smeform').reset()
+	    document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
-		$('#confirm-popup').show();
+	    $('#confirm-popup').show();
 	    $('#darkscreen').show();
 	  
 		
@@ -179,13 +179,11 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-            alert('all of the data, including ' + submittimes + ',' + formArraySubmittedName + ',' formArrayName + 'has been stored into local storage')
+            alert('all of the data, including ' + submittimes + ',' + formArraySubmittedName + ',' formArrayName + 'has been stored into local storage');
 		  
             loadMain();
 	  };
 	};
-	
-	
 	return false;
 };
 
