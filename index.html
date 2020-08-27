@@ -67,7 +67,7 @@ $('#clearstorage').click(function(){
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
     }
-    $('.tabs > a:first').click();	
+    location.reload();
 });
 
 $('#sortdown').click(function(){
@@ -96,9 +96,12 @@ $('.sidebar a').click(function(){
   $('.tab-content').hide();
   $('div' + href +'').show();
   
+  $('.tabs > a' + href + '').click();
+  
   // disable default browser behavior.
   return false;
 });
+
 
 // when click on the tab link.
 $('.tabs > a').click(function(){
@@ -159,7 +162,7 @@ $('.tabs > a:nth-child(2)').click(function(){
 </div>
 
 <div id="settingbubble"><p>
-<a id="clearstorage" style="font-size:0.7em; position:relative; top:-50px;">清空storage</a>
+<a id="clearstorage" style="font-size:0.7em; position:relative; top:-50px;">刪除所有帖文</a>
 <hr style="position:relative;top:-110px;">
 <span id="closesetting" style="font-size:0.7em; position:relative; top:-178px;"><i class="fas fa-times"></i></span>
 </p>
@@ -200,6 +203,7 @@ $('.tabs > a:nth-child(2)').click(function(){
       <td><a href="#record" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="far fa-clipboard"></i>記錄</a></td>
   </tr>
+
   </tbody>
 </table>
 </div>
@@ -294,8 +298,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 <!--action="https://formsubmit.co/chanchengleong@gmail.com"-->
 <div class='tab-content' id="form">
 
-<form id="smeform" method="POST" action="https://formsubmit.co/chanchengleong@gmail.com"
-      class="panel panel-primary center main" 
+<form id="smeform" class="panel panel-primary center main" 
 	  style=" border:0px; box-shadow: 0px 3px 10px #888888;">
   <div class="panel-heading center" style="background-color:#004d99;">
 	<select name="類型" form="smeform" class="w3-input w3-text-black" id="type">
@@ -389,22 +392,32 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
            id="submit" onclick="onSubmitPressed()">
    <i class="fas fa-plus"></i>新增帖文
    </button>
-   
-   <div id="confirm-popup" class="w3-conatiner w3-white">
-   <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
-   <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
-   <p>
-   <button id="finalsubmit" type="submit" form="smeform"
-           class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
-   提交表單</button>
-   
-   <button id="finalcancel"
-           class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:42.5%;" >
-   返回</button>
-   </p>
-   </div>
+
+<form method="POST" action="https://formsubmit.co/chanchengleong@gmail.com" class="center">
+    <input name="類型" type="hidden" id="type2">
+    <input name="名稱" type="hidden" id="name2">
+    <input name="圖片url" type="hidden" id="imageurl2">
+    <input name="坐標" type="hidden" id="latlng2">
+    <input name="地址" type="hidden" id="address2">
+    <input name="意見" type="hidden" id="comment2">
+    <div id="confirm-popup" class="w3-conatiner w3-white">
+    <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
+    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
+    <p>
+    <button id="finalsubmit" type="submit" form="smeform"
+            class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
+    提交表單</button>
+    
+    <button id="finalcancel" onclick="event.preventDefault()"
+            class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:42.5%;" >
+    返回</button>
+    </p>
+    </div>
+</form> 
 
 </form>
+
+
  
 </div>
 
