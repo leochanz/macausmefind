@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -334,16 +333,15 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	<div class="w3-margin-top">
 	  <span id="preview" style="width:62px;height:30px;padding:2px 0px; margin-top:10px;" class="w3-white w3-text-indigo">圖片檢示:</span>
 	  <img id="imgPreview" src="" alt="Preview">
-	  <input name="圖片url" type="hidden" id="imageurl">
 	</div>
 
 <script>
 	document.querySelector("#myFileInput").addEventListener("change", function() {
+
 	const reader = new FileReader();
 	
 	reader.addEventListener("load", () => {
-		localStorage.setItem("recent-image", reader.result);
-        $('#imageurl').val(reader.result);		
+		localStorage.setItem("recent-image", reader.result);	
 	});
 	
 	reader.readAsDataURL(this.files[0]);
@@ -351,6 +349,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
     });
 
     $('#preview').click( function() {
+
         $('#imgPreview').show();
         const recentImageDataUrl = $('#imageurl').val();
 	
@@ -394,20 +393,18 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
    </button>
 
 <form method="POST" action="https://formsubmit.co/chanchengleong@gmail.com" class="center">
-    <input name="類型" type="hidden" id="type2">
+    <div id="confirm-popup" class="w3-conatiner w3-white">
+	<input name="類型" type="hidden" id="type2">
     <input name="名稱" type="hidden" id="name2">
-    <input name="圖片url" type="hidden" id="imageurl2">
+	<input name="圖片" type="hidden" id="imagefile2">
     <input name="坐標" type="hidden" id="latlng2">
     <input name="地址" type="hidden" id="address2">
     <input name="意見" type="hidden" id="comment2">
-    <div id="confirm-popup" class="w3-conatiner w3-white">
     <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
     <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
     <p>
-    <button id="finalsubmit" type="submit" form="smeform"
-            class="w3-button w3-blue w3-text-white" style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
-    提交表單</button>
-    
+    <input id="finalsubmit" type="submit" form="smeform" class="w3-button w3-blue w3-text-white" value="提交表單"
+	       style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
     <button id="finalcancel" onclick="event.preventDefault()"
             class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:42.5%;" >
     返回</button>
