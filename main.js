@@ -230,6 +230,7 @@ function addToMain(number) {
 
 function loadMain() {
 	var number = localStorage.getItem('submittimes');
+	alert('Yes! the main tab has been clicked and number=' + number + '');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
         alert(formArraySubmittedNameGet);
@@ -255,13 +256,14 @@ $(document).ready(function(){
         } 
 	
 	var number = localStorage.getItem('submittimes');
+	alert(number);
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	alert(formArraySubmittedNameGet);
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
         addToMain(i);
-	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+	localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
     };
 	
 	
@@ -274,14 +276,26 @@ $(document).ready(function(){
     });
 	
 	$('.tabs > span:first').click(function(){
-        loadMain();
-	});
-	
+           $('#instruction').hide();
+  
+           $('.tab-content').hide();
+  
+           $('div #main').show();
+
+           $('.tabs > span').removeClass('active');
+           $(this).addClass('active');
+  
+           $('.sidebar a[href="#main"]').click();
+		
+	   loadMain();
+ 
+        return false;
+});
 	
 
 	$("#finalsubmit").click(function(){
 		
-		$('#confirm-popup').hide();
+	$('#confirm-popup').hide();
         $('#darkscreen').hide();
 		
 		$('.tabs > span:first').click();
