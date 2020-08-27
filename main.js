@@ -233,7 +233,7 @@ $(document).ready(function(){
         loadMain();
 	});
 	
-	$("#finalsubmit").click(function(){
+	$("#submit").click(function(){
 		event.preventDefault();
 		onSubmitPressed();
 		
