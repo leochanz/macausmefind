@@ -252,15 +252,16 @@ $(document).ready(function(){
     } 
 	
 	if (submittimes == 0){
-       $('#example').show();
-    } 
+              $('#example').show();
+        } 
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+	    alert(formArraySubmittedNameGet + 'exists in local storage');
+            var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-        addToMain(i);
+            addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
     };
 	
@@ -280,7 +281,7 @@ $(document).ready(function(){
   
                 $('.tab-content').hide();
   
-                $('div #main').show();
+                $('.tab-content #main').show();
 
                 $('.tabs > span').removeClass('active');
                 $('.tabs > spna:first').addClass('active');
@@ -299,8 +300,6 @@ $(document).ready(function(){
 		
 		$('#confirm-popup').hide();
                 $('#darkscreen').hide();
-		
-		$('.tabs > span:first').click();
 
         });
 		
@@ -310,8 +309,6 @@ $(document).ready(function(){
 		  
 	        $('#confirm-popup').hide();
                 $('#darkscreen').hide();
-
-		$('.tabs > span:first').click();
 		  
 	        return false;
         });
