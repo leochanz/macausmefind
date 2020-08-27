@@ -169,9 +169,9 @@ function onSubmitPressed() {
 };
 
 function dataTransfer(type,name,imageurl,latlng,address,comment) {
-	alert(type,name,latlng,address,comment);
+	alert(type + name + latlng + address + comment);
 	$('#type2').val(type);
-    $('#name2').val(name);
+        $('#name2').val(name);
 	$('#imageurl2').val(imageurl);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
