@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +20,7 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
+
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -71,7 +71,7 @@ $('#clearstorage').click(function(){
         localStorage.setItem( 'submittimes' , 0 );
 		$('#example').show();
     }
-    location.reload();
+    window.location.reload();
 });
 
 $('#sortdown').click(function(){
@@ -93,6 +93,9 @@ $('.sidebar a').click(function(){
   var href = $(this).attr('href');
   
   // show only the target tab.
+  $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+  $(this).addClass('w3-leftbar w3-border-indigo');
+  
   $('.tabs > span' + href + '').show();
   $('.tabs > span').removeClass('active');
   $('.tabs > span' + href + '').addClass('active');
@@ -106,7 +109,6 @@ $('.sidebar a').click(function(){
   return false;
 });
 
-	
 
 // when click on the tab link.
 $('.tabs > span').click(function(){
@@ -120,6 +122,8 @@ $('.tabs > span').click(function(){
 
   $('.tabs > span').removeClass('active');
   $(this).addClass('active');
+  
+  $('.sidebar a[href="' + href + '"]').click();
   
   // disable default browser behavior.
   return false;
@@ -138,20 +142,24 @@ $('.closs_button').click(function(){
   $('.tabs > span:first').addClass('active');
   $('.tab-content:first').show();
   
+  $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+  $('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
+  
   // disable default browser behavior.
   return false;
 });
-	
-$('.tabs > span:first').click(function(){
-  loadMain();
-		
-  return false;
+
+$('.tabs > span:first').click(function(){	  
+  $('.tabs > span:nth-child(2)').click(function(){
+  loadMain();	
+
+  return false;	
 });	
-	
+						 
 $('.tabs > span:nth-child(2)').click(function(){
-  $('#instruction').show();
+    $('#instruction').show();
   
-  return false;
+    return false;
 });
 
 });
@@ -209,12 +217,11 @@ $('.tabs > span:nth-child(2)').click(function(){
       <td><a href="#form" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="fas fa-plus"></i>新增帖文</a></td>
   </tr>
-
   <tr>
       <td><a href="#record" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="far fa-clipboard"></i>記錄</a></td>
   </tr>
-
+  
   </tbody>
 </table>
 </div>
@@ -463,3 +470,5 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 </body>
 </html>
+
+
