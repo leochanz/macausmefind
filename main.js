@@ -179,6 +179,8 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
+            alert('all of the data, including ' + submittimes + ',' + formArraySubmittedName + ',' formArrayName + 'has been stored into local storage')
+		  
             loadMain();
 	  };
 	};
@@ -237,9 +239,9 @@ function loadMain() {
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 	alert(formArraySubmittedNameGet + '  exists in local storage');
 	if ( submityesorno && submityesorno == 'NO') {
-		alert(formArraySubmittedNameGet + '  has not been uploaded');
-                addToMain(i);
-		localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+	   alert(formArraySubmittedNameGet + '  has not been uploaded');
+           addToMain(i);
+           localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 	};
     }
 };
