@@ -244,23 +244,23 @@ $(document).ready(function(){
 
 	$("#finalsubmit").click(function(){
 		
-		$('#confirm-popup').hide();
-        $('#darkscreen').hide();
+	  $('#confirm-popup').hide();
+          $('#darkscreen').hide();
 		
-		$('.tabs > a:first').click();
+	  $('.maintab').click();
 
     });
 		
 	$("#finalcancel").click(function(){
 		
-		event.preventDefault();
+	  event.preventDefault();
 		  
-	    $('#confirm-popup').hide();
-        $('#darkscreen').hide();
+	  $('#confirm-popup').hide();
+          $('#darkscreen').hide();
 
-		$('.tabs > a:first').click();
+	  $('.maintab').click();
 		  
-	    return false;
+	  return false;
     });
 
 });
