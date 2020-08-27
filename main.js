@@ -263,38 +263,16 @@ $(document).ready(function(){
 		
             addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-    };
+        };
 	
 	
 	$('#smeform').keydown(function(){
-        $('#smeform *').removeClass('error');
-    });
+            $('#smeform *').removeClass('error');
+        });
 	
 	$('#type, #myFileInput').click(function(){
-        $('#smeform *').removeClass('error');
-    });
-	
-	$('.tabs > span:first').click(function(){
-                $('#instruction').hide();
-
-                var href = $(this).attr('href');
-  
-                $('.tab-content').hide();
-  
-                $('.tab-content #main').show();
-
-                $('.tabs > span').removeClass('active');
-                $('.tabs > spna:first').addClass('active');
-
-		$('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
-		$('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
-		  
-		loadMain();
-		
-                return false;
-       });
-	
-	
+            $('#smeform *').removeClass('error');
+        });
 
 	$("#finalsubmit").click(function(){
 		
