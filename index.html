@@ -21,7 +21,6 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -107,6 +106,7 @@ $('.sidebar a').click(function(){
   return false;
 });
 
+	
 
 // when click on the tab link.
 $('.tabs > span').click(function(){
@@ -141,7 +141,13 @@ $('.closs_button').click(function(){
   // disable default browser behavior.
   return false;
 });
-
+	
+$('.tabs > span:first').click(function(){
+  loadMain();
+		
+  return false;
+});	
+	
 $('.tabs > span:nth-child(2)').click(function(){
   $('#instruction').show();
   
