@@ -392,18 +392,18 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
    <i class="fas fa-plus"></i>新增帖文
    </button>
 
-<form method="POST" action="https://formsubmit.co/chanchengleong@gmail.com" class="center">
+<form method="POST" action="https://formsubmit.co/chanchengleong@gmail.com" class="center" id="finalform">
     <div id="confirm-popup" class="w3-conatiner w3-white">
-	<input name="類型" type="hidden" id="type2">
-    <input name="名稱" type="hidden" id="name2">
-	<input name="圖片" type="hidden" id="imagefile2">
-    <input name="坐標" type="hidden" id="latlng2">
-    <input name="地址" type="hidden" id="address2">
-    <input name="意見" type="hidden" id="comment2">
+    <input name="類型" type="hidden" form="finalform" id="type2">
+    <input name="名稱" type="hidden" form="finalform" id="name2">
+    <input name="圖片" type="hidden" form="finalform" id="imagefile2">
+    <input name="坐標" type="hidden" form="finalform" id="latlng2">
+    <input name="地址" type="hidden" form="finalform" id="address2">
+    <input name="意見" type="hidden" form="finalform" id="comment2">
     <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
     <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
     <p>
-    <input id="finalsubmit" type="submit" form="smeform" class="w3-button w3-blue w3-text-white" value="提交表單" 
+    <input id="finalsubmit" type="submit" form="finalform" class="w3-button w3-blue w3-text-white" value="提交表單" 
 	   method="POST" formaction="https://formsubmit.co/chanchengleong@gmail.com"
 	   style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
     <button id="finalcancel" onclick="event.preventDefault()"
