@@ -32,6 +32,10 @@ function w3_close() {
 
 $(document).ready(function(){
 
+$('#example').hide();
+var submittimes = localStorage.getItem( 'submittimes' );
+if (submittimes == 0){$('#example').show();} 
+	
 $('#settingbubble').hide();
 $('#introduction').hide();
 $('#map-popup').hide();
@@ -42,14 +46,14 @@ $('#instruction').hide();
 $('#imgPreview').hide();
 	
 $('.tab-content').hide();
-$('.tabs > a').hide();
-$('.tabs > a:first').show();
-$('.tabs > a:nth-child(2)').show();
+$('.tabs > span').hide();
+$('.tabs > span:first').show();
+$('.tabs > span:nth-child(2)').show();
 
 $('.tab-content:first').show();
 
-$('.tabs > a').removeClass('active');
-$('.tabs > a:first').addClass('active');
+$('.tabs > span').removeClass('active');
+$('.tabs > span:first').addClass('active');
 
 $('#setting').click(function(){
   $('#settingbubble').show();
@@ -65,6 +69,7 @@ $('#clearstorage').click(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
+		$('#example').show();
     }
     location.reload();
 });
@@ -88,14 +93,14 @@ $('.sidebar a').click(function(){
   var href = $(this).attr('href');
   
   // show only the target tab.
-  $('.tabs > a' + href + '').show();
-  $('.tabs > a').removeClass('active');
-  $('.tabs > a' + href + '').addClass('active');
+  $('.tabs > span' + href + '').show();
+  $('.tabs > span').removeClass('active');
+  $('.tabs > span' + href + '').addClass('active');
   
   $('.tab-content').hide();
   $('div' + href +'').show();
   
-  $('.tabs > a' + href + '').click();
+  $('.tabs > span' + href + '').click();
   
   // disable default browser behavior.
   return false;
@@ -103,7 +108,7 @@ $('.sidebar a').click(function(){
 
 
 // when click on the tab link.
-$('.tabs > a').click(function(){
+$('.tabs > span').click(function(){
   $('#instruction').hide();
 
   var href = $(this).attr('href');
@@ -112,7 +117,7 @@ $('.tabs > a').click(function(){
   
   $('div' + href +'').show();
 
-  $('.tabs > a').removeClass('active');
+  $('.tabs > span').removeClass('active');
   $(this).addClass('active');
   
   // disable default browser behavior.
@@ -128,40 +133,20 @@ $('.closs_button').click(function(){
   $(href).hide();
   
   // indicate target tab is active.
-  $('.tabs > a').removeClass('active');
-  $('.tabs > a:first').addClass('active');
+  $('.tabs > span').removeClass('active');
+  $('.tabs > span:first').addClass('active');
   $('.tab-content:first').show();
   
   // disable default browser behavior.
   return false;
 });
 
-$('.tabs > a:nth-child(2)').click(function(){
+$('.tabs > span:nth-child(2)').click(function(){
   $('#instruction').show();
   
   return false;
 });
 
-
-$("#finalsubmit").click(function(){
-		
-  $('#confirm-popup').hide();
-  $('#darkscreen').hide();
-		
-  $('.maintab').click();
-});
-		
-$("#finalcancel").click(function(){
-		
-  event.preventDefault();
-		  
-  $('#confirm-popup').hide();
-  $('#darkscreen').hide();
-  $('.maintab').click();
-		  
-  return false;
-});
-	
 });
 </script>
   </head>
@@ -181,7 +166,7 @@ $("#finalcancel").click(function(){
 </div>
 
 <div id="settingbubble"><p>
-<a id="clearstorage" style="font-size:0.7em; position:relative; top:-50px;">刪除所有帖文</a>
+<a id="clearstorage" style="font-size:0.7em; position:relative; top:-45px;">刪除所有帖文</a>
 <hr style="position:relative;top:-110px;">
 <span id="closesetting" style="font-size:0.7em; position:relative; top:-178px;"><i class="fas fa-times"></i></span>
 </p>
@@ -234,11 +219,11 @@ $("#finalcancel").click(function(){
 
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
 <i class="fas fa-sort-down" id="sortdown" 
-   style="float:right;color: #a64dff;position:relative; right:10px;"></i>
+   style="float:right;color: #a64dff;position:relative; right:30px;"></i>
 
 <div id="introduction" style="margin-top:20px;">
 <i class="fas fa-sort-up" id="sortup" 
-   style="float:right;color: #a64dff;position:relative;right:10px; top:-15px;"></i>
+   style="float:right;color: #a64dff;position:relative;right:30px; top:-15px;"></i>
 <h5 class="w3-left-align w3-text-black toptext" style="font-family:微軟正黑體;padding-left: 10px;word-warp:break-word;">
 "發現中小企"網站的目標是提供一個穩定的平台讓使用者記錄並分享他們在澳門所見的
 中小企業，從而共同分發掘澳門不為人知的有趣企業。</h5>
@@ -255,18 +240,18 @@ $("#finalcancel").click(function(){
 
 <!--Tabs-->
  <div class="tabs w3-bar" style="width:100%; margin-top:10px;">
-  <a class="w3-bar-item tab maintab" style="width:20%;margin-left:5%;padding-left:0px;" href="#main" id="main">
+  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#main" id="main">
   <i class="fas fa-home"></i>首頁
-  </a>
-  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#form" id="form">
+  </span>
+  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#form" id="form">
   <span class="closs_button" href="#form"><i class="fas fa-times-circle"></i></span>新增
-  </a>
-  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#about" id="about">
+  </span>
+  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#about" id="about">
   <span class="closs_button" href="#about"><i class="fas fa-times-circle"></i></span>關於
-  </a>
-  <a class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#record" id="record">
+  </span>
+  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#record" id="record">
   <span class="closs_button" href="#record"><i class="fas fa-times-circle"></i></span>記錄
-  </a>
+  </span>
   </div>
 
 <hr style="border:4px solid #717171;background-color:#717171;margin:0px;">
@@ -274,10 +259,16 @@ $("#finalcancel").click(function(){
 
 
 <!--Content-->
-<div class="w3-container" style="width:100%; background-color:#fcfcfc; padding:0px;">
+<div class="w3-container" style="width:100%; background-color:#fcfcfc; padding:0px 0px 200px 0px;">
  
 <!--Main-->
 <div class="tab-content" id="main">
+
+<div id="example">
+<hr style="height:5px; border-top:2px dotted #717171;">
+<h4 class="center" style="margin-left:10px;">點擊「新增」以新增帖文。範例：</h4>
+
+
 <div class="panel panel-primary center main">
     <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i>光輝咖啡</h1>
@@ -300,6 +291,8 @@ $("#finalcancel").click(function(){
     </div>
 </div>
 
+<hr style="height:5px; border-top:2px dotted #717171;">
+</div>
 
 </div>
 
@@ -314,13 +307,13 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 
 <!--Form-->
-<!--action="https://formsubmit.co/chanchengleong@gmail.com"-->
 <div class='tab-content' id="form">
 
 <div class="panel panel-primary center main" 
      style=" border:0px; box-shadow: 0px 3px 10px #888888;">
 <form id="smeform" >
   <div class="panel-heading center" style="background-color:#004d99;">
+    <div>
 	<select form="smeform" class="w3-input w3-text-black" id="type">
 	    <option disabled selected>--選擇中小企類型--</option>
 	    <optgroup label="飲食">
@@ -343,7 +336,10 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
          <option value="娛樂">娛樂</option>
 		 <option value="其他">其他</option>
     </select>
+	</div>
+	<div>
 	<input type="text" class="w3-input w3-text-black" placeholder="名稱" id="name">
+	</div>
   </div>
   
   <div class="panel-body w3-left-align">
@@ -460,5 +456,3 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 </body>
 </html>
-
-
