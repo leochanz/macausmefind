@@ -194,7 +194,9 @@ function dataTransfer(type,name,imagefile,latlng,address,comment) {
 
 function addToMain(number) {
 		
-        var formArrayName = 'formArray' + number + '';
+        
+	var formArrayName = 'formArray' + number + '';
+	alert(formArrayName);
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
         var name = formdata.name;
 	var imageurl = formdata.imageurl;
@@ -227,17 +229,18 @@ function addToMain(number) {
 
 function loadMain() {
 	var number = localStorage.getItem('submittimes');
-	alert('Yes! the main tab has been clicked and number=' + number + '');
+	alert('Yes! the main tab has been clicked and number is:' + number + 'and normally i would upload ' + number + ' + 1 files');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-        alert(formArraySubmittedNameGet);
+
         var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
 	if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
+	    alert(formArraySubmittedNameGet + 'is being uploaded.')
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 	};
-    }
+    };
 };
 
 
