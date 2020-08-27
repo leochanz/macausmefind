@@ -235,9 +235,10 @@ function loadMain() {
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-		
+		alert(submityesorno + '  exists in local storage');
 		if ( submityesorno && submityesorno == 'NO') {
-            addToMain(i);
+			alert(submityesorno + '  has not been uploaded');
+                        addToMain(i);
 			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 		};
     }
@@ -257,8 +258,8 @@ $(document).ready(function(){
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-	    alert(formArraySubmittedNameGet + 'exists in local storage');
             var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+            alert(formArraySubmittedNameGet + '  exists in local storage');
 	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
             addToMain(i);
