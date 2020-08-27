@@ -178,10 +178,10 @@ function onSubmitPressed() {
 	    localStorage.setItem( 'submittimes' , submittimes );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+		  
+	    loadMain();
 	  };
 	};
-	
-	loadMain();
 	
 	return false;
 };
