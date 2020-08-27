@@ -171,12 +171,12 @@ function onSubmitPressed() {
 };
 
 function dataTransfer(Obj) {
-	$('#type2').val() = Obj.type;
-    $('#name2').val() = Obj.name;
-	$('#imageurl2').val() = Obj.imageurl;
-	$('#latlng2').val() = Obj.latlng2;
-	$('#address2').val() = Obj.address2;
-	$('#comment2').val() = Obj.comment;	
+	$('#type2').val(Obj.type);
+    $('#name2').val(Obj.name);
+	$('#imageurl2').val(Obj.imageurl);
+	$('#latlng2').val(Obj.latlng);
+	$('#address2').val(Obj.address);
+	$('#comment2').val(Obj.comment); 
 };
 
 function addToMain(number) {
