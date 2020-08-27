@@ -234,13 +234,13 @@ function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-		alert(submityesorno + '  exists in local storage');
-		if ( submityesorno && submityesorno == 'NO') {
-			alert(submityesorno + '  has not been uploaded');
-                        addToMain(i);
-			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-		};
+	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+	alert(formArraySubmittedNameGet + '  exists in local storage');
+	if ( submityesorno && submityesorno == 'NO') {
+		alert(formArraySubmittedNameGet + '  has not been uploaded');
+                addToMain(i);
+		localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+	};
     }
 };
 
