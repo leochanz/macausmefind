@@ -171,19 +171,20 @@ function onSubmitPressed() {
             alert('all of the data have not been stored into local storage');
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
+	    var thisArrayNumber = submittimes.valueOf(); 
 		  
-	    alert('we got submittimes in local storage');
+	    alert('we got submittimes in local storage and called it thisArrayNumber');
 	
-	    var formArrayName = 'formArray' + submittimes + ''; 
-	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+	    var formArrayName = 'formArray' + thisArrayNumber  + ''; 
+	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
 		  
-            alert('we created the array names' + formArrayName + formArraySubmittedName +'');
+            alert('we created the array names' + formArrayName + ',' + formArraySubmittedName +'');
 	
-	    submittimes = submittimes + 1;
+	    thisArrayNumber ++;
 		  
 	    alert('submittimes = submittimes + 1');
 	
-	    localStorage.setItem( 'submittimes' , submittimes );
+	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
@@ -259,8 +260,9 @@ $(document).ready(function(){
 	
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
-        localStorage.setItem( 'submittimes' , 0 );
-    } 
+            var x = 0;
+            localStorage.setItem( 'submittimes' , x );
+        } 
 	
 	if (submittimes == 0){
               $('#example').show();
