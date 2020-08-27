@@ -256,7 +256,7 @@ $(document).ready(function(){
 		  
 	        $('#confirm-popup').hide();
                 $('#darkscreen').hide();
-	        document.getElementById('smeform'.reset()
+	        document.getElementById('smeform').reset()
 		$('#imgPreview').hide();
 
 		$('.tabs > a:first').click();
