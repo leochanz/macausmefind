@@ -167,28 +167,19 @@ function onSubmitPressed() {
 		
 	    var formObj = {'type':type, 'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
-	    
-            alert('all of the data have not been stored into local storage');
+
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
 	    var thisArrayNumber = submittimes.valueOf(); 
-		  
-	    alert('we got submittimes in local storage and called it thisArrayNumber');
 	
 	    var formArrayName = 'formArray' + thisArrayNumber  + ''; 
 	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
-		  
-            alert('we created the array names' + formArrayName + ',' + formArraySubmittedName +'');
 	
 	    thisArrayNumber ++;
-		  
-	    alert('submittimes = submittimes + 1');
 	
 	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-		  
-            alert('all of the data have been stored into local storage');
 		  
             loadMain();
 		  
@@ -200,7 +191,7 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	$('#type2').val(type);
-    $('#name2').val(name);
+        $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
@@ -209,15 +200,15 @@ function dataTransfer(type,name,imagefile,latlng,address,comment) {
 
 function addToMain(number) {
 		
-    var formArrayName = 'formArray' + number + '';
+        var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-    var name = formdata.name;
+        var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-    var newMainElement = `
+       var newMainElement = `
 	<div class="panel panel-primary center main">
     <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
@@ -241,7 +232,6 @@ function addToMain(number) {
 
 
 function loadMain() {
-	alert('loadMain() is called')
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
@@ -271,7 +261,6 @@ $(document).ready(function(){
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
             var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-            alert(formArraySubmittedNameGet + '  exists in local storage');
 	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
             addToMain(i);
