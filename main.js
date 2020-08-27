@@ -238,10 +238,6 @@ $(document).ready(function(){
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
         };
 	
-	$('.tabs > a:first').click(function(){
-        loadMain();
-	});
-
 	$("#finalsubmit").click(function(){
 		
 	  $('#confirm-popup').hide();
