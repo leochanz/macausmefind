@@ -167,13 +167,21 @@ function onSubmitPressed() {
 		
 	    var formObj = {'type':type, 'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
+	    
+            alert('all of the data have not been stored into local storage');
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
+		  
+	    alert('we got submittimes in local storage');
 	
 	    var formArrayName = 'formArray' + submittimes + ''; 
 	    var formArraySubmittedName = 'formArraySubmitted' + submittimes + ''; 
+		  
+            alert('we created the array names' + formArrayName + formArraySubmittedName +'');
 	
-	    submittimes++;
+	    submittimes = submittimes + 1;
+		  
+	    alert('submittimes = submittimes + 1');
 	
 	    localStorage.setItem( 'submittimes' , submittimes );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
@@ -182,6 +190,8 @@ function onSubmitPressed() {
             alert('all of the data have been stored into local storage');
 		  
             loadMain();
+		  
+	    alert('we just called loadMain()');
 	  };
 	};
 	return false;
