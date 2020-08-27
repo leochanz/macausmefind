@@ -232,12 +232,13 @@ function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+        alert(formArraySubmittedNameGet);
+        var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-		if ( submityesorno && submityesorno == 'NO') {
+	if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
-			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-		};
+	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+	};
     }
 };
 
@@ -247,16 +248,17 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-    } 
+        } 
 	
 	if (submittimes == 0){
-       $('#example').show();
-    } 
+        $('#example').show();
+        } 
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+	alert(formArraySubmittedNameGet);
+	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
         addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
