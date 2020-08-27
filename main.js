@@ -150,7 +150,7 @@ function onSubmitPressed() {
 	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
 		
-		dataTransfer(formObj)
+	    dataTransfer(formObj)
 		
 	    $('#confirm-popup').show();
 	    $('#darkscreen').show();
@@ -171,8 +171,9 @@ function onSubmitPressed() {
 };
 
 function dataTransfer(Obj) {
+	console.log(Obj);
 	$('#type2').val(Obj.type);
-    $('#name2').val(Obj.name);
+        $('#name2').val(Obj.name);
 	$('#imageurl2').val(Obj.imageurl);
 	$('#latlng2').val(Obj.latlng);
 	$('#address2').val(Obj.address);
