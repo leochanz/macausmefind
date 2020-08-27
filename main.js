@@ -152,14 +152,16 @@ function onSubmitPressed() {
 		};
 	});
 	
-	if(type !== "" && type !== undefined && type !== null && type.length !== 0 && name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	
+	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
+	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  	  
 	    dataTransfer(type,name,imagefile,coordinates,address,comment);
-	    $('#example').hide();
+		$('#example').hide();
 		
 		document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
-	    $('#confirm-popup').show();
+		$('#confirm-popup').show();
 	    $('#darkscreen').show();
 	  
 		
@@ -176,16 +178,18 @@ function onSubmitPressed() {
 	    localStorage.setItem( 'submittimes' , submittimes );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-		
-	    loadMain();
+		  
+            loadMain();
+	  };
 	};
+	
 	
 	return false;
 };
 
 function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	$('#type2').val(type);
-        $('#name2').val(name);
+    $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
@@ -194,17 +198,15 @@ function dataTransfer(type,name,imagefile,latlng,address,comment) {
 
 function addToMain(number) {
 		
-        
-	var formArrayName = 'formArray' + number + '';
-	alert(formArrayName);
+    var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-        var name = formdata.name;
+    var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-        var newMainElement = `
+    var newMainElement = `
 	<div class="panel panel-primary center main">
     <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
@@ -228,19 +230,17 @@ function addToMain(number) {
 
 
 function loadMain() {
+	alert('loadMain() is called')
 	var number = localStorage.getItem('submittimes');
-	alert('Yes! the main tab has been clicked and number is:' + number + 'and normally i would upload ' + number + ' + 1 files');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-
-        var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-	if ( submityesorno && submityesorno == 'NO') {
+		if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
-	    alert(formArraySubmittedNameGet + 'is being uploaded.')
-	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-	};
-    };
+			localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+		};
+    }
 };
 
 
@@ -249,65 +249,71 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         localStorage.setItem( 'submittimes' , 0 );
-        } 
+    } 
 	
 	if (submittimes == 0){
-        $('#example').show();
-        } 
+       $('#example').show();
+    } 
 	
 	var number = localStorage.getItem('submittimes');
-	alert(number);
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	alert(formArraySubmittedNameGet);
-	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+		var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
         addToMain(i);
-	localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
     };
 	
 	
 	$('#smeform').keydown(function(){
-            $('#smeform *').removeClass('error');
-        });
+        $('#smeform *').removeClass('error');
+    });
 	
 	$('#type, #myFileInput').click(function(){
-            $('#smeform *').removeClass('error');
-        });
+        $('#smeform *').removeClass('error');
+    });
 	
 	$('.tabs > span:first').click(function(){
-           $('#instruction').hide();
-  
-           $('.tab-content').hide();
-  
-           $('div #main').show();
+                $('#instruction').hide();
 
-           $('.tabs > span').removeClass('active');
-           $(this).addClass('active');
+                var href = $(this).attr('href');
   
-           $('.sidebar a[href="#main"]').click();
+                $('.tab-content').hide();
+  
+                $('div #main').show();
+
+                $('.tabs > span').removeClass('active');
+                $('.tabs > spna:first').addClass('active');
+
+		$('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+		$('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
+		  
+		loadMain();
 		
-	   loadMain();
- 
-           return false;
-        });
+                return false;
+       });
+	
 	
 
 	$("#finalsubmit").click(function(){
 		
-	    $('#confirm-popup').hide();
-            $('#darkscreen').hide();
+		$('#confirm-popup').hide();
+                $('#darkscreen').hide();
+		
+		$('.tabs > span:first').click();
 
         });
 		
 	$("#finalcancel").click(function(){
 		
-	    event.preventDefault();
+		event.preventDefault();
 		  
-	    $('#confirm-popup').hide();
-            $('#darkscreen').hide();
+	        $('#confirm-popup').hide();
+                $('#darkscreen').hide();
+
+		$('.tabs > span:first').click();
 		  
-	    return false;
+	        return false;
         });
 
 });
