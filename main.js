@@ -191,7 +191,6 @@ function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 	$('#type2').val(type);
         $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
-	$('#imagerul2').val(imageurl);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
 	$('#comment2').val(comment); 
