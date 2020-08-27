@@ -248,10 +248,11 @@ $(document).ready(function(){
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
             var x = 0;
             localStorage.setItem( 'submittimes' , x );
+	    $('#example').show();
         } 
 	
 	if (submittimes == 0){
-              $('#example').show();
+            $('#example').show();
         } 
 	
 	var number = localStorage.getItem('submittimes');
