@@ -142,6 +142,24 @@ $('.tabs > a:nth-child(2)').click(function(){
   return false;
 });
 
+
+$("#finalsubmit").click(function(){
+		
+  $('#confirm-popup').hide();
+  $('#darkscreen').hide();
+		
+  $('.maintab').click();
+});
+		
+$("#finalcancel").click(function(){
+		
+  event.preventDefault();
+		  
+  $('#confirm-popup').hide();
+  $('#darkscreen').hide();
+  $('.maintab').click();
+		  
+  return false;
 });
 </script>
   </head>
