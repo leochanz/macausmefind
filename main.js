@@ -130,10 +130,9 @@ function onSubmitPressed() {
 	
 	event.preventDefault();
 	
-	var smeform = document.getElementById('smeform');
-	
     var type = $('#type').val();
     var name = $('#name').val();
+	var imagefile = $('#myFileInput').val();
 	var imageurl = $('#imageurl').val();
     var coordinates = $('#latlng').val();
     var address = $('#address').val();
@@ -142,17 +141,17 @@ function onSubmitPressed() {
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  
-	    dataTransfer(type,name,imageurl,coordinates,address,comment);
+	    dataTransfer(type,name,imagefile,coordinates,address,comment);
 		
-		smeform.reset()
+		document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
-		
-	    var formObj = {'type':type, 'name':name, 'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	    formArray.push(formObj);
-		
-	    $('#confirm-popup').show();
+		$('#confirm-popup').show();
 	    $('#darkscreen').show();
 	  
+		
+	    var formObj = {'type':type, 'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    formArray.push(formObj);
+		
 	    var submittimes = localStorage.getItem( 'submittimes' );
 	
 	    var formArrayName = 'formArray' + submittimes + ''; 
@@ -168,11 +167,10 @@ function onSubmitPressed() {
 	return false;
 };
 
-function dataTransfer(type,name,imageurl,latlng,address,comment) {
-	alert(type + name + latlng + address + comment);
+function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	$('#type2').val(type);
-        $('#name2').val(name);
-	$('#imageurl2').val(imageurl);
+    $('#name2').val(name);
+	$('#imagefile2').val(imagefile);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
 	$('#comment2').val(comment); 
@@ -247,26 +245,23 @@ $(document).ready(function(){
 	$("#finalsubmit").click(function(){
 		
 		$('#confirm-popup').hide();
-                $('#darkscreen').hide();
-	 
-		document.getElementById('smeform').reset()
-		$('#imgPreview').hide();
+        $('#darkscreen').hide();
+		
 		$('.tabs > a:first').click();
-        });
+
+    });
 		
 	$("#finalcancel").click(function(){
 		
 		event.preventDefault();
 		  
-	        $('#confirm-popup').hide();
-                $('#darkscreen').hide();
-	        document.getElementById('smeform').reset()
-		$('#imgPreview').hide();
+	    $('#confirm-popup').hide();
+        $('#darkscreen').hide();
 
 		$('.tabs > a:first').click();
 		  
-	        return false;
-       });
+	    return false;
+    });
 
 });
 
