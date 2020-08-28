@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -415,6 +416,9 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	</div> 
   </div>
   
+  <p class="w3-left-align" style="color:#a6a6a6; margin-left:10px; float:left;">*確定填好資料了嗎？<br>
+  按下「新增帖文」後將無法再進行修改*</p>
+  
    <button class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" 
            id="submit" onclick="onSubmitPressed()">
    <i class="fas fa-plus"></i>新增帖文
@@ -430,14 +434,14 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
     <input name="地址" type="hidden" form="finalform" id="address2">
     <input name="意見" type="hidden" form="finalform" id="comment2">
     <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
-    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」結束此次作答</p>
+    <p id="confirmAddress" style="margin-left:5px;">按下「提交表單」提交回覆到FORMSUBMIT</p>
     <p>
     <input id="finalsubmit" type="submit" form="finalform" class="w3-button w3-blue w3-text-white" value="提交表單" 
 	   method="POST" formaction="https://formsubmit.co/chanchengleong@gmail.com"
 	   style="border:0px;margin-bottom:10px;float:left; position:relative;margin-left:5%;width:42.5%;" >
     <button id="finalcancel" onclick="event.preventDefault()"
             class="w3-button w3-light-gray w3-text-black" style="border:0px;margin-bottom:10px;float:right; position:relative;margin-right:5%; width:42.5%;" >
-    返回</button>
+    取消</button>
     </p>
     </div>
 </form> 
