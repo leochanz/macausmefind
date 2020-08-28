@@ -155,6 +155,7 @@ function onSubmitPressed() {
 		
 	    document.getElementById('smeform').reset()
 	    document.getElementById("imgPreview").style.display = "none";
+            document.getElementById("imageurl").value = "";
             document.querySelector("#imgPreview").setAttribute("src", "" );
 		  
 	    document.getElementById("confirm-popup").style.display = "block";
