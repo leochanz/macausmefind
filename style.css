@@ -160,7 +160,7 @@ body {
 
 .error{
   border: 2px solid FIREBRICK;
-  box-shadow: 0 0 8px FIREBRICK;
+  box-shadow: 0 0 8px 3px FIREBRICK;
 }
 
 #darkscreen{
