@@ -175,6 +175,7 @@ function onSubmitPressed() {
 	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
 	
 	    thisArrayNumber ++;
+	    alert("There are now " + thisArrayNumber + " items in local storage. Ther newest one is called: " + formArrayName + ".");
 	
 	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
