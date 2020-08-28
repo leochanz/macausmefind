@@ -195,22 +195,20 @@ function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 };
 
 function getLogo(type) {
-	alert(type);
 	var logoArray = {'餐廳':'fas fa-utensils', 
 	                 '外賣店':'fas fa-shopping-bag',
-					 '餅店':'fas fa-bread-slice',
-					 '超市':'fas fa-shopping-cart', 
-					 '便利店/雜貨店': 'fas fa-store', 
-					 '專賣店':'fas fa-store-alt', 
-					 '個人服務':'fas fa-user-friends',
-					 '運輸':'fas fa-truck',
-					 '商用服務':'fas fa-hand-holding-usd',
-					 '教育':'fas fa-chalkboard-teacher',
-					 '娛樂':'far fa-laugh-squint',
-					 '其他':'fas fa-building',
-					 };
+			 '餅店':'fas fa-bread-slice',
+			 '超市':'fas fa-shopping-cart', 
+			 '便利店/雜貨店': 'fas fa-store', 
+			 '專賣店':'fas fa-store-alt', 
+			 '個人服務':'fas fa-user-friends',
+			 '運輸':'fas fa-truck',
+			 '商用服務':'fas fa-hand-holding-usd',
+			 '教育':'fas fa-chalkboard-teacher',
+			 '娛樂':'far fa-laugh-squint',
+			 '其他':'fas fa-building',
+			 };
 	var logo = logoArray[type];
-	alert(logo);
 	return logo;
 };
 
