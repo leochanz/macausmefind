@@ -152,18 +152,20 @@ function onSubmitPressed() {
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
-	  	  
-	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 	    document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
 	    $('#confirm-popup').show();
 	    $('#darkscreen').show();
 	  
+			  	  
+	    var logo = getLogo(type);
+		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
-	    var formObj = {'type':type, 'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
 
+		console.log(formArray);
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
 	    var thisArrayNumber = submittimes.valueOf(); 
@@ -177,7 +179,7 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-            loadMain();
+        loadMain();
 	  };
 	};
 	return false;
@@ -185,18 +187,39 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 	$('#type2').val(type);
-        $('#name2').val(name);
+    $('#name2').val(name);
 	$('#imagefile2').val(imagefile);
 	$('#latlng2').val(latlng);
 	$('#address2').val(address);
 	$('#comment2').val(comment); 
 };
 
+function getLogo(type) {
+	alert(type);
+	var logoArray = {'餐廳':'fas fa-utensils', 
+	                 '外賣店':'fas fa-shopping-bag',
+					 '餅店':'fas fa-bread-slice',
+					 '超市':'fas fa-shopping-cart', 
+					 '便利店/雜貨店': 'fas fa-store', 
+					 '專賣店':'fas fa-store-alt', 
+					 '個人服務':'fas fa-user-friends',
+					 '運輸':'fas fa-truck',
+					 '商用服務':'fas fa-hand-holding-usd',
+					 '教育':'fas fa-chalkboard-teacher',
+					 '娛樂':'far fa-laugh-squint',
+					 '其他':'fas fa-building',
+					 };
+	var logo = logoArray[type];
+	alert(logo);
+	return logo;
+};
+
 function addToMain(number) {
 		
-        var formArrayName = 'formArray' + number + '';
+    var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
-        var name = formdata.name;
+	var logo = formdata.logo;
+    var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
@@ -205,7 +228,7 @@ function addToMain(number) {
        var newMainElement = `
 	<div class="panel panel-primary center main">
     <div class="panel-heading center">
-	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
+	<h1><i class="${logo}"></i> ${name}</h1>
     </div>
     <div class="panel-body w3-left-align">
 	<div><img src="${imageurl}"></div>
