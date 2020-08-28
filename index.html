@@ -15,9 +15,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"></script>
   <script type="text/javascript" src="main.js"></script>
-	
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"></script>
+
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -380,10 +380,10 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	  <input type="hidden" form="smeform" id="imageurl">
 	</div>
 	<div class="w3-margin-top">
-	  <button onclick="imgPreviewButton()" class="w3-white w3-text-indigo" 
-	          style="width:62px;height:30px;border:0px;padding:2px 0px;font-weight:bold;">
-	  圖片檢示</button>
-	  <img id="imgPreview" src="" alt="Preview">
+	    <button id="imgPreviewButton" onclick="return false" class="w3-white w3-text-indigo" 
+	            style="width:62px;height:30px;border:0px;padding:2px 0px;font-weight:bold;">
+	    圖片檢示</button>
+	    <img id="imgPreview" src="" alt="Preview">
 	</div>
 
 
@@ -399,10 +399,11 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
 	};	
 });
 
-function imgPreviewButton() {
+document.querySelector("#imgPreviewButton").addEventListener("click", function() {
+
     imgPreview();
-    return false;
-};
+	return false;
+});
 
 </script>
 	
@@ -442,6 +443,7 @@ function imgPreviewButton() {
    <i class="fas fa-plus"></i>新增帖文
    </button>
 </form>
+
 
 </div>
  
