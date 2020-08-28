@@ -156,15 +156,15 @@ function onSubmitPressed() {
 	  if(name != "" && imagefile != "" && imageurl != "" && coordinates != "" && address != "" && comment != ""){
 		
 	    document.getElementById('smeform').reset();
-		document.getElementById("myFileInput").value = "";
-		document.getElementById('imageurl').value = "" ;
+	    document.getElementById("myFileInput").value = "";
+	    document.getElementById('imageurl').value = "" ;
 		
 	    document.getElementById("imgPreview").style.display = "none";
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
 	  
 	    var logo = getLogo(type);
-		dataTransfer(type,name,imageurl,coordinates,address,comment);
+	    dataTransfer(type,name,coordinates,address,comment);
  
 	    var formObj = {'type':type,'logo':logo,'name':name,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
@@ -191,10 +191,9 @@ function onSubmitPressed() {
 	return false;
 };
 
-function dataTransfer(type,name,imageurl,latlng,address,comment) {
+function dataTransfer(type,name,latlng,address,comment) {
 	document.getElementById("type2").value = type;
-    document.getElementById("name2").value = name;
-	document.getElementById("imageurl2").value = imageurl;
+        document.getElementById("name2").value = name;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
 	document.getElementById("comment2").value = comment;
@@ -203,17 +202,17 @@ function dataTransfer(type,name,imageurl,latlng,address,comment) {
 function getLogo(type) {
 	var logoArray = {'餐廳':'fas fa-utensils', 
 	                 '外賣店':'fas fa-shopping-bag',
-					 '餅店':'fas fa-bread-slice',
-					 '超市':'fas fa-shopping-cart', 
-					 '便利店/雜貨店': 'fas fa-store', 
-					 '專賣店':'fas fa-store-alt', 
-					 '個人服務':'fas fa-user-friends',
-					 '運輸':'fas fa-truck',
-					 '商用服務':'fas fa-hand-holding-usd',
-					 '教育':'fas fa-chalkboard-teacher',
-					 '娛樂':'far fa-laugh-squint',
-					 '其他':'fas fa-building',
-					 };
+			 '餅店':'fas fa-bread-slice',
+			 '超市':'fas fa-shopping-cart', 
+			 '便利店/雜貨店': 'fas fa-store', 
+			 '專賣店':'fas fa-store-alt', 
+			 '個人服務':'fas fa-user-friends',
+			 '運輸':'fas fa-truck',
+			 '商用服務':'fas fa-hand-holding-usd',
+			 '教育':'fas fa-chalkboard-teacher',
+			 '娛樂':'far fa-laugh-squint',
+			 '其他':'fas fa-building',
+			 };
 	var logo = logoArray[type];
 	return logo;
 };
