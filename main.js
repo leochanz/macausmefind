@@ -154,7 +154,7 @@ function onSubmitPressed() {
 	  if(name !== "" && imagefile !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 		
 	    document.getElementById('smeform').reset();
-	    document.getElementById('#imageurl').value = "";
+	    document.getElementById('imageurl').value = "";
 	    document.getElementById("imgPreview").style.display = "none";
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
