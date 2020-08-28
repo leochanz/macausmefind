@@ -155,14 +155,14 @@ function onSubmitPressed() {
 	  if(name != "" && imagefile != "" && imageurl != "" && coordinates != "" && address != "" && comment != ""){
 		
 	    document.getElementById('smeform').reset();
-	    document.getElementById('imageurl').value = "" ;
+		document.getElementById('imageurl').value = "" ;
 		
 	    document.getElementById("imgPreview").style.display = "none";
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
 	  
 	    var logo = getLogo(type);
-	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
+		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
@@ -177,18 +177,9 @@ function onSubmitPressed() {
 	
 	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
-            
-	    alert('if this is the last message, it means the function below fails.');
-	   
-	    alert('we have not stored: ' + formArrayName + ' ');	  
+	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-	    localStorage.setItem(formArrayName,JSON.stringify(formObj));
-		  
-	    alert('we just stored: ' + formArrayName + ' ');
-		  
-            loadMain();
-	    
-	    alert('we just called loadMain().');
+        loadMain();
 	  };
 	};
 	return false;
@@ -196,7 +187,7 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 	document.getElementById("type2").value = type;
-        document.getElementById("name2").value = name;
+    document.getElementById("name2").value = name;
 	document.getElementById("imagefile2").value = imagefile;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
@@ -206,27 +197,27 @@ function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 function getLogo(type) {
 	var logoArray = {'餐廳':'fas fa-utensils', 
 	                 '外賣店':'fas fa-shopping-bag',
-			 '餅店':'fas fa-bread-slice',
-		         '超市':'fas fa-shopping-cart', 
-	 		 '便利店/雜貨店': 'fas fa-store', 
-			 '專賣店':'fas fa-store-alt', 
-			 '個人服務':'fas fa-user-friends',
-			 '運輸':'fas fa-truck',
-			 '商用服務':'fas fa-hand-holding-usd',
-			 '教育':'fas fa-chalkboard-teacher',
-			 '娛樂':'far fa-laugh-squint',
-			 '其他':'fas fa-building',
-			 };
+					 '餅店':'fas fa-bread-slice',
+					 '超市':'fas fa-shopping-cart', 
+					 '便利店/雜貨店': 'fas fa-store', 
+					 '專賣店':'fas fa-store-alt', 
+					 '個人服務':'fas fa-user-friends',
+					 '運輸':'fas fa-truck',
+					 '商用服務':'fas fa-hand-holding-usd',
+					 '教育':'fas fa-chalkboard-teacher',
+					 '娛樂':'far fa-laugh-squint',
+					 '其他':'fas fa-building',
+					 };
 	var logo = logoArray[type];
 	return logo;
 };
 
 function addToMain(number) {
 		
-        var formArrayName = 'formArray' + number + '';
+    var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
-        var name = formdata.name;
+    var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
@@ -259,11 +250,11 @@ function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-	if ( submityesorno && submityesorno == 'NO') {
+	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+	    if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
             localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-	};
+	    };
     };
 };
 
@@ -297,17 +288,17 @@ $(document).ready(function(){
 
 	$("#finalsubmit").click(function(){
 		
-	document.getElementById("confirm-popup").style.display = "none";
+		document.getElementById("confirm-popup").style.display = "none";
         document.getElementById("darkscreen").style.display = "none";
 
     });
 		
 	$("#finalcancel").click(function(){
 		
-	    event.preventDefault();
+		event.preventDefault();
 		  
 	    document.getElementById("confirm-popup").style.display = "none";
-            document.getElementById("darkscreen").style.display = "none";
+        document.getElementById("darkscreen").style.display = "none";
 		  
 	    return false;
     });
