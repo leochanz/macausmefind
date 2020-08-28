@@ -106,7 +106,7 @@ function geocode(latitudeandlongtitude) {
 	.then( response => response.json() )
 	.then( data => {
         var formattedAddress = data.results[0].formatted_address;
-		$('#confirmAddress').text(formattedAddress);
+	$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
 			$('#map-popup').hide();
@@ -130,13 +130,13 @@ function onSubmitPressed() {
 	
 	event.preventDefault();
 	
-    var type = $('#type').val();
-    var name = $('#name').val();
-    var imagefile = $('#myFileInput').val();
-    var imageurl = $('#imageurl').val();
-    var coordinates = $('#latlng').val();
-    var address = $('#address').val();
-    var comment = $('#comment').val();
+        var type = $('#type').val();
+        var name = $('#name').val();
+        var imagefile = $('#myFileInput').val();
+        var imageurl = $('#imageurl').val();
+        var coordinates = $('#latlng').val();
+        var address = $('#address').val();
+        var comment = $('#comment').val();
 	
 	if (comment === ""){
 		  $('#comment').addClass('error');
@@ -157,7 +157,6 @@ function onSubmitPressed() {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 	  	  
 	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
-	    $('#example').hide();
 		
 	    document.getElementById('smeform').reset()
 	    $('#imgPreview').hide();
