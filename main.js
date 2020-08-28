@@ -70,7 +70,7 @@ function initMap(latitude,longitude) {
 	latlng0 = new String(event.latLng);
 	var latlng = latlng0.substring(latlng0.indexOf("(")+1, latlng0.indexOf(")"));
 	geocode(latlng);
-  }); // Adds a marker at the center of the map.
+    }); // Adds a marker at the center of the map.
 
   addMarker(haightAshbury);
  // Adds a marker to the map and push to the array.
@@ -162,10 +162,14 @@ function onSubmitPressed() {
 	    document.getElementById("darkscreen").style.display = "block";
 	  
 	    var logo = getLogo(type);
-		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
-		
-	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+		dataTransfer(type,name,imageurl,coordinates,address,comment);
+ 
+	    var formObj = {'type':type,'logo':logo,'name':name,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
+		
+		
+		
+		
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
 	    var thisArrayNumber = submittimes.valueOf(); 
@@ -185,10 +189,10 @@ function onSubmitPressed() {
 	return false;
 };
 
-function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
+function dataTransfer(type,name,imageurl,latlng,address,comment) {
 	document.getElementById("type2").value = type;
     document.getElementById("name2").value = name;
-	document.getElementById("imagefile2").value = imagefile;
+	document.getElementById("imageurl2").value = imageurl;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
 	document.getElementById("comment2").value = comment;
@@ -212,13 +216,64 @@ function getLogo(type) {
 	return logo;
 };
 
+
+function compressImage(){
+    event.preventDefault();
+
+    const file = document.querySelector("#myFileInput").files[0];
+		
+	if (!file) return;
+		
+	const reader = new FileReader();
+		
+	reader.readAsDataURL(file);
+	
+    reader.onload = function(event) {
+    const imgElement = document.createElement("img");
+	imgElement.src = event.target.result;		
+	document.getElementById("imageurl").value = event.target.result;
+      
+    imgElement.onload = function(e){
+        const canvas = document.createElement("canvas");
+	    const MAX_WIDTH = 320;
+		const MAX_HEIGHT = 240;
+				
+		const scaleSize = MAX_WIDTH / e.target.width;
+		canvas.width = MAX_WIDTH;
+		canvas.height = e.target.height * scaleSize;
+				
+		const ctx = canvas.getContext("2d");
+				
+		ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+		const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+				
+		document.getElementById("imageurl").value = srcEncoded;
+        };			
+	};
+}; 
+
+function imgPreview(){
+
+    var geturl = document.getElementById("imageurl").value;
+	
+	if(geturl && geturl != "" ) {    
+	        document.querySelector("#imgPreview").setAttribute("src", geturl);
+		    document.getElementById("imgPreview").style.display = "block";
+	} else {
+            alert("圖片未能正確上傳，請再次嘗試");
+	        document.querySelector("#imgPreview").setAttribute("src", "");
+	};
+};
+
 function addToMain(number) {
 		
     var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
     var name = formdata.name;
+	
 	var imageurl = formdata.imageurl;
+	
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
@@ -229,7 +284,7 @@ function addToMain(number) {
 	<h1><i class="${logo}"></i> ${name}</h1>
     </div>
     <div class="panel-body w3-left-align">
-	<div><img src="${imageurl}"></div>
+	<div><img src="${imageurl}" class="display"></div>
 	<div class="w3-margin-top">
 	<p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p></div>
 	<div>
@@ -257,7 +312,6 @@ function loadMain() {
 	    };
     };
 };
-
 
 $(document).ready(function(){
 	
