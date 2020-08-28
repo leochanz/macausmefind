@@ -181,9 +181,9 @@ function onSubmitPressed() {
 		
 	    var formJSON = JSON.stringify(formObj); 
 		  
-	    alert(formJSON);
+	    alert(formArrayName + '         ' + formJSON);
 	    
-	    localStorage.setItem( formArrayName ,formJSON);
+	    localStorage.setItem(formArrayName ,formJSON);
 		  
 	    alert('we stored ' +  formArrayName + ' in local storage');
 	
