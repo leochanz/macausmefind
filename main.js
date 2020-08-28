@@ -16,7 +16,7 @@ if('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     
 	console.log(position);
-    var lat = position.coords.latitude;
+        var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var latlng = lat + ',' + lng;
 	
@@ -24,16 +24,16 @@ if('geolocation' in navigator) {
 	geocode(latlng);
 
 	$("#get_location").click(function(){
-	  $('#map-popup').show();
-	  $('#darkscreen').show();
+	  document.getElementById("map-popup").style.display = "block";
+	  document.getElementById("darkscreen").style.display = "block";
 	  
 	  return false;
-    });
+        });
 	
 	$('#cancel').click(function(){
 
-      $('#map-popup').hide();
-      $('#darkscreen').hide();
+      document.getElementById("map-popup").style.display = "none";
+	  document.getElementById("darkscreen").style.display = "none";
       return false;
     });
   })
@@ -103,17 +103,17 @@ function geocode(latitudeandlongtitude) {
 	fetch(url)
 	.then( response => response.json() )
 	.then( data => {
-        var formattedAddress = data.results[0].formatted_address;
-		$('#confirmAddress').text(formattedAddress);
+            var formattedAddress = data.results[0].formatted_address;
+	    $('#confirmAddress').text(formattedAddress);
 
-        $("#confirm").click(function(){
-			$('#map-popup').hide();
-			$('#latlng').val(latlng); 
-			$('#address').val(formattedAddress);
-			$('#darkscreen').hide();
-			return false;
-        });		
-		
+            $("#confirm").click(function(){
+		$('#latlng').val(latlng); 
+		$('#address').val(formattedAddress);
+		document.getElementById("map-popup").style.display = "none";
+		document.getElementById("darkscreen").style.display = "none";
+			
+		return false;
+            });			
 	})
 	.catch( err => console.warn(err.message));
 }
@@ -127,20 +127,20 @@ function onSubmitPressed() {
 	
 	event.preventDefault();
 	
-    var type = $('#type').val();
-    var name = $('#name').val();
-    var imagefile = $('#myFileInput').val();
-    var imageurl = $('#imageurl').val();
-    var coordinates = $('#latlng').val();
-    var address = $('#address').val();
-    var comment = $('#comment').val();
+        var type =  document.getElementById("type").value;
+        var name =  document.getElementById("name").value;
+        var imagefile =  document.getElementById("myFileInput").value;
+        var imageurl = document.getElementById("imageurl").value;
+        var coordinates = document.getElementById("latlng").value;
+        var address = document.getElementById("address").value;
+        var comment = document.getElementById("comment").value;
 	
 	if (comment === ""){
-		  $('#comment').addClass('error');
+		$('#comment').addClass('error');
 	};
 	
 	if ( type == "" || type === undefined || type === null || type.length == 0){
-		  $('#type').addClass('error');
+		$('#type').addClass('error');
 	};
 	
 	$('#smeform input*').each(function(){
@@ -154,9 +154,9 @@ function onSubmitPressed() {
 	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 		
 	    document.getElementById('smeform').reset()
-	    $('#imgPreview').hide();
-	    $('#confirm-popup').show();
-	    $('#darkscreen').show();
+	    document.getElementById("imgPreview").style.display = "none";
+	    document.getElementById("confirm-popup").style.display = "block";
+	    document.getElementById("darkscreen").style.display = "block";
 	  
 			  	  
 	    var logo = getLogo(type);
@@ -164,8 +164,6 @@ function onSubmitPressed() {
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
-
-		console.log(formArray);
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
 	    var thisArrayNumber = submittimes.valueOf(); 
@@ -186,12 +184,12 @@ function onSubmitPressed() {
 };
 
 function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
-	$('#type2').val(type);
-    $('#name2').val(name);
-	$('#imagefile2').val(imagefile);
-	$('#latlng2').val(latlng);
-	$('#address2').val(address);
-	$('#comment2').val(comment); 
+	document.getElementById("type2").value = type;
+        document.getElementById("name2").value = name;
+	document.getElementById("imagefile2").value = imagefile;
+	document.getElementById("latlng2").value = latlng;
+	document.getElementById("address2").value = address;
+	document.getElementById("comment2").value = comment;
 };
 
 function getLogo(type) {
@@ -207,17 +205,17 @@ function getLogo(type) {
 			 '教育':'fas fa-chalkboard-teacher',
 			 '娛樂':'far fa-laugh-squint',
 			 '其他':'fas fa-building',
-			 };
+					 };
 	var logo = logoArray[type];
 	return logo;
 };
 
 function addToMain(number) {
 		
-    var formArrayName = 'formArray' + number + '';
+        var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
-    var name = formdata.name;
+        var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
@@ -252,9 +250,9 @@ function loadMain() {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 	if ( submityesorno && submityesorno == 'NO') {
-           addToMain(i);
-           localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-	};
+            addToMain(i);
+            localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+        };
     };
 };
 
@@ -263,17 +261,17 @@ $(document).ready(function(){
 	
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
-            var x = 0;
-            localStorage.setItem( 'submittimes' , x );
+        var x = 0;
+        localStorage.setItem( 'submittimes' , x );
         } 
 
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-            var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
+        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 		
-            addToMain(i);
+        addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
         };
 	
@@ -288,19 +286,19 @@ $(document).ready(function(){
 
 	$("#finalsubmit").click(function(){
 		
-		$('#confirm-popup').hide();
-        $('#darkscreen').hide();
+	    document.getElementById("confirm-popup").style.display = "none";
+            document.getElementById("darkscreen").style.display = "none";
 
         });
 		
 	$("#finalcancel").click(function(){
 		
-		event.preventDefault();
+	    event.preventDefault();
 		  
-	        $('#confirm-popup').hide();
-            $('#darkscreen').hide();
+	    document.getElementById("confirm-popup").style.display = "none";
+            document.getElementById("darkscreen").style.display = "none";
 		  
-	        return false;
+	    return false;
         });
 
 });
