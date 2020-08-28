@@ -1,5 +1,4 @@
- 
-body {
+ body {
     background-image: linear-gradient(#f2e6ff, #f2e6ff);
     width:100%;
     height:200%;
@@ -14,10 +13,10 @@ body {
 }
 
 #settingbubble {
-	z-index:11;
+    z-index:11;
     position: fixed;
-	right:5px;
-	top:60px;
+    right:5px;
+    top:75px;
     background: #ffffff;
     color: black;
     font-size: 20px;
@@ -42,7 +41,6 @@ body {
     left: 50%;
     margin-left: -20px;
 }
-
 
 #mySidebar{
 	display:none; 
@@ -76,9 +74,9 @@ body {
 }
 
 .center{
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
+      margin-left: auto;
+      margin-right: auto;
+      text-align:center;
 }
 
 .tab{
@@ -100,16 +98,16 @@ body {
 	width: 0;
 	height: 0;
 	border-style:solid;
-    z-index:10px;
-    border-width: 0 0 36px 10px;
-    border-color: transparent transparent #d9d9d9 transparent;
+        z-index:10px;
+        border-width: 0 0 36px 10px;
+        border-color: transparent transparent #d9d9d9 transparent;
 }
 
 
 .active{
 	text-decoration:none;
 	font-weight:bold;
-    color: white;
+        color: white;
 	display:inline-block;
 	background-color: #717171;
 	font-size:1em;
@@ -124,9 +122,9 @@ body {
 	width: 0;
 	height: 0;
 	border-style:solid;
-    z-index:10px;
-    border-width: 0 0 36px 10px;
-    border-color: transparent transparent #717171 transparent;
+        z-index:10px;
+        border-width: 0 0 36px 10px;
+        border-color: transparent transparent #717171 transparent;
 }
 
 .main {
@@ -174,21 +172,10 @@ body {
   opacity: 0.7;
 }
 
-#pop-up {
-	overflow:visible;
-	padding-bottom:15px;
-    z-index: 5;
-	position:fixed;
-	left:10%;
-	top:80px;
-	width:80%;
-	text-align:left;
-}
-
 #map-popup {
 	overflow:visible;
 	padding-bottom:15px;
-    z-index: 5;
+        z-index: 5;
 	width:380px;
 	padding-top:10px;
 	padding-bottom:0px;
@@ -200,7 +187,7 @@ body {
 #confirm-popup {
 	overflow:visible;
 	padding-bottom:15px;
-    z-index: 5;
+        z-index: 5;
 	width:380px;
 	padding-top:10px;
 	padding-bottom:0px;
@@ -219,67 +206,9 @@ body {
 
 
 .hidden {
-display: none;
+    display: none;
 }
 
 * {box-sizing: border-box;}
-.mySlides {display: none;}
 
-img.slideshow {
-	margin-left:82px;
-	position:relative;
-	left:-72px;
-	display:block;
-	width:380px;
-	height:230px;
-}
-
-
-/* Slideshow container */
-.slideshow-container {
-  display: block;
-  width:100%;
-  height: 230px;
-  position: relative;
-  top:75px;
-  background-color: black;
-}
-
-
-/* The dots/bullets/indicators */
-.dot {
-  position:relative;
-  top:65px;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
-}
 
