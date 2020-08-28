@@ -161,7 +161,7 @@ function onSubmitPressed() {
 	  
 			  	  
 	    var logo = getLogo(type);
-		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
+	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
@@ -178,7 +178,11 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
+            alert("all of the data has been stored into local storage, which means all of the functions worked.")
+		  
             loadMain();
+		  
+            alert("loadMain() has been called")
 	  };
 	};
 	return false;
