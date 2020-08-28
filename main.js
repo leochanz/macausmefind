@@ -151,16 +151,18 @@ function onSubmitPressed() {
 	
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	  if(name !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	  if(name !== "" && imagefile !== "" imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 		
 	    document.getElementById('smeform').reset()
 	    document.getElementById("imgPreview").style.display = "none";
+            document.querySelector("#imgPreview").setAttribute("src", "" );
+		  
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
 	  
 			  	  
 	    var logo = getLogo(type);
-		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
+	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
@@ -177,7 +179,7 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-        loadMain();
+            loadMain();
 	  };
 	};
 	return false;
