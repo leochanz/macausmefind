@@ -179,10 +179,13 @@ function onSubmitPressed() {
 		  
 	    alert('if this is the last message then the next function is wrong');
 		
-	    var formJSON = JSON.stringify(formObj);  
+	    var formJSON = JSON.stringify(formObj); 
+		  
+	    alert(formJSON);
+	    
 	    localStorage.setItem( formArrayName ,formJSON);
 		  
-	    alert('we stored ' +  formArrayName + ' = ' + formJSON  + ' in local storage');
+	    alert('we stored ' +  formArrayName + ' in local storage');
 	
             loadMain();
 		  
