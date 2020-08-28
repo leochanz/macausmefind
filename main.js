@@ -183,7 +183,7 @@ function onSubmitPressed() {
 		  
 	    alert(formArrayName + '         ' + formJSON);
 	    
-	    localStorage.setItem(formArrayName ,formJSON);
+	    window.localStorage.setItem(formArrayName ,formJSON);
 		  
 	    alert('we stored ' +  formArrayName + ' in local storage');
 	
