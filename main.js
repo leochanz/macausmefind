@@ -232,10 +232,9 @@ function compressImage(){
             imgElement.onload = function(e){
             const canvas = document.createElement("canvas");
 	    const MAX_WIDTH = 320;
-	    const MAX_HEIGHT = 240;
-				
-	    canvas.width = MAX_WIDTH;
-	    canvas.height = MAX_HEIGHT;
+	    const scaleSize = MAX_WIDTH / e.target.width;
+            canvas.width = MAX_WIDTH;
+            canvas.height = e.target.height * scaleSize;
 				
 	    const ctx = canvas.getContext("2d");
 				
