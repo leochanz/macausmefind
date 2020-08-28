@@ -362,17 +362,21 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	  <input type="hidden" id="imageurl">
 	</div>
 	<div class="w3-margin-top">
-	  <span id="preview" style="width:62px;height:30px;padding:2px 0px; margin-top:10px;" class="w3-indigo w3-text-white">圖片檢示:</span>
+	  <span id="preview" style="width:62px;height:30px;padding:2px 0px; margin-top:10px;font-weight: bold;" class="w3-white w3-text-indigo">圖片檢示</span>
 	  <img id="imgPreview" src="" alt="Preview">
 	</div>
 
 <script>
-	document.querySelector("#myFileInput").addEventListener("change", function() {
+    document.querySelector("#myFileInput").addEventListener("change", function() {
 
 	const reader = new FileReader();
 	
 	reader.addEventListener("load", () => {
-	    document.getElementById("imageurl").value = reader.result;
+	    var imageurl = reader.result;
+	    document.getElementById("imageurl").value = imageurl;
+	    if (imageurl === undefined || imageurl === null || imageurl.length === 0){
+                alert("圖片未能正確上傳，請再次嘗試");
+            };
 	});
 	
 	reader.readAsDataURL(this.files[0]);
@@ -381,9 +385,9 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
     $('#preview').click( function() {
 
-        document.getElementById("imgPreview").style.display = "block";
         var recentImageDataUrl = document.getElementById("imageurl").value;
 	    if(recentImageDataUrl) {
+                 document.getElementById("imgPreview").style.display = "block";
 	         document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
 	    } else {
 		 alert("圖片未能正確上傳，請再次嘗試");
