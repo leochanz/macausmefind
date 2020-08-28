@@ -118,6 +118,8 @@ function geocode(latitudeandlongtitude) {
 	.catch( err => console.warn(err.message));
 }
 
+	
+var formArray = [];
 const localStorage = window.localStorage;
 
 //form validation
@@ -153,44 +155,29 @@ function onSubmitPressed() {
 		
 	    document.getElementById('smeform').reset();
 	    document.getElementById("imgPreview").style.display = "none";
-            document.getElementById("imageurl").value = "";
-            document.querySelector("#imgPreview").setAttribute("src", "" );
-		  
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
-
-		  
+	  
+			  	  
 	    var logo = getLogo(type);
-	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
-
+		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    formArray.push(formObj);
 		
-	    var getsubmittimes = localStorage.getItem( 'submittimes' );
-	    var submittimes = getsubmittimes.valueOf();
-
-	    var formArrayName = 'formArray' + submittimes  + ''; 
-	    var formArraySubmittedName = 'formArraySubmitted' + submittimes  + ''; 
-
-	    submittimes++;
-	   
-	    localStorage.setItem( 'submittimes' , submittimes  ); 
-	    localStorage.setItem( formArraySubmittedName , 'NO' );
-		  
-	    alert('if this is the last message then the next function is wrong');
-		
-	    var formJSON = JSON.stringify(formObj); 
-		  
-	    alert(formArrayName + '         ' + formJSON);
-	    
-	    localStorage.setItem( String(formArrayName) , formJSON );
-		  
-	    alert('we stored ' +  formArrayName + ' in local storage');
+	    var submittimes = localStorage.getItem( 'submittimes' );
+	    var thisArrayNumber = submittimes.valueOf(); 
 	
-            loadMain();
+	    var formArrayName = 'formArray' + thisArrayNumber  + ''; 
+	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
+	
+	    thisArrayNumber ++;
+	
+	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
+	    localStorage.setItem( formArraySubmittedName , 'NO' );
+	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-	    alert("Congratulations! you made it to the end and nothing went wrong!");
-	    
+        loadMain();
 	  };
 	};
 	return false;
@@ -264,7 +251,6 @@ function loadMain() {
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 	if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
-	    alert("we just added " + formArraySubmittedNameGet + " to the main page. now " + formArraySubmittedNameGet + " ==YES." )
             localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
         };
     };
