@@ -16,7 +16,7 @@ if('geolocation' in navigator) {
   navigator.geolocation.getCurrentPosition(position => {
     
 	console.log(position);
-        var lat = position.coords.latitude;
+    var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var latlng = lat + ',' + lng;
 	
@@ -28,7 +28,7 @@ if('geolocation' in navigator) {
 	  document.getElementById("darkscreen").style.display = "block";
 	  
 	  return false;
-        });
+    });
 	
 	$('#cancel').click(function(){
 
@@ -103,17 +103,18 @@ function geocode(latitudeandlongtitude) {
 	fetch(url)
 	.then( response => response.json() )
 	.then( data => {
-            var formattedAddress = data.results[0].formatted_address;
-	    $('#confirmAddress').text(formattedAddress);
+        var formattedAddress = data.results[0].formatted_address;
+		$('#confirmAddress').text(formattedAddress);
 
-            $("#confirm").click(function(){
-		$('#latlng').val(latlng); 
-		$('#address').val(formattedAddress);
-		document.getElementById("map-popup").style.display = "none";
-		document.getElementById("darkscreen").style.display = "none";
+        $("#confirm").click(function(){
+			$('#latlng').val(latlng); 
+			$('#address').val(formattedAddress);
+			document.getElementById("map-popup").style.display = "none";
+			document.getElementById("darkscreen").style.display = "none";
 			
-		return false;
-            });			
+			return false;
+        });		
+		
 	})
 	.catch( err => console.warn(err.message));
 }
@@ -127,13 +128,13 @@ function onSubmitPressed() {
 	
 	event.preventDefault();
 	
-        var type =  document.getElementById("type").value;
-        var name =  document.getElementById("name").value;
-        var imagefile =  document.getElementById("myFileInput").value;
-        var imageurl = document.getElementById("imageurl").value;
-        var coordinates = document.getElementById("latlng").value;
-        var address = document.getElementById("address").value;
-        var comment = document.getElementById("comment").value;
+    var type =  document.getElementById("type").value;
+    var name =  document.getElementById("name").value;
+    var imagefile =  document.getElementById("myFileInput").value;
+    var imageurl = document.getElementById("imageurl").value;
+    var coordinates = document.getElementById("latlng").value;
+    var address = document.getElementById("address").value;
+    var comment = document.getElementById("comment").value;
 	
 	if (comment === ""){
 		$('#comment').addClass('error');
@@ -151,16 +152,17 @@ function onSubmitPressed() {
 	
 	
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
-	  if(name !== "" && imagefile !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
+	  if(name != "" && imagefile != "" && imageurl != "" && coordinates != "" && address != "" && comment != ""){
 		
-	    document.getElementById('smeform').reset()
+	    document.getElementById('smeform').reset();
+		document.getElementById('imageurl').value = "" ;
+		
 	    document.getElementById("imgPreview").style.display = "none";
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
 	  
-			  	  
 	    var logo = getLogo(type);
-            dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
+		dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
@@ -185,7 +187,7 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 	document.getElementById("type2").value = type;
-        document.getElementById("name2").value = name;
+    document.getElementById("name2").value = name;
 	document.getElementById("imagefile2").value = imagefile;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
@@ -195,16 +197,16 @@ function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 function getLogo(type) {
 	var logoArray = {'餐廳':'fas fa-utensils', 
 	                 '外賣店':'fas fa-shopping-bag',
-			 '餅店':'fas fa-bread-slice',
-			 '超市':'fas fa-shopping-cart', 
-			 '便利店/雜貨店': 'fas fa-store', 
-			 '專賣店':'fas fa-store-alt', 
-			 '個人服務':'fas fa-user-friends',
-			 '運輸':'fas fa-truck',
-			 '商用服務':'fas fa-hand-holding-usd',
-			 '教育':'fas fa-chalkboard-teacher',
-			 '娛樂':'far fa-laugh-squint',
-			 '其他':'fas fa-building',
+					 '餅店':'fas fa-bread-slice',
+					 '超市':'fas fa-shopping-cart', 
+					 '便利店/雜貨店': 'fas fa-store', 
+					 '專賣店':'fas fa-store-alt', 
+					 '個人服務':'fas fa-user-friends',
+					 '運輸':'fas fa-truck',
+					 '商用服務':'fas fa-hand-holding-usd',
+					 '教育':'fas fa-chalkboard-teacher',
+					 '娛樂':'far fa-laugh-squint',
+					 '其他':'fas fa-building',
 					 };
 	var logo = logoArray[type];
 	return logo;
@@ -212,10 +214,10 @@ function getLogo(type) {
 
 function addToMain(number) {
 		
-        var formArrayName = 'formArray' + number + '';
+    var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
-        var name = formdata.name;
+    var name = formdata.name;
 	var imageurl = formdata.imageurl;
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
@@ -248,11 +250,11 @@ function loadMain() {
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-	if ( submityesorno && submityesorno == 'NO') {
+	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
+	    if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
             localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-        };
+	    };
     };
 };
 
@@ -263,7 +265,7 @@ $(document).ready(function(){
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
         var x = 0;
         localStorage.setItem( 'submittimes' , x );
-        } 
+    } 
 
 	
 	var number = localStorage.getItem('submittimes');
@@ -273,32 +275,32 @@ $(document).ready(function(){
 		
         addToMain(i);
 	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-        };
+    };
 	
 	
 	$('#smeform').keydown(function(){
-            $('#smeform *').removeClass('error');
-        });
+        $('#smeform *').removeClass('error');
+    });
 	
 	$('#type, #myFileInput').click(function(){
-            $('#smeform *').removeClass('error');
-        });
+        $('#smeform *').removeClass('error');
+    });
 
 	$("#finalsubmit").click(function(){
 		
-	    document.getElementById("confirm-popup").style.display = "none";
-            document.getElementById("darkscreen").style.display = "none";
+		document.getElementById("confirm-popup").style.display = "none";
+        document.getElementById("darkscreen").style.display = "none";
 
-        });
+    });
 		
 	$("#finalcancel").click(function(){
 		
-	    event.preventDefault();
+		event.preventDefault();
 		  
 	    document.getElementById("confirm-popup").style.display = "none";
-            document.getElementById("darkscreen").style.display = "none";
+        document.getElementById("darkscreen").style.display = "none";
 		  
 	    return false;
-        });
+    });
 
 });
