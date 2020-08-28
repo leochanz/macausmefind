@@ -390,9 +390,10 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	
 	if(recentImageDataUrl  && recentImageDataUrl != "" ) {    
             document.getElementById("imgPreview").style.display = "block";
-	    document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl)
+	    document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
 	} else {
-            alert("圖片未能正確上傳，請再次嘗試");	    
+            alert("圖片未能正確上傳，請再次嘗試");
+	    document.querySelector("#imgPreview").setAttribute("src", "");
 	};
     });
 </script>
