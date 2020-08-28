@@ -373,15 +373,15 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
 
     if( fileinput && fileinput !== "" && fileinput !== undefined && fileinput !== null && fileinput.length !== 0){
 	    compressImage();
-	} else {
+	    compressImageSubmit();
+    } else {
 	    alert("圖片未能正確上傳，請再次嘗試");
-	};	
+    };	
 });
 
 document.querySelector("#imgPreviewButton").addEventListener("click", function() {
-
     imgPreview();
-	return false;
+    return false;
 });
 
 </script>
@@ -428,6 +428,7 @@ document.querySelector("#imgPreviewButton").addEventListener("click", function()
     <div id="confirm-popup" class="w3-conatiner w3-white center" style="padding-bottom:10px;">
     <input name="類型" type="hidden" form="finalform" id="type2">
     <input name="名稱" type="hidden" form="finalform" id="name2">
+    <input name="圖片url" type="hidden" form="finalform" id="imageurl2">
     <input name="坐標" type="hidden" form="finalform" id="latlng2">
     <input name="地址" type="hidden" form="finalform" id="address2">
     <input name="意見" type="hidden" form="finalform" id="comment2">
