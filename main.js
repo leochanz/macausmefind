@@ -182,7 +182,7 @@ function onSubmitPressed() {
 	   
 	    alert('we have not stored: ' + formArrayName + ' ');	  
 		  
-	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
+	    localStorage.setItem(formArrayName,JSON.stringify(formObj));
 		  
 	    alert('we just stored: ' + formArrayName + ' ');
 		  
