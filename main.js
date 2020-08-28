@@ -170,14 +170,13 @@ function onSubmitPressed() {
 	    formArray.push(formObj);
 
 		
-	    var submittimes = localStorage.getItem( 'submittimes' );
+	    var getsubmittimes = localStorage.getItem( 'submittimes' );
+	    var submittimes = getsubmittimes.valueOf();
 
 	    var formArrayName = 'formArray' + submittimes  + ''; 
 	    var formArraySubmittedName = 'formArraySubmitted' + submittimes  + ''; 
 
-		  
 	    submittimes++;
-	    alert("There are now " + submittimes + " items in local storage. Ther newest one is called: " + formArrayName + "");
 	   
 	    localStorage.setItem( 'submittimes' , submittimes  );
 		  
@@ -185,11 +184,11 @@ function onSubmitPressed() {
 		  
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 		  
-	    alert('we stored ' +  formArraySubmittedName ' = NO in local storage');
+	    alert('we stored ' +  formArraySubmittedName + ' = NO in local storage');
 		  
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-	    alert('we stored ' +  formArrayName ' = formObj in local storage');
+	    alert('we stored ' +  formArrayName + ' = formObj in local storage');
 		
 	    alert('all of the data are now in local storage');
 	
