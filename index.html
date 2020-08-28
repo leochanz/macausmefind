@@ -380,7 +380,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	  <input type="hidden" form="smeform" id="imageurl">
 	</div>
 	<div class="w3-margin-top">
-	  <button id="imgPreviewButton" class="w3-white w3-text-indigo" 
+	  <button onclick="imgPreviewButton()" class="w3-white w3-text-indigo" 
 	          style="width:62px;height:30px;border:0px;padding:2px 0px;font-weight:bold;">
 	  圖片檢示</button>
 	  <img id="imgPreview" src="" alt="Preview">
@@ -399,11 +399,10 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
 	};	
 });
 
-document.querySelector("#imgPreviewButton").addEventListener("click", function() {
-
+function imgPreviewButton() {
     imgPreview();
-	return false;
-});
+    return false;
+};
 
 </script>
 	
