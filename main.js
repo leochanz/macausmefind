@@ -26,7 +26,6 @@ if('geolocation' in navigator) {
 	$("#get_location").click(function(){
 	  $('#map-popup').show();
 	  $('#darkscreen').show();
-	  $("#get_location").hide();
 	  
 	  return false;
     });
@@ -34,7 +33,6 @@ if('geolocation' in navigator) {
 	$('#cancel').click(function(){
 
       $('#map-popup').hide();
-      $('#get_location').show();
       $('#darkscreen').hide();
       return false;
     });
@@ -106,11 +104,10 @@ function geocode(latitudeandlongtitude) {
 	.then( response => response.json() )
 	.then( data => {
         var formattedAddress = data.results[0].formatted_address;
-	$('#confirmAddress').text(formattedAddress);
+		$('#confirmAddress').text(formattedAddress);
 
         $("#confirm").click(function(){
 			$('#map-popup').hide();
-			$("#get_location").show();
 			$('#latlng').val(latlng); 
 			$('#address').val(formattedAddress);
 			$('#darkscreen').hide();
@@ -130,13 +127,13 @@ function onSubmitPressed() {
 	
 	event.preventDefault();
 	
-        var type = $('#type').val();
-        var name = $('#name').val();
-        var imagefile = $('#myFileInput').val();
-        var imageurl = $('#imageurl').val();
-        var coordinates = $('#latlng').val();
-        var address = $('#address').val();
-        var comment = $('#comment').val();
+    var type = $('#type').val();
+    var name = $('#name').val();
+    var imagefile = $('#myFileInput').val();
+    var imageurl = $('#imageurl').val();
+    var coordinates = $('#latlng').val();
+    var address = $('#address').val();
+    var comment = $('#comment').val();
 	
 	if (comment === ""){
 		  $('#comment').addClass('error');
@@ -205,7 +202,7 @@ function addToMain(number) {
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-        var newMainElement = `
+       var newMainElement = `
 	<div class="panel panel-primary center main">
     <div class="panel-heading center">
 	<h1><i class="fas fa-utensils"></i> ${ name }</h1>
@@ -224,7 +221,7 @@ function addToMain(number) {
     </div>
 	`;
 	
-       $("div .tab-content:first").prepend(newMainElement);
+    $("div .tab-content:first").prepend(newMainElement);
 };
 
 
@@ -234,10 +231,10 @@ function loadMain() {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 	if ( submityesorno && submityesorno == 'NO') {
-        addToMain(i);
-        localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+           addToMain(i);
+           localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 	};
-    }
+    };
 };
 
 
@@ -249,6 +246,7 @@ $(document).ready(function(){
             localStorage.setItem( 'submittimes' , x );
         } 
 
+	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
             var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
@@ -270,7 +268,7 @@ $(document).ready(function(){
 	$("#finalsubmit").click(function(){
 		
 		$('#confirm-popup').hide();
-                $('#darkscreen').hide();
+        $('#darkscreen').hide();
 
         });
 		
@@ -279,7 +277,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		  
 	        $('#confirm-popup').hide();
-                $('#darkscreen').hide();
+            $('#darkscreen').hide();
 		  
 	        return false;
         });
