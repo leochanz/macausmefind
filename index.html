@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -370,17 +369,17 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 <script>
     document.querySelector("#myFileInput").addEventListener("change", function() {
 
-         const reader = new FileReader();
+        const reader = new FileReader();
 	
-         reader.addEventListener("load", () => {		
-	     var imageurl = reader.result;			
-             document.getElementById("imageurl").value = imageurl;	    	
-	     if (imageurl === undefined || imageurl === null || imageurl.length === 0){	
-             alert("圖片未能正確上傳，請再次嘗試");	
-             };	
-	});
+        reader.addEventListener("load", () => {		
+	        var imageurl = reader.result;			
+            document.getElementById("imageurl").value = imageurl;	    	
+	        if (imageurl === undefined || imageurl === null || imageurl.length === 0){	
+                alert("圖片未能正確上傳，請再次嘗試");	
+            };	
+	    });
 	
-	reader.readAsDataURL(this.files[0]);
+	    reader.readAsDataURL(this.files[0]);
 	
     });
 
@@ -389,12 +388,12 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
         const recentImageDataUrl = $('#imageurl').val();
 	
 	if(recentImageDataUrl  && recentImageDataUrl != "" ) {    
-            document.getElementById("imgPreview").style.display = "block";
+        document.getElementById("imgPreview").style.display = "block";
 	    document.querySelector("#imgPreview").setAttribute("src", recentImageDataUrl);
 	} else {
-            alert("圖片未能正確上傳，請再次嘗試");
+        alert("圖片未能正確上傳，請再次嘗試");
 	    document.querySelector("#imgPreview").setAttribute("src", "");
-	};
+	    };
     });
 </script>
 	
