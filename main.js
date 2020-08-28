@@ -225,7 +225,7 @@ function addToMain(number) {
     </div>
 	`;
 	
-       $("div #main").prepend(newMainElement);
+       $("div .tab-content:first").prepend(newMainElement);
 };
 
 
@@ -235,8 +235,8 @@ function loadMain() {
         var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 	if ( submityesorno && submityesorno == 'NO') {
-           addToMain(i);
-           localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
+        addToMain(i);
+        localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
 	};
     }
 };
