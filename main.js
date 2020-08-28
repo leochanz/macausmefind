@@ -118,8 +118,6 @@ function geocode(latitudeandlongtitude) {
 	.catch( err => console.warn(err.message));
 }
 
-	
-var formArray = [];
 const localStorage = window.localStorage;
 
 //form validation
@@ -167,8 +165,6 @@ function onSubmitPressed() {
 
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
-	    formArray.push(formObj);
-
 		
 	    var getsubmittimes = localStorage.getItem( 'submittimes' );
 	    var submittimes = getsubmittimes.valueOf();
@@ -178,19 +174,15 @@ function onSubmitPressed() {
 
 	    submittimes++;
 	   
-	    localStorage.setItem( 'submittimes' , submittimes  );
-		  
-	    alert('we stored sutmittimes = ' + submittimes + 'in local storage');
-		  
+	    localStorage.setItem( 'submittimes' , submittimes  ); 
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 		  
-	    alert('we stored ' +  formArraySubmittedName + ' = NO in local storage');
-		  
-	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-		  
-	    alert('we stored ' +  formArrayName + ' = formObj in local storage');
+	    alert('if this is the last message then the next function is wrong');
 		
-	    alert('all of the data are now in local storage');
+	    var formJSON = JSON.stringify(formObj);  
+	    localStorage.setItem( formArrayName ,formJSON);
+		  
+	    alert('we stored ' +  formArrayName + ' = ' + formJSON  + ' in local storage');
 	
             loadMain();
 		  
