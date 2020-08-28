@@ -124,6 +124,7 @@ var formArray = [];
 const localStorage = window.localStorage;
 
 //form validation
+
 function onSubmitPressed() {
 	
 	event.preventDefault();
@@ -155,6 +156,7 @@ function onSubmitPressed() {
 	  if(name != "" && imagefile != "" && imageurl != "" && coordinates != "" && address != "" && comment != ""){
 		
 	    document.getElementById('smeform').reset();
+		document.getElementById("myFileInput").value = "";
 		document.getElementById('imageurl').value = "" ;
 		
 	    document.getElementById("imgPreview").style.display = "none";
