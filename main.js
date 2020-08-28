@@ -161,27 +161,40 @@ function onSubmitPressed() {
 	    document.getElementById("confirm-popup").style.display = "block";
 	    document.getElementById("darkscreen").style.display = "block";
 	  
-			  	  
+	    alert("We resetted the form entirely");
+		  
 	    var logo = getLogo(type);
 	    dataTransfer(type,name,imagefile,imageurl,coordinates,address,comment);
+		  
+	    alert("We just called getLogo() and dataTransfer");
 		
 	    var formObj = {'type':type,'logo':logo,'name':name,'imagefile':imagefile,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
+		  
+	    alert("We created the object" + formObj + "" );
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
-	    var thisArrayNumber = submittimes.valueOf(); 
 	
-	    var formArrayName = 'formArray' + thisArrayNumber  + ''; 
-	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
+            alert("We got submittimes from local storage and submittimes= " + submittimes + '' );
 	
-	    thisArrayNumber ++;
-	
-	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
+	    var formArrayName = 'formArray' + submittimes  + ''; 
+	    var formArraySubmittedName = 'formArraySubmitted' + submittimes  + ''; 
+		  
+	    alert("We created the names: " + formArrayName + ',' + formArraySubmittedName + '' );
+		  
+	    submittimes++;
+	    alert("There are now " + submittimes + " items in local storage. Ther newest one is called: " + formArrayName + "");
+	   
+	    localStorage.setItem( 'submittimes' , submittimes  );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-		  
+		
+	    alert('all of the data are now in local storage');
+	
             loadMain();
-	    alert("There are now " + thisArrayNumber + " items in local storage. Ther newest one is called: " + formArrayName + ". Also we just activated loadMain().");
+		  
+	    alert("Congratulations! you made it to the end and nothing went wrong!");
+	    
 	  };
 	};
 	return false;
