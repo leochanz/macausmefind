@@ -1,4 +1,5 @@
- body {
+ 
+body {
     background-image: linear-gradient(#f2e6ff, #f2e6ff);
     width:100%;
     height:200%;
@@ -13,10 +14,10 @@
 }
 
 #settingbubble {
-    z-index:11;
+	z-index:11;
     position: fixed;
-    right:5px;
-    top:75px;
+	right:5px;
+	top:75px;
     background: #ffffff;
     color: black;
     font-size: 20px;
@@ -74,9 +75,9 @@
 }
 
 .center{
-      margin-left: auto;
-      margin-right: auto;
-      text-align:center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
 }
 
 .tab{
@@ -98,16 +99,16 @@
 	width: 0;
 	height: 0;
 	border-style:solid;
-        z-index:10px;
-        border-width: 0 0 36px 10px;
-        border-color: transparent transparent #d9d9d9 transparent;
+    z-index:10px;
+    border-width: 0 0 36px 10px;
+    border-color: transparent transparent #d9d9d9 transparent;
 }
 
 
 .active{
 	text-decoration:none;
 	font-weight:bold;
-        color: white;
+    color: white;
 	display:inline-block;
 	background-color: #717171;
 	font-size:1em;
@@ -122,9 +123,9 @@
 	width: 0;
 	height: 0;
 	border-style:solid;
-        z-index:10px;
-        border-width: 0 0 36px 10px;
-        border-color: transparent transparent #717171 transparent;
+    z-index:10px;
+    border-width: 0 0 36px 10px;
+    border-color: transparent transparent #717171 transparent;
 }
 
 .main {
@@ -175,7 +176,7 @@
 #map-popup {
 	overflow:visible;
 	padding-bottom:15px;
-        z-index: 5;
+    z-index: 5;
 	width:380px;
 	padding-top:10px;
 	padding-bottom:0px;
@@ -187,7 +188,7 @@
 #confirm-popup {
 	overflow:visible;
 	padding-bottom:15px;
-        z-index: 5;
+    z-index: 5;
 	width:380px;
 	padding-top:10px;
 	padding-bottom:0px;
@@ -206,9 +207,7 @@
 
 
 .hidden {
-    display: none;
+display: none;
 }
 
 * {box-sizing: border-box;}
-
-
