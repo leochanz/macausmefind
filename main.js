@@ -175,13 +175,13 @@ function onSubmitPressed() {
 	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
 	
 	    thisArrayNumber ++;
-	    alert("There are now " + thisArrayNumber + " items in local storage. Ther newest one is called: " + formArrayName + ".");
 	
 	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
             loadMain();
+	    alert("There are now " + thisArrayNumber + " items in local storage. Ther newest one is called: " + formArrayName + ". Also we just activated loadMain().");
 	  };
 	};
 	return false;
@@ -255,6 +255,7 @@ function loadMain() {
 	var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
 	if ( submityesorno && submityesorno == 'NO') {
             addToMain(i);
+	    alert("we just added " + formArraySubmittedNameGet + " to the main page. now " + formArraySubmittedNameGet + " ==YES." )
             localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
         };
     };
