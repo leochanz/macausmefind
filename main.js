@@ -147,8 +147,8 @@ function onSubmitPressed() {
 	
 	$('#smeform input*').each(function(){
 		if ($(this).val() == ""){
-		  $(this).addClass('error');
-		};
+		$(this).addClass('error');
+                };
 	});
 	
 	
@@ -168,10 +168,6 @@ function onSubmitPressed() {
  
 	    var formObj = {'type':type,'logo':logo,'name':name,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
-		
-		
-		
-		
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
 	    var thisArrayNumber = submittimes.valueOf(); 
@@ -217,7 +213,6 @@ function getLogo(type) {
 	return logo;
 };
 
-
 function compressImage(){
     event.preventDefault();
 
@@ -229,28 +224,58 @@ function compressImage(){
 		
 	reader.readAsDataURL(file);
 	
-    reader.onload = function(event) {
-    const imgElement = document.createElement("img");
-	imgElement.src = event.target.result;		
-	document.getElementById("imageurl").value = event.target.result;
+        reader.onload = function(event) {
+            const imgElement = document.createElement("img");
+	    imgElement.src = event.target.result;		
+	    document.getElementById("imageurl").value = event.target.result;
       
-    imgElement.onload = function(e){
-        const canvas = document.createElement("canvas");
+            imgElement.onload = function(e){
+            const canvas = document.createElement("canvas");
 	    const MAX_WIDTH = 320;
-		const MAX_HEIGHT = 240;
+	    const MAX_HEIGHT = 240;
 				
-		const scaleSize = MAX_WIDTH / e.target.width;
-		canvas.width = MAX_WIDTH;
-		canvas.height = e.target.height * scaleSize;
+	    canvas.width = MAX_WIDTH;
+	    canvas.height = MAX_HEIGHT;
 				
-		const ctx = canvas.getContext("2d");
+	    const ctx = canvas.getContext("2d");
 				
-		ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-		const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+	    ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+	    const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
 				
-		document.getElementById("imageurl").value = srcEncoded;
+	    document.getElementById("imageurl").value = srcEncoded;
         };			
-	};
+    };
+}; 
+
+function compressImageSubmit(){
+    event.preventDefault();
+
+    const file = document.querySelector("#myFileInput").files[0];
+		
+    if (!file) return;
+		
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(event) {
+        const imgElement = document.createElement("img");
+        imgElement.src = event.target.result;		
+      
+        imgElement.onload = function(e){
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 80;
+				
+        const scaleSize = MAX_WIDTH / e.target.width;
+        canvas.width = MAX_WIDTH;
+        canvas.height = e.target.height * scaleSize;
+				
+        const ctx = canvas.getContext("2d");
+				
+        ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+        const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+				
+        document.getElementById("imageurl2").value = srcEncoded;
+        };			
+    };
 }; 
 
 function imgPreview(){
