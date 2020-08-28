@@ -179,8 +179,14 @@ function onSubmitPressed() {
 	    localStorage.setItem( formArraySubmittedName , 'NO' );
             
 	    alert('if this is the last message, it means the function below fails.');
+	   
+	    alert('we have not stored: ' + formArrayName + ' ');
+	    alert('we have not stored: ' + JSON.stringify(formObj) + ' ');	  
+		  
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
-	    alert('we just stored: ' + formArrayName + '        ' + JSON.stringify(formObj) + '');
+		  
+	    alert('we just stored: ' + formArrayName + ' ');
+	    alert('we just stored: ' + JSON.stringify(formObj) + ' ');
 		  
             loadMain();
 	    
