@@ -180,13 +180,11 @@ function onSubmitPressed() {
             
 	    alert('if this is the last message, it means the function below fails.');
 	   
-	    alert('we have not stored: ' + formArrayName + ' ');
-	    alert('we have not stored: ' + JSON.stringify(formObj) + ' ');	  
+	    alert('we have not stored: ' + formArrayName + ' ');	  
 		  
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
 	    alert('we just stored: ' + formArrayName + ' ');
-	    alert('we just stored: ' + JSON.stringify(formObj) + ' ');
 		  
             loadMain();
 	    
@@ -198,7 +196,7 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,imageurl,latlng,address,comment) {
 	document.getElementById("type2").value = type;
-    document.getElementById("name2").value = name;
+        document.getElementById("name2").value = name;
 	document.getElementById("imagefile2").value = imagefile;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
