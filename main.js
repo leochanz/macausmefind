@@ -153,7 +153,7 @@ function onSubmitPressed() {
 	if( type !== "" && type !== undefined && type !== null && type.length !== 0) {
 	  if(name !== "" && imagefile !== "" && imageurl !== "" && coordinates !== "" && address !== "" && comment !== ""){
 		
-	    document.getElementById('smeform').reset()
+	    document.getElementById('smeform').reset();
 	    document.getElementById("imgPreview").style.display = "none";
             document.getElementById("imageurl").value = "";
             document.querySelector("#imgPreview").setAttribute("src", "" );
