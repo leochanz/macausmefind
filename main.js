@@ -321,8 +321,8 @@ function addToMain(number) {
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
-       var newMainElement = `
-	<div class="panel center main">
+        var newMainElement = `
+	<div class="panel panel-default center main">
     <div class="panel-heading center" style="background-color:${color};">
 	<h1 style="color:white;"><i class="${logo}"></i> ${name}</h1>
     </div>
@@ -339,8 +339,8 @@ function addToMain(number) {
     </div>
     </div>
 	`;
-	
-    $("div .tab-content:first").prepend(newMainElement);
+        alert(color);
+        $("div .tab-content:first").prepend(newMainElement);
 };
 
 $(document).ready(function(){
