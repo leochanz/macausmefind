@@ -173,15 +173,13 @@ function onSubmitPressed() {
 	    var thisArrayNumber = submittimes.valueOf(); 
 	
 	    var formArrayName = 'formArray' + thisArrayNumber  + ''; 
-	    var formArraySubmittedName = 'formArraySubmitted' + thisArrayNumber  + ''; 
 	
 	    thisArrayNumber ++;
 	
 	    localStorage.setItem( 'submittimes' , thisArrayNumber  );
-	    localStorage.setItem( formArraySubmittedName , 'NO' );
 	    localStorage.setItem( formArrayName ,JSON.stringify(formObj));
 		  
-        loadMain();
+            addToMain(thisArrayNumber - 1);
 	  };
 	};
 	return false;
@@ -286,7 +284,7 @@ function imgPreview(){
 		    document.getElementById("imgPreview").style.display = "block";
 	} else {
             alert("圖片未能正確上傳，請再次嘗試");
-	        document.querySelector("#imgPreview").setAttribute("src", "");
+	    document.querySelector("#imgPreview").setAttribute("src", "");
 	};
 };
 
@@ -325,59 +323,39 @@ function addToMain(number) {
     $("div .tab-content:first").prepend(newMainElement);
 };
 
-
-function loadMain() {
-	var number = localStorage.getItem('submittimes');
-	for (i = 0; i < number; i++) {
-        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-	    if ( submityesorno && submityesorno == 'NO') {
-            addToMain(i);
-            localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-	    };
-    };
-};
-
 $(document).ready(function(){
-	
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
-        var x = 0;
-        localStorage.setItem( 'submittimes' , x );
-    } 
-
+            var x = 0;
+            localStorage.setItem( 'submittimes' , x );
+        } 
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-        var formArraySubmittedNameGet = 'formArraySubmitted' + i + ''; 
-	    var submityesorno = localStorage.getItem(formArraySubmittedNameGet);
-		
-        addToMain(i);
-	    localStorage.setItem( formArraySubmittedNameGet , 'YES' );	
-    };
+            addToMain(i);
+        };
 	
 	
 	$('#smeform').keydown(function(){
-        $('#smeform *').removeClass('error');
-    });
+            $('#smeform *').removeClass('error');
+        });
 	
 	$('#type, #myFileInput').click(function(){
-        $('#smeform *').removeClass('error');
-    });
+            $('#smeform *').removeClass('error');
+        });
 
-	$("#finalsubmit").click(function(){
-		
-		document.getElementById("confirm-popup").style.display = "none";
-        document.getElementById("darkscreen").style.display = "none";
+	$("#finalsubmit").click(function(){	
+	    document.getElementById("confirm-popup").style.display = "none";
+            document.getElementById("darkscreen").style.display = "none";
 
     });
 		
 	$("#finalcancel").click(function(){
 		
-		event.preventDefault();
+	    event.preventDefault();
 		  
 	    document.getElementById("confirm-popup").style.display = "none";
-        document.getElementById("darkscreen").style.display = "none";
+            document.getElementById("darkscreen").style.display = "none";
 		  
 	    return false;
     });
