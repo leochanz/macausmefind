@@ -339,7 +339,6 @@ function addToMain(number) {
     </div>
     </div>
 	`;
-        alert(color);
         $("div .tab-content:first").prepend(newMainElement);
 };
 
