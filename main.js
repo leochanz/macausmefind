@@ -323,8 +323,8 @@ function addToMain(number) {
 	
        var newMainElement = `
 	<div class="panel center main">
-    <div class="panel-heading center" style="background-color:${color}">
-	<h1><i class="${logo}"></i> ${name}</h1>
+    <div class="panel-heading center" style="background-color:${color};">
+	<h1 style="color:white;"><i class="${logo}"></i> ${name}</h1>
     </div>
     <div class="panel-body w3-left-align">
 	<div><img src="${imageurl}" class="display"></div>
