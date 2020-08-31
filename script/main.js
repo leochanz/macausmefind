@@ -213,9 +213,9 @@ function getLogo(type) {
 };
 
 function getColor(type) {
-	var colorArray = {'餐廳':'#ff4d4d', 
-	                 '外賣店':'#ff4d4d',
-			 '餅店':'#ff4d4d',
+	var colorArray = {'餐廳':'#cc0000', 
+	                 '外賣店':'#cc0000',
+			 '餅店':'#cc0000',
 			 '超市':'#ff9933', 
 			 '便利店/雜貨店': '#ff9933', 
 			 '專賣店':'#ff9933', 
