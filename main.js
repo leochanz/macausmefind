@@ -131,7 +131,7 @@ function onSubmitPressed() {
 	
     var type =  document.getElementById("type").value;
     var name =  document.getElementById("name").value;
-    var imagefile =  document.getElementById("myFileInput").value;
+    var imagefile = document.getElementById("myFileInput").value;
     var imageurl = document.getElementById("imageurl").value;
     var coordinates = document.getElementById("latlng").value;
     var address = document.getElementById("address").value;
@@ -164,9 +164,10 @@ function onSubmitPressed() {
 	    document.getElementById("darkscreen").style.display = "block";
 	  
 	    var logo = getLogo(type);
+	    var color = getColor(type);
 	    dataTransfer(type,name,coordinates,address,comment);
  
-	    var formObj = {'type':type,'logo':logo,'name':name,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
+	    var formObj = {'type':type,'logo':logo,'color':color,'name':name,'imageurl':imageurl, 'latlng': coordinates, 'address':address, 'comment':comment};
 	    formArray.push(formObj);
 		
 	    var submittimes = localStorage.getItem( 'submittimes' );
@@ -211,6 +212,23 @@ function getLogo(type) {
 	return logo;
 };
 
+function getColor(type) {
+	var colorArray = {'餐廳':'#ff4d4d', 
+	                 '外賣店':'#ff4d4d',
+			 '餅店':'#ff4d4d',
+			 '超市':'#ff9933', 
+			 '便利店/雜貨店': '#ff9933', 
+			 '專賣店':'#ff9933', 
+			 '個人服務':'#004d99',
+			 '運輸':'#004d99',
+			 '商用服務':'#004d99',
+			 '教育':'#2eb82e',
+			 '娛樂':'#9933ff',
+			 '其他':'#8c8c8c',
+			 };
+	var color = logoArray[type];
+	return color;
+};
 function compressImage(){
     event.preventDefault();
 
@@ -291,10 +309,11 @@ function imgPreview(){
 
 function addToMain(number) {
 		
-    var formArrayName = 'formArray' + number + '';
+        var formArrayName = 'formArray' + number + '';
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
-    var name = formdata.name;
+	var color = formdata.color;
+        var name = formdata.name;
 	
 	var imageurl = formdata.imageurl;
 	
@@ -303,8 +322,8 @@ function addToMain(number) {
 	var comment = formdata.comment;
 	
        var newMainElement = `
-	<div class="panel panel-primary center main">
-    <div class="panel-heading center">
+	<div class="panel center main">
+    <div class="panel-heading center" style="background-color:${color}">
 	<h1><i class="${logo}"></i> ${name}</h1>
     </div>
     <div class="panel-body w3-left-align">
