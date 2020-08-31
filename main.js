@@ -226,7 +226,7 @@ function getColor(type) {
 			 '娛樂':'#9933ff',
 			 '其他':'#8c8c8c',
 			 };
-	var color = logoArray[type];
+	var color = colorArray[type];
 	return color;
 };
 function compressImage(){
