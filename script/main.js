@@ -322,7 +322,7 @@ function addToMain(number) {
 	var comment = formdata.comment;
 	
         var newMainElement = `
-	<div class="panel panel-default center main">
+	<div class="panel center main">
     <div class="panel-heading center" style="background-color:${color};">
 	<h1 style="color:white;"><i class="${logo}"></i> ${name}</h1>
     </div>
