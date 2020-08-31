@@ -226,6 +226,7 @@ function compressImage(){
             const imgElement = document.createElement("img");
 	    imgElement.src = event.target.result;		
 	    document.getElementById("imageurl").value = event.target.result;
+	    console.log(event.target.result);
       
             imgElement.onload = function(e){
             const canvas = document.createElement("canvas");
