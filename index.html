@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>發現中小企</title>
 
   <link rel="stylesheet" href="/css/style.css">
@@ -10,12 +10,17 @@
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  
+   
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   
-  <script type="text/javascript" src="/script/main.js"></script>
+   <script type="text/javascript" src="/script/main.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"></script>
 
 <script>
@@ -29,12 +34,36 @@ function w3_close() {
 
 $(document).ready(function(){
 
+document.getElementById("mySidebar").style.display = "none";
+
+function myFunction(x) {
+  if (x.matches) { // If media query matches
+    $("#mySidebar").addClass("w3-animate-left");
+	$("#leftSpace").hide();
+	$(".lhide").show();
+    document.getElementById("mySidebar").style.display = "none";
+	document.getElementById("mySidebar").style.top = "75px";
+	document.getElementById("map-popup").style.width = "90%";
+	document.getElementById("confirm-popup").style.left = "10%";
+  } else {
+    $("#mySidebar").removeClass("w3-animate-left");
+	$("#leftSpace").show();
+	$(".lhide").hide();
+    document.getElementById("mySidebar").style.display = "block";
+	document.getElementById("mySidebar").style.top = "0px";
+	document.getElementById("map-popup").style.width = "50%";
+	document.getElementById("confirm-popup").style.left = "30%";
+  }
+}
+
+var largeScreen = window.matchMedia("(max-width: 1224px)")
+myFunction(largeScreen) // Call listener function at run time
+largeScreen.addListener(myFunction) 
 
 document.getElementById("settingbubble").style.display = "none";
-document.getElementById("mySidebar").style.display = "none";
 document.getElementById("introduction").style.display = "none";
 document.getElementById("instruction").style.display = "none";
-document.getElementById("imgPreview").style.display = "none";
+hideallpreviews();
 document.getElementById("map-popup").style.display = "none";
 document.getElementById("confirm-popup").style.display = "none";
 document.getElementById("darkscreen").style.display = "none";
@@ -159,30 +188,8 @@ $('.tabs > span:nth-child(2)').click(function(){
 
 });
 </script>
-  </head>
+</head>
 <body>
-
-<!--Navbar-->
-<div class="w3-bar" style="background-color: #2d2d86; position:fixed; z-index: 10; top:0px;">
-  <a href="#" class="w3-bar-item w3-left">
-  <button class="w3-button w3-large" style="background-color:#9f9fdf;color:#2d2d86;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
-  </a>
-  <a href="https://macausmefind.netlify.app/" class="w3-bar-item" style="float:both;" >
-  <span style="font-family:Adobe Caslon Pro Bold;color:white;font-size:1.75em;">MacauSMEfind</span>
-  </a>
-  <a href="#" class="w3-bar-item w3-right" id="setting">
-  <button class="w3-button w3-large" style="background-color:#9f9fdf;color:#2d2d86;"><i class="fas fa-cog"></i></button>
-  </a>
-</div>
-
-<div id="settingbubble">
-<p>
-<a id="clearstorage" style="font-size:0.7em; position:relative; top:-45px;">刪除所有帖文</a>
-<hr style="position:relative;top:-110px;">
-<span id="closesetting" style="font-size:0.7em; position:relative; top:-178px;"><i class="fas fa-times"></i></span>
-</p>
-</div>
-
 
 
 <!--Sidebar-->
@@ -190,7 +197,7 @@ $('.tabs > span:nth-child(2)').click(function(){
  <table class="w3-table">
   <thead class="thead-light">
   <tr class="w3-light-grey" style="display:block; width:100%; height:60px;">
-      <th class="w3-bar-item">
+      <th class="w3-bar-item lhide">
            <button class="w3-bar-item  w3-button w3-large" onclick="w3_close()"><i class="fas fa-times"></i>關閉</button>
       </th>
 	  <th></th>
@@ -201,7 +208,7 @@ $('.tabs > span:nth-child(2)').click(function(){
    <td style="width:185px;"><input type="text" class="w3-input w3-white w3-mobile " placeholder="搜尋.." ></td>
    <td style="width:70px;"><button class="w3-button w3-green w3-mobile w3-large"><i class="fas fa-search"></i></button></td>
   </tr>
-  <tr  class="w3-margin-top">
+  <tr class="w3-margin-top">
       <td><a href="#main"  class="w3-bar-item w3-light-grey w3-button w3-leftbar w3-border-indigo">
 	  <i class="fas fa-home"></i>首頁</a></td>
   </tr>
@@ -222,10 +229,39 @@ $('.tabs > span:nth-child(2)').click(function(){
 </table>
 </div>
 
+<div class="w3-row">
+
+<div id="leftSpace" class="w3-col" style="width:300px;z-index:0;"><p></p></div>
+
+<!--Navbar-->
+<div id="body" class="w3-rest">
+<div class="w3-bar" style="background-color:#2d2d86;position:fixed;z-index:3;top:0px;padding:10px 0px;width:100%;">
+  <a href="#" class="w3-bar-item w3-left lhide">
+  <button class="w3-button w3-large" style="background-color:#9f9fdf;color:#2d2d86;height:40px;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
+  </a>
+  <a href="https://macausmefind.netlify.app/" class="w3-bar-item" style="float:both;" >
+  <span style="font-family:Adobe Caslon Pro Bold;color:white;font-size:1.75em;">MacauSMEfind</span>
+  </a>
+  <a href="#" class="w3-bar-item" id="setting">
+  <button class="w3-button w3-large" style="background-color:#9f9fdf;
+                                            color:#2d2d86;
+                                            height:40px;
+                                            position:fixed;
+											right:30px;"><i class="fas fa-cog"></i></button>
+  </a>
+</div>
+
+<div id="settingbubble">
+<p>
+<a id="clearstorage" style="font-size:0.7em; position:relative; top:-45px;">刪除所有帖文</a>
+<hr style="position:relative;top:-110px;">
+<span id="closesetting" style="font-size:0.7em; position:relative; top:-178px;"><i class="fas fa-times"></i></span>
+</p>
+</div>
 
 <!--Introduction-->
 
-<h2 class="toptext" style="margin-top:70px;font-weight:bold;">發現中小企</h3>
+<h4 class="toptext" style="margin-top:80px;font-weight:bold;">發現中小企</h4>
 
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
 
@@ -235,77 +271,82 @@ $('.tabs > span:nth-child(2)').click(function(){
 <div id="introduction" style="margin-top:20px;">
 <i class="fas fa-sort-up" id="sortup" 
    style="float:right;color: #a64dff;position:relative;right:30px; top:-15px;"></i>
-<h5 class="w3-left-align w3-text-black toptext" style="font-family:微軟正黑體;padding-left: 10px;word-warp:break-word;">
+<h6 class="w3-left-align w3-text-black toptext" style="padding-left:10px;word-warp:break-word;">
 "發現中小企"網站的目標是提供一個穩定的平台讓使用者記錄並分享他們在澳門所見的
-中小企業，從而共同發掘澳門不為人知的有趣企業。</h5>
+中小企業，從而共同發掘澳門不為人知的有趣企業。</h6>
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
 </div>
 
 <div id="instruction">
-<h4 class="toptext w3-margin-top"> 步驟1. <span style="display:inline-block; width:80%;height:40px;">開啟手機gps
-([設定]->[私隱]->[定位服務])</span></h4>
-<h4 class="toptext">步驟2. <span style="display:inline-block; width:80%;height:40px;">
-把中小企拍照，獲取位置並填寫資料，每一欄都必填</span></h4>
-<h4 class="toptext">步驟3. <span style="display:inline-block; width:80%;height:40px;">
-點擊「新增帖文」，便可以在首頁看到你的帖文 </span></h4>
+<h6 class="toptext w3-margin-top"> 步驟1.
+<span style="display:inline-block; width:80%;height:40px;">開啟手機gps([設定]->[私隱]->[定位服務])</span></h6>
+<h6 class="toptext"> 步驟2. 
+<span style="display:inline-block; width:80%;height:40px;">
+把中小企拍照(最多上傳3張照片)，按下「獲取位置」選擇當前位置，並填寫資料</span></h6>
+<h6 class="toptext">步驟3. <span style="display:inline-block; width:80%;height:40px;">
+點擊「新增帖文」，便可以在首頁看到你的帖文 </span></h6>
 </div>
 
 <!--Tabs-->
- <div class="tabs w3-bar" style="width:100%; margin-top:10px;">
-  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#main" id="main">
+<div class="tabs w3-bar" style="width:100%; margin-top:20px;">
+  <span class="w3-bar-item w3-quarter tab" href="#main" id="main">
   <i class="fas fa-home"></i>首頁
   </span>
-  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#form" id="form">
-  <span class="closs_button" href="#form"><i class="fas fa-times-circle"></i></span>新增
+  <span class="w3-bar-item w3-quarter tab" href="#form" id="form">
+  <i class="fas fa-plus"></i>新增
   </span>
-  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#about" id="about">
+  <span class="w3-bar-item w3-quarter tab" href="#about" id="about">
   <span class="closs_button" href="#about"><i class="fas fa-times-circle"></i></span>關於
   </span>
-  <span class="w3-bar-item tab" style="width:20%;margin-left:5%;padding-left:0px;" href="#record" id="record">
+  <span class="w3-bar-item w3-quarter tab" href="#record" id="record">
   <span class="closs_button" href="#record"><i class="fas fa-times-circle"></i></span>記錄
   </span>
-  </div>
+</div>
 
-<hr style="border:4px solid #717171;background-color:#717171;margin:0px;">
+<hr style="border:4px solid #717171;background-color:#717171;margin:0px;position:relative;top:-1px;">
 
 
 
 <!--Content-->
-<div class="w3-container" style="width:100%; background-color:#fcfcfc; padding:0px 0px 200px 0px;">
+<div class="w3-container" style="width:100%; background-color:#eeeeee; padding:0px 0px 200px 0px;">
  
 <!--Main-->
 <div class="tab-content" id="main">
 
+<div class="row" id="showElement">
+</div>
+
 <div id="example">
 <hr style="height:5px; border-top:2px dotted #717171;">
-<h4 class="center" style="margin-left:10px;">點擊「新增」以新增帖文。範例：</h4>
-
-
-<div class="panel center main">
-    <div class="panel-heading center" style="background-color:#ff4d4d;">
-	<h1 style="color:white;"><i class="fas fa-utensils"></i>光輝咖啡</h1>
-    </div>
-    <div class="panel-body w3-left-align">
-	<div><img src="shop1.jpg" class="display"></div>
-	<div class="w3-margin-top">
-	<p><i class="fas fa-globe" style="color:blue"></i>：22.202236,113.548395</p></div>
-	<div>
-	  <p><i class="fas fa-map-marker-alt" style="color:red"></i>：澳門高士德大馬路33號C號</p>
-	</div>
-	<div><i class="fas fa-pen"></i>留言：<br>
-	<div class="w3-border comment">
-	今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，
+<h4 class="toptext center">點擊「新增」以新增帖文。範例：</h4>
+<div class="row">
+<div class="col s1 m3 l4"></div>
+<div class="col s12 m6 l4">
+	  <div class="panel center main">
+        <div class="panel-heading center" style="background-color:#e60000;">
+        </div>
+		<div class="display w3-hover-opacity" style="background-image:url('shop1.jpg');"></div>
+        <div class="panel-body w3-left-align" style="padding:10px;">
+		<h5><i class="fas fa-utensils"></i> 光輝咖啡</h5>
+	    <div class="w3-margin-top">
+	      <p><i class="fas fa-globe" style="color:blue"></i>：22.202236,113.548395</p>
+		  </div>
+	    <div>
+	      <p><i class="fas fa-map-marker-alt" style="color:red"></i>：澳門高士德大馬路33號C號</p>
+	    </div>
+	    <div><i class="fas fa-comment-dots"></i>留言：<br>
+	    <div class="w3-border comment" style="width:100%;">今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，
 	食物質素差，唔衛生。其實都不其然，玻璃肚的我對食和衛生都有一定要求。一踏進店給人一種被時間遺忘，
 	一陣煎肉，烘包香氣傳來。短短二十分鐘就有五十多個外賣客真不簡單。豬扒包，脆香肉濃又不油膩雲吞撈，
-	醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q
-	</div>
-	</div>
-    </div>
+	醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q</div>
+	    </div>
+        </div>
+      </div>
+</div>
+</div>
 </div>
 
 <hr style="height:5px; border-top:2px dotted #717171;">
-</div>
-
 </div>
 
 <!--About-->
@@ -321,8 +362,8 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 <!--Form-->
 <div class='tab-content' id="form">
 
-<div class="panel panel-primary center main" 
-     style=" border:0px; box-shadow: 0px 3px 10px #888888;">
+<div class="panel panel-primary center" 
+     style=" border:0px; box-shadow: 0px 3px 10px #888888;width:95%;">
 <form id="smeform" >
   <div class="panel-heading center" style="background-color:#004d99;">
     <div>
@@ -349,40 +390,71 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
     </select>
 	</div>
 	<div>
-	<input type="text" class="w3-input w3-text-black" placeholder="名稱" id="name">
+	<input type="text" class="w3-input w3-text-black" style="background-color:#ffffff;" placeholder="名稱" id="name">
 	</div>
   </div>
   
   <div class="panel-body w3-left-align">
 	
 	<div>
-	    <input name = "圖片" type="file" form="finalform" id="myFileInput" accept="image/*,.pdf">
-	    <input type="hidden" form="smeform" id="imageurl">
+	    <input  type="file" class="file-upload__input" style="display:none;" id="myFileInput"
+		        name = "圖片" form="finalform" multiple accept="image/*,.pdf">
+	    <button class="file-upload__button" type="button">選擇1~3張圖片</button>
+		<span class="file-upload__label"></span>
+
+		<input type="hidden" form="smeform" id="imageurl0">
+		<input type="hidden" form="smeform" id="imageurl1">
+		<input type="hidden" form="smeform" id="imageurl2">
 	</div>
 	<div class="w3-margin-top">
 	    <button id="imgPreviewButton" onclick="return false" class="w3-white w3-text-indigo" 
 	            style="width:62px;height:30px;border:0px;padding:2px 0px;font-weight:bold;">
 	    圖片檢示</button>
-	    <img id="imgPreview" src="" alt="Preview">
+		<div class="row" style="width:100%;overflow:auto;">
+		<div class="col s12 m6 l4" style="overflow:auto;"><div id="imgPreview0"></div></div>
+		<div class="col s12 m6 l4" style="overflow:auto;"><div id="imgPreview1"></div></div>
+		<div class="col s12 m6 l4" style="overflow:auto;"><div id="imgPreview2"></div></div>
+		</div>
 	</div>
-
-
 <script>
+const hiddenInput = document.querySelector('#myFileInput');
+const label = document.querySelector('.file-upload__label');
+const defaultLabelText = "暫時沒有圖片";
+	
+//Set default text for label
+label.textContent = defaultLabelText;
+label.title = defaultLabelText;
+	
+$('.file-upload__button').click( function(){
+    $("#myFileInput").click();
+});
+	
 document.querySelector("#myFileInput").addEventListener("change", function() {
+    const filenameList = Array.from(hiddenInput.files).map(function(file){
+	    return file.name;
+	});
+    
+	function setlabel(){
+		label.textContent = filenameList.join(", ") || defaultLabelText;
+	    label.title = label.textContent;
+	};
+	
+	var numberofFiles = Object.keys(hiddenInput.files).length;
 
-    var fileinput = document.getElementById("myFileInput").value;
-
-    if( fileinput && fileinput !== "" && fileinput !== undefined && fileinput !== null && fileinput.length !== 0){
-	    compressImage();
-	    compressImageSubmit();
-    } else {
+    if( numberofFiles && numberofFiles !== 0){
+	    if(numberofFiles < 4){
+            var i;
+		    for(i=0;i<numberofFiles;i++){
+		        compressImage(numberofFiles,i,hiddenInput.files[i]);
+				ImageSubmit(numberofFiles,i,hiddenInput.files[i])
+		    };
+		    setlabel();
+		} else if(numberofFiles >= 4) {
+		    alert("不能上傳多於三張圖片!");
+		};
+    }else{
 	    alert("圖片未能正確上傳，請再次嘗試");
     };	
-});
-
-document.querySelector("#imgPreviewButton").addEventListener("click", function() {
-    imgPreview();
-    return false;
 });
 
 </script>
@@ -393,18 +465,18 @@ document.querySelector("#imgPreviewButton").addEventListener("click", function()
 	  <input class="w3-input" placeholder="坐標" id="latlng"></input>
 	  <input class="w3-input" placeholder="地址" id="address"></input>
 	  </p>
-	 	   
-	   <div id="map-popup" class="w3-conatiner w3-white">
-           <div id="map" style="width:370px;height:300px;border:1px solid #8c8c8c;" class="center"></div>
-           <p style="margin-left:5px;">請在地圖上確認中小企位置：</p>
-		   <p id="confirmAddress" style="margin-left:5px;"></p>
-		   <p>
-		   <button id="cancel" class="w3-white w3-text-grey" style="border:0px;margin:0px 0px 10px 10px;">取消</button>
-		   <button id="confirm" class="w3-white w3-text-blue" style="border:0px;margin:0px 10px 10px 0px;float:right;">確定</button>
-		   </p>
-       </div>
 	</div>
 	
+	<div id="map-popup" class="w3-conatiner w3-white">
+        <div id="map" style="width:97.5%;height:380px;border:1px solid #dddddd;" class="center"></div>
+        <p style="margin-left:5px;">請在地圖上確認中小企位置：</p>
+	    <p id="confirmAddress" style="margin-left:5px;"></p>
+	    <p>
+		<button id="cancel" class="w3-white w3-text-grey" style="border:0px;margin:0px 0px 10px 10px;">取消</button>
+		<button id="confirm" class="w3-white w3-text-blue" style="border:0px;margin:0px 10px 10px 0px;float:right;">確定</button>
+		</p>
+	</div> 
+	 
 	<div id="darkscreen"></div>
 	
 	<div class="w3-margin-top">
@@ -413,8 +485,8 @@ document.querySelector("#imgPreviewButton").addEventListener("click", function()
 	</div> 
   </div>
   
-  <p class="w3-left-align" style="color:#8c8c8c; margin-left:15px; float:left;">確定填好資料了嗎？<br>
-    按下「新增帖文」後將無法再進行修改*</p>
+  <p class="w3-left-align" style="color:#8c8c8c; margin-left:15px;">確定填好資料了嗎？</p>
+  <p class="w3-left-align" style="color:#8c8c8c; margin-left:15px;">按下「新增帖文」後將無法再進行修改*</p>
   
    <button class="panel-footer w3-button w3-block w3-indigo w3-ripple w3-xlarge" 
            id="submit" onclick="onSubmitPressed()">
@@ -427,7 +499,11 @@ document.querySelector("#imgPreviewButton").addEventListener("click", function()
     <div id="confirm-popup" class="w3-conatiner w3-white center" style="padding-bottom:10px;">
     <input name="類型" type="hidden" form="finalform" id="type2">
     <input name="名稱" type="hidden" form="finalform" id="name2">
-    <input name="圖片url" type="hidden" form="finalform" id="imageurl2">
+
+	<input name="圖片1" type="hidden" form="finalform" id="imageurlF0">
+	<input name="圖片2" type="hidden" form="finalform" id="imageurlF1">
+	<input name="圖片3" type="hidden" form="finalform" id="imageurlF2">
+
     <input name="坐標" type="hidden" form="finalform" id="latlng2">
     <input name="地址" type="hidden" form="finalform" id="address2">
     <input name="意見" type="hidden" form="finalform" id="comment2">
@@ -443,7 +519,7 @@ document.querySelector("#imgPreviewButton").addEventListener("click", function()
     
     </p>
     </div>
-    </form> 
+</form> 
 </div>
  
 </div>
@@ -458,12 +534,10 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 </p>
 </div>
 
-
+</div>
 </div>
 
-<script>
-
-</script>
+</div>
 
 </body>
 </html>
