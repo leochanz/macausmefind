@@ -283,31 +283,31 @@ function ImageSubmit(version,number,file){
 	    imgElement.src = event.target.result;		
   
         imgElement.onload = function(e){
-            const canvas = document.createElement("canvas");
-			if(version == 1){
-			  const MAX_WIDTH = 80;
-              document.getElementById("imageurlF1").disabled = true;
-			  document.getElementById("imageurlF2").disabled = true;
-			} else if(version == 2) {	
-	          const MAX_WIDTH = 40;			
-              document.getElementById("imageurlF1").disabled = false;
-			  document.getElementById("imageurlF2").disabled = true;
-			} else if(version == 3){
-			  const MAX_WIDTH = 26.66;
-              document.getElementById("imageurlF1").disabled = false;
-			  document.getElementById("imageurlF2").disabled = false;
-			};
+             const canvas = document.createElement("canvas");
+	     if(version == 1){
+	          var MAX_WIDTH = 80;
+                  document.getElementById("imageurlF1").disabled = true;
+		  document.getElementById("imageurlF2").disabled = true;
+	     } else if(version == 2) {	
+	          var MAX_WIDTH = 40;			
+                  document.getElementById("imageurlF1").disabled = false;
+		  document.getElementById("imageurlF2").disabled = true;
+	     } else if(version == 3){
+		  var MAX_WIDTH = 26.66;
+                  document.getElementById("imageurlF1").disabled = false;
+		  document.getElementById("imageurlF2").disabled = false;
+	    };
 
-	        const scaleSize = MAX_WIDTH / e.target.width;
+	    const scaleSize = MAX_WIDTH / e.target.width;
             canvas.width = MAX_WIDTH;
             canvas.height = e.target.height * scaleSize;
 				
-	        const ctx = canvas.getContext("2d");
+	    const ctx = canvas.getContext("2d");
 				
-	        ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-	        const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+	    ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+	    const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
 			
-			$('#imageurlF'+ number+'').val(srcEncoded); 
+	    $('#imageurlF'+ number+'').val(srcEncoded); 
         };			
     };	
 }; 
