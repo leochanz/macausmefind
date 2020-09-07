@@ -293,7 +293,7 @@ function ImageSubmit(version,number,file){
                   document.getElementById("imageurlF1").disabled = false;
 		  document.getElementById("imageurlF2").disabled = true;
 	     } else if(version == 3){
-		  var MAX_WIDTH = 15;
+		  var MAX_WIDTH = 10;
                   document.getElementById("imageurlF1").disabled = false;
 		  document.getElementById("imageurlF2").disabled = false;
 	    };
