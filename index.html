@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>發現中小企</title>
 
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/map.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="map.css">
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
    
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -20,7 +21,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   
-   <script type="text/javascript" src="/script/main.js"></script>
+  <script type="text/javascript" src="main.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"></script>
 
 <script>
@@ -240,7 +241,7 @@ $('.tabs > span:nth-child(2)').click(function(){
   <button class="w3-button w3-large" style="background-color:#9f9fdf;color:#2d2d86;height:40px;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
   </a>
   <a href="https://macausmefind.netlify.app/" class="w3-bar-item" style="float:both;" >
-  <span style="font-family:Adobe Caslon Pro Bold;color:white;font-size:1.75em;">MacauSMEfind</span>
+  <span style="font-family:'Righteous',cursive;color:white;font-size:1.75em;">MacauSMEfind</span>
   </a>
   <a href="#" class="w3-bar-item" id="setting">
   <button class="w3-button w3-large" style="background-color:#9f9fdf;
@@ -252,11 +253,9 @@ $('.tabs > span:nth-child(2)').click(function(){
 </div>
 
 <div id="settingbubble">
-<p>
 <a id="clearstorage" style="font-size:0.7em; position:relative; top:-45px;">刪除所有帖文</a>
 <hr style="position:relative;top:-110px;">
 <span id="closesetting" style="font-size:0.7em; position:relative; top:-178px;"><i class="fas fa-times"></i></span>
-</p>
 </div>
 
 <!--Introduction-->
@@ -398,7 +397,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	
 	<div>
 	    <input  type="file" class="file-upload__input" style="display:none;" id="myFileInput"
-		        name = "圖片" form="finalform" multiple accept="image/*,.pdf">
+		        name = "圖片[]" form="finalform" multiple accept="image/*,.pdf">
 	    <button class="file-upload__button" type="button">選擇1~3張圖片</button>
 		<span class="file-upload__label"></span>
 
@@ -446,7 +445,7 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
             var i;
 		    for(i=0;i<numberofFiles;i++){
 		        compressImage(numberofFiles,i,hiddenInput.files[i]);
-			ImageSubmit(numberofFiles,i,hiddenInput.files[i]);
+				ImageSubmit(numberofFiles,i,hiddenInput.files[i]);
 		    };
 		    setlabel();
 		} else if(numberofFiles >= 4) {
@@ -471,7 +470,7 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
         <div id="map" style="width:97.5%;height:380px;border:1px solid #dddddd;" class="center"></div>
         <p style="margin-left:5px;">請在地圖上確認中小企位置：</p>
 	    <p id="confirmAddress" style="margin-left:5px;"></p>
-	   <div>
+	    <div>
 		<button id="cancel" class="w3-white w3-text-grey" style="border:0px;margin:0px 0px 10px 10px;">取消</button>
 		<button id="confirm" class="w3-white w3-text-blue" style="border:0px;margin:0px 10px 10px 0px;float:right;">確定</button>
 		</div>
