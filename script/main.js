@@ -458,12 +458,7 @@ $(document).ready(function(){
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
             localStorage.setItem( 'submittimes' , 0 );
-			$("#example").show();
-			$("#instruction").show();
-    } else {
-		$("#example").hide();
-		$("#instruction").hide();
-	};
+        };
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
