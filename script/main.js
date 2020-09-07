@@ -318,7 +318,7 @@ function addToMain(number) {
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
 	var color = formdata.color;
-        var name = formdata.name;
+    var name = formdata.name;
 	
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
