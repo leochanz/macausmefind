@@ -289,11 +289,11 @@ function ImageSubmit(version,number,file){
                   document.getElementById("imageurlF1").disabled = true;
 		  document.getElementById("imageurlF2").disabled = true;
 	     } else if(version == 2) {	
-	          var MAX_WIDTH = 40;			
+	          var MAX_WIDTH = 30;			
                   document.getElementById("imageurlF1").disabled = false;
 		  document.getElementById("imageurlF2").disabled = true;
 	     } else if(version == 3){
-		  var MAX_WIDTH = 26.66;
+		  var MAX_WIDTH = 15;
                   document.getElementById("imageurlF1").disabled = false;
 		  document.getElementById("imageurlF2").disabled = false;
 	    };
@@ -318,7 +318,7 @@ function addToMain(number) {
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
 	var color = formdata.color;
-    var name = formdata.name;
+        var name = formdata.name;
 	
 	var coordinates = formdata.latlng;
 	var address = formdata.address;
