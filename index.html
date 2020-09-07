@@ -446,7 +446,7 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
             var i;
 		    for(i=0;i<numberofFiles;i++){
 		        compressImage(numberofFiles,i,hiddenInput.files[i]);
-				ImageSubmit(numberofFiles,i,hiddenInput.files[i])
+			ImageSubmit(numberofFiles,i,hiddenInput.files[i]);
 		    };
 		    setlabel();
 		} else if(numberofFiles >= 4) {
