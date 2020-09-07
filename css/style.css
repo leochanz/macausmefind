@@ -147,11 +147,11 @@
 #map-popup {
 	overflow:visible;
 	padding-top:10px;
-    z-index: 5;
+        z-index: 5;
 	width:90%;
 	min-width: 320px;
 	position:fixed;
-	bottom:20%;
+	bottom:15%;
 }
 
 #mySidebar tr{
