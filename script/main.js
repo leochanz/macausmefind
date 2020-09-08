@@ -333,7 +333,7 @@ function addToMain(number) {
 	var color = formdata.color;
     var name = formdata.name;
 	
-	var coordinates = formdata.latlng;
+	var latlng = formdata.latlng;
 	var address = formdata.address;
 	var comment = formdata.comment;
 	
@@ -354,7 +354,7 @@ function addToMain(number) {
         <div class="panel-body w3-left-align" style="padding:10px;">
 		<h5><i class="${logo}"></i> ${name}</h5>
 	    <div class="w3-margin-top">
-	      <p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p>
+	      <p><i class="fas fa-globe" style="color:blue"></i>：${latlng}</p>
 		  </div>
 	    <div>
 	      <p><i class="fas fa-map-marker-alt" style="color:red"></i>：${address}</p>
@@ -385,7 +385,7 @@ function addToMain(number) {
         <div class="panel-body w3-left-align" style="padding:10px;">
 		<h5><i class="${logo}"></i> ${name}</h5>
 	    <div class="w3-margin-top">
-	      <p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p>
+	      <p><i class="fas fa-globe" style="color:blue"></i>：${latlng}</p>
 		  </div>
 	    <div>
 	      <p><i class="fas fa-map-marker-alt" style="color:red"></i>：${address}</p>
@@ -436,7 +436,7 @@ function addToMain(number) {
         <div class="panel-body w3-left-align" style="padding:10px;">
 		<h5><i class="${logo}"></i> ${name}</h5>
 	    <div class="w3-margin-top">
-	      <p><i class="fas fa-globe" style="color:blue"></i>：${coordinates}</p>
+	      <p><i class="fas fa-globe" style="color:blue"></i>：${latlng}</p>
 		  </div>
 	    <div>
 	      <p><i class="fas fa-map-marker-alt" style="color:red"></i>：${address}</p>
@@ -762,5 +762,20 @@ $(document).ready(function(){
 	    alert("圖片未能正確上傳，請再次嘗試");
       };	
     });
+    const shareButton = document.querySelector("#sharebutton");
+    const title = window.document.title;
+    const url = window.document.location.href;
 
+    $("#sharelink").click( function(){
+        if(navigator.share){
+	        navigator.share({
+		        title: "發現中小企",
+			    url: url
+		    }).then(() => {
+		        console.log("Web Share Successful")
+		     }).catch(console.error);
+	    }else{
+	        console.log("Web Share is not supported")
+	    }
+     })
 });
