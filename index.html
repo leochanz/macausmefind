@@ -24,174 +24,8 @@
   <script type="text/javascript" src="/script/main.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4F6RLADVFT80lJHi_zvztaAcoxs407Ug&callback=initMap&libraries=&v=weekly"></script>
 
-<script>
-function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
-	
-}
-function w3_close() {
-    document.getElementById("mySidebar").style.display = "none";
-}
-
-$(document).ready(function(){
-
-document.getElementById("mySidebar").style.display = "none";
-
-function myFunction(x) {
-  if (x.matches) { // If media query matches
-    $("#mySidebar").addClass("w3-animate-left");
-	$("#leftSpace").hide();
-	$(".lhide").show();
-    document.getElementById("mySidebar").style.display = "none";
-	document.getElementById("mySidebar").style.top = "75px";
-	document.getElementById("map-popup").style.width = "90%";
-	document.getElementById("confirm-popup").style.left = "10%";
-  } else {
-    $("#mySidebar").removeClass("w3-animate-left");
-	$("#leftSpace").show();
-	$(".lhide").hide();
-    document.getElementById("mySidebar").style.display = "block";
-	document.getElementById("mySidebar").style.top = "0px";
-	document.getElementById("map-popup").style.width = "50%";
-	document.getElementById("confirm-popup").style.left = "30%";
-  }
-}
-
-var largeScreen = window.matchMedia("(max-width: 1224px)")
-myFunction(largeScreen) // Call listener function at run time
-largeScreen.addListener(myFunction) 
-
-document.getElementById("settingbubble").style.display = "none";
-document.getElementById("introduction").style.display = "none";
-document.getElementById("instruction").style.display = "none";
-hideallpreviews();
-document.getElementById("map-popup").style.display = "none";
-document.getElementById("confirm-popup").style.display = "none";
-document.getElementById("darkscreen").style.display = "none";
-
-$('.tab-content').hide();
-$('.tabs > span').hide();
-$('.tabs > span:first').show();
-$('.tabs > span:nth-child(2)').show();
-
-$('.tab-content:first').show();
-
-$('.tabs > span').removeClass('active');
-$('.tabs > span:first').addClass('active');
-
-$('#setting').click(function(){
-  document.getElementById("settingbubble").style.display = "block";
-});
-
-$('#closesetting').click(function(){
-  document.getElementById("settingbubble").style.display = "none";
-});
-
-
-$('#clearstorage').click(function(){
-    localStorage.clear();
-	var submittimes = localStorage.getItem( 'submittimes' );
-	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
-        localStorage.setItem( 'submittimes' , 0 );
-    }
-    window.location.reload();
-});
-
-$('#sortdown').click(function(){
-  document.getElementById("introduction").style.display = "block";
-  document.getElementById("sortdown").style.display = "none";
-  
-  return false;
-});
-	
-$('#sortup').click(function(){
-   document.getElementById("introduction").style.display = "none";
-   document.getElementById("sortdown").style.display = "block";
-  
-  return false;
-});
-
-$('.sidebar a').click(function(){
-
-  document.getElementById("instruction").style.display = "none";
-
-  var href = $(this).attr('href');
-  
-  // show only the target tab.
-  $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
-  $(this).addClass('w3-leftbar w3-border-indigo');
-  
-  $('.tabs > span' + href + '').show();
-  $('.tabs > span').removeClass('active');
-  $('.tabs > span' + href + '').addClass('active');
-  
-  $('.tab-content').hide();
-  $('div' + href +'').show();
-  
-  // disable default browser behavior.
-  return false;
-});
-
-$("#showinstruction").click(function(){
-  document.getElementById("instruction").style.display = "block";
-  
-  return false;
-});
-
-$('.closs_button').click(function(){
-
-  document.getElementById("instruction").style.display = "none";
-  
-  var href = $(this).attr('href');
-  $(href).hide();
-  
-  $('.tabs > span').removeClass('active');
-  $('.tabs > span:first').addClass('active');
-  $('.tab-content:first').show();
-  
-  $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
-  $('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
-  
-  // disable default browser behavior.
-  return false;
-});
-
-// when click on the tab link.
-$('.tabs > span').click(function(){
-
-  document.getElementById("instruction").style.display = "none";
-
-  var href = $(this).attr('href');
-  
-  $('.tab-content').hide();
-  
-  $('div' + href +'').show();
-
-  $('.tabs > span').removeClass('active');
-  $(this).addClass('active');
-  
-  $('.sidebar a[href="' + href + '"]').click();
-  
-  // disable default browser behavior.
-  return false;
-});
-
-$('.tabs > span:first').click(function(){	  
-
-  return false;	
-});	
-					 
-$('.tabs > span:nth-child(2)').click(function(){
-  document.getElementById("instruction").style.display = "block";
-  
-  return false;
-});
-
-});
-</script>
 </head>
 <body>
-
 
 <!--Sidebar-->
 <div class="w3-sidebar w3-bar-block w3-animate-left sidebar" id="mySidebar">
@@ -223,11 +57,14 @@ $('.tabs > span:nth-child(2)').click(function(){
       <td><a href="#form" id="showinstruction" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="fas fa-plus"></i>新增帖文</a></td>
   </tr>
+   <tr>
+      <td><a href="#main" class="w3-bar-item w3-light-grey w3-button" id="deletepage">
+	  <i class="fas fa-trash"></i>刪除帖文</a></td>
+  </tr>
   <tr>
       <td><a href="#record" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="far fa-clipboard"></i>記錄</a></td>
-  </tr>
-  
+  </tr>  
   </tbody>
 </table>
 </div>
@@ -278,16 +115,6 @@ $('.tabs > span:nth-child(2)').click(function(){
 <hr style="border:1px solid #d9ccff;background-color:#d9ccff;margin:0px;">
 </div>
 
-<div id="instruction">
-<h6 class="toptext w3-margin-top"> 步驟1.
-<span style="display:inline-block; width:80%;height:40px;">開啟手機gps([設定]->[私隱]->[定位服務])</span></h6>
-<h6 class="toptext"> 步驟2. 
-<span style="display:inline-block; width:80%;height:40px;">
-把中小企拍照(最多上傳3張照片)，按下「獲取位置」選擇當前位置，並填寫資料</span></h6>
-<h6 class="toptext">步驟3. <span style="display:inline-block; width:80%;height:40px;">
-點擊「新增帖文」，便可以在首頁看到你的帖文 </span></h6>
-</div>
-
 <!--Tabs-->
 <div class="tabs w3-bar" style="width:100%; margin-top:20px;">
   <span class="w3-bar-item w3-quarter tab" href="#main" id="main">
@@ -310,6 +137,10 @@ $('.tabs > span:nth-child(2)').click(function(){
 
 <!--Content-->
 <div class="w3-container" style="width:100%; background-color:#eeeeee; padding:0px 0px 200px 0px;">
+
+
+<h4 id="deletetext" class="center">刪除帖文後將無法回復，請確認清楚！</h4>
+
  
 <!--Main-->
 <div class="tab-content" id="main">
@@ -336,7 +167,10 @@ $('.tabs > span:nth-child(2)').click(function(){
 	      <p><i class="fas fa-map-marker-alt" style="color:red"></i>：澳門高士德大馬路33號C號</p>
 	    </div>
 	    <div><i class="fas fa-comment-dots"></i>留言：<br>
-	    <div class="w3-border comment" style="width:100%;">今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，食物質素差，唔衛生。其實都不其然，玻璃肚的我對食和衛生都有一定要求。一踏進店給人一種被時間遺忘，一陣煎肉，烘包香氣傳來。短短二十分鐘就有五十多個外賣客真不簡單。豬扒包，脆香肉濃又不油膩雲吞撈，醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q</div>
+	    <div class="w3-border comment" style="width:100%;">今日一家尋食到澳門，高仕德街下車後剛轉街角看見一間舊式茶室…舊式餐室，好多人都污糟邋遢，
+   食物質素差，唔衛生。其實都不其然，玻璃肚的我對食和衛生都有一定要求。一踏進店給人一種被時間遺忘，
+   一陣煎肉，烘包香氣傳來。短短二十分鐘就有五十多個外賣客真不簡單。豬扒包，脆香肉濃又不油膩雲吞撈，
+   醬油香濃麪質爽口魚餅撈，手打魚餅肉質爽Q</div>
 	    </div>
         </div>
       </div>
@@ -359,6 +193,20 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 
 <!--Form-->
 <div class='tab-content' id="form">
+
+<div id="instruction">
+<h6 class="toptext w3-margin-top"> 步驟1.
+<span style="display:inline-block; width:80%;height:40px;">開啟手機gps([設定]->[私隱]->[定位服務])</span></h6>
+<h6 class="toptext"> 步驟2. 
+<span style="display:inline-block; width:80%;height:40px;">
+把中小企拍照，最多上傳3張照片(若要上傳多於一張照片，要先把相片儲在手機相簿再上傳)</span></h6>
+<h6 class="toptext"> 步驟3. 
+<span style="display:inline-block; width:80%;height:40px;">
+按下「獲取位置」在地圖上確認當前位置，並填寫其餘資料</span></h6>
+<h6 class="toptext">步驟4. <span style="display:inline-block; width:80%;height:40px;">
+點擊「新增帖文」，便可以在首頁看到你的帖文 </span></h6>
+</div>
+
 
 <div class="panel panel-primary center" 
      style=" border:0px; box-shadow: 0px 3px 10px #888888;width:95%;">
@@ -397,7 +245,7 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 	<div>
 	    <input  type="file" class="file-upload__input" style="display:none;" id="myFileInput"
 		        name = "圖片[]" form="finalform" multiple accept="image/*,.pdf">
-	    <button class="file-upload__button" type="button">選擇1~3張圖片</button>
+	    <button class="file-upload__button" type="button">上傳照片</button>
 		<span class="file-upload__label"></span>
 
 		<input type="hidden" form="smeform" id="imageurl0">
@@ -414,52 +262,10 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 		<div class="col s12 m6 l4" style="overflow:auto;"><div id="imgPreview2"></div></div>
 		</div>
 	</div>
-<script>
-const hiddenInput = document.querySelector('#myFileInput');
-const label = document.querySelector('.file-upload__label');
-const defaultLabelText = "暫時沒有圖片";
-	
-//Set default text for label
-label.textContent = defaultLabelText;
-label.title = defaultLabelText;
-	
-$('.file-upload__button').click( function(){
-    $("#myFileInput").click();
-});
-	
-document.querySelector("#myFileInput").addEventListener("change", function() {
-    const filenameList = Array.from(hiddenInput.files).map(function(file){
-	    return file.name;
-	});
-    
-	function setlabel(){
-		label.textContent = filenameList.join(", ") || defaultLabelText;
-	    label.title = label.textContent;
-	};
-	
-	var numberofFiles = Object.keys(hiddenInput.files).length;
-
-    if( numberofFiles && numberofFiles !== 0){
-	    if(numberofFiles < 4){
-            var i;
-		    for(i=0;i<numberofFiles;i++){
-		        compressImage(numberofFiles,i,hiddenInput.files[i]);
-				ImageSubmit(numberofFiles,i,hiddenInput.files[i]);
-		    };
-		    setlabel();
-		} else if(numberofFiles >= 4) {
-		    alert("不能上傳多於三張圖片!");
-		};
-    }else{
-	    alert("圖片未能正確上傳，請再次嘗試");
-    };	
-});
-
-</script>
 	
 	<div class="w3-margin-top">
 	  <p>地址:
-          <div id="get_location" class="w3-button w3-green"><i class="fas fa-map-marker-alt"></i>獲取位置</div>
+          <div id="get_location" class="w3-button w3-green"><i class="fas fa-map-marker-alt"></i>自動獲取位置</div>
 	  <input class="w3-input" placeholder="坐標" id="latlng"></input>
 	  <input class="w3-input" placeholder="地址" id="address"></input>
 	  </p>
@@ -511,9 +317,9 @@ document.querySelector("#myFileInput").addEventListener("change", function() {
     <button id="finalcancel" onclick="event.preventDefault()"
             class="w3-button w3-light-gray w3-text-black" style="border:0px;border-radius:2px;float:left; position:relative;margin-left:5%; width:42.5%;" >
             取消</button>
-    <input id="finalsubmit" type="submit" form="finalform" class="w3-button w3-blue w3-text-white" value="提交表單" 
+    <input id="finalsubmit" type="submit" form="finalform" class="w3-button w3-blue w3-text-white" value="提交表單"
 	       method="POST" formaction="https://formsubmit.co/chanchengleong@gmail.com"
-	       style="border:0px;float:right; position:relative;margin-right:5%;width:42.5%;" >
+	       style="border:0px;border-radius:2px;float:right; position:relative;margin-right:5%;width:42.5%;" >
     
     </div>
     </div>
