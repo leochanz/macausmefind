@@ -1,3 +1,4 @@
+//1. Geocoding
 let map;
 let markers = [];
 
@@ -78,7 +79,116 @@ function hideallpreviews(){
 	document.getElementById("imgPreview2").style.display = "none";
 };
 
-//form validation
+//2. Compressing Images and canvases
+function compressImage(version, number, file){
+    event.preventDefault();
+	if (!file) return;
+	
+	const reader = new FileReader();
+		
+	reader.readAsDataURL(file);
+    reader.onload = function(event) {
+        const imgElement = document.createElement("img");
+	    imgElement.src = event.target.result;		
+  
+        imgElement.onload = function(e){
+            const canvas = document.createElement("canvas");
+	        const MAX_WIDTH = 240;
+	        const scaleSize = MAX_WIDTH / e.target.width;
+            canvas.width = MAX_WIDTH;
+            canvas.height = e.target.height * scaleSize;
+				
+	        const ctx = canvas.getContext("2d");
+				
+	        ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+	        const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+			
+            $('#imageurl'+ number+'').val(srcEncoded); 
+			
+			if(version == 1){
+				document.querySelector("#imgPreviewButton").addEventListener("click", function() {
+                    imgPreview(number, srcEncoded);
+				    document.getElementById("imgPreview1").style.display = "none";
+			        document.getElementById("imgPreview1").setAttribute("src", "");
+			        document.getElementById("imgPreview2").style.display = "none";
+			        document.getElementById("imgPreview2").setAttribute("src", "");
+                    return false;
+                });
+			} else if(version == 2) {			
+			     document.querySelector("#imgPreviewButton").addEventListener("click", function() {
+                    imgPreview(number, srcEncoded);
+			        document.getElementById("imgPreview2").style.display = "none";
+			        document.getElementById("imgPreview2").setAttribute("src", "");
+                    return false;
+                });
+			} else if(version == 3){
+			    document.querySelector("#imgPreviewButton").addEventListener("click", function() {
+                    imgPreview(number, srcEncoded);
+                    return false;
+                });
+			};
+        };			
+    };
+}; 
+
+function imgPreview(number, url){
+	var imagePreview = "imgPreview" + number + "";
+	
+	if(url && url != "" ) {    
+	        document.getElementById(imagePreview).style.backgroundImage = "url('" + url + "')";
+		    document.getElementById(imagePreview).style.display = "block";
+	} else {
+            alert("圖片未能正確上傳，請再次嘗試");
+			document.getElementById(imagePreview).style.backgroundImage = "none";
+			document.getElementById(imagePreview).style.display = "none";
+
+	};
+};
+
+function ImageSubmit(version,number,file){
+	event.preventDefault();
+	
+	if (!file) return;
+	
+	const reader = new FileReader();
+		
+	reader.readAsDataURL(file);
+	
+    reader.onload = function(event) {
+        const imgElement = document.createElement("img");
+	    imgElement.src = event.target.result;		
+  
+        imgElement.onload = function(e){
+            const canvas = document.createElement("canvas");
+			if(version == 1){
+			  var MAX_WIDTH = 80;
+              document.getElementById("imageurlF1").disabled = true;
+			  document.getElementById("imageurlF2").disabled = true;
+			} else if(version == 2) {	
+	          var MAX_WIDTH = 40;			
+              document.getElementById("imageurlF1").disabled = false;
+			  document.getElementById("imageurlF2").disabled = true;
+			} else if(version == 3){
+			  var MAX_WIDTH = 26.66;
+              document.getElementById("imageurlF1").disabled = false;
+			  document.getElementById("imageurlF2").disabled = false;
+			};
+
+	        const scaleSize = MAX_WIDTH / e.target.width;
+            canvas.width = MAX_WIDTH;
+            canvas.height = e.target.height * scaleSize;
+				
+	        const ctx = canvas.getContext("2d");
+				
+	        ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+	        const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
+			
+			$('#imageurlF'+ number+'').val(srcEncoded); 
+        };			
+    };	
+}; 
+
+//3. All of the submit and localstorage functions
 const localStorage = window.localStorage;
 
 function onSubmitPressed() {
@@ -118,7 +228,8 @@ function onSubmitPressed() {
 
 	    document.getElementById('smeform').reset();
 	    document.getElementById("myFileInput").value = "";
-	    document.getElementById('imageurl1').value = "" ;
+	    document.querySelector('.file-upload__label').textContent  = "暫時沒有圖片";
+		document.querySelector('.file-upload__label').title  = "暫時沒有圖片"
 		
 	    hideallpreviews();
 	    document.getElementById("confirm-popup").style.display = "block";
@@ -203,118 +314,11 @@ function getColor(type) {
 	return color;
 };
 
-function compressImage(version, number, file){
-    event.preventDefault();
-	if (!file) return;
-	
-	const reader = new FileReader();
-		
-	reader.readAsDataURL(file);
-    reader.onload = function(event) {
-        const imgElement = document.createElement("img");
-	    imgElement.src = event.target.result;		
-  
-        imgElement.onload = function(e){
-            const canvas = document.createElement("canvas");
-	        const MAX_WIDTH = 240;
-	        const scaleSize = MAX_WIDTH / e.target.width;
-            canvas.width = MAX_WIDTH;
-            canvas.height = e.target.height * scaleSize;
-				
-	        const ctx = canvas.getContext("2d");
-				
-	        ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-	        const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
-			
-            $('#imageurl'+ number+'').val(srcEncoded); 
-			
-			if(version == 1){
-				document.querySelector("#imgPreviewButton").addEventListener("click", function() {
-                    imgPreview(number, srcEncoded);
-				    document.getElementById("imgPreview1").style.display = "none";
-			        document.getElementById("imgPreview1").setAttribute("src", "");
-			        document.getElementById("imgPreview2").style.display = "none";
-			        document.getElementById("imgPreview2").setAttribute("src", "");
-                    return false;
-                });
-			} else if(version == 2) {			
-			     document.querySelector("#imgPreviewButton").addEventListener("click", function() {
-                    imgPreview(number, srcEncoded);
-			        document.getElementById("imgPreview2").style.display = "none";
-			        document.getElementById("imgPreview2").setAttribute("src", "");
-                    return false;
-                });
-			} else if(version == 3){
-			    document.querySelector("#imgPreviewButton").addEventListener("click", function() {
-                    imgPreview(number, srcEncoded);
-                    return false;
-                });
-			};
-        };			
-    };
-}; 
-
-function imgPreview(number, url){
-
-	var imagePreview = "imgPreview" + number + "";
-	
-	if(url && url != "" ) {    
-	        document.getElementById(imagePreview).style.backgroundImage = "url('" + url + "')";
-		    document.getElementById(imagePreview).style.display = "block";
-	} else {
-            alert("圖片未能正確上傳，請再次嘗試");
-			document.getElementById(imagePreview).style.backgroundImage = "none";
-			document.getElementById(imagePreview).style.display = "none";
-
-	};
-};
-
-function ImageSubmit(version,number,file){
-	event.preventDefault();
-	
-	if (!file) return;
-	
-	const reader = new FileReader();
-		
-	reader.readAsDataURL(file);
-	
-    reader.onload = function(event) {
-        const imgElement = document.createElement("img");
-	    imgElement.src = event.target.result;		
-  
-        imgElement.onload = function(e){
-             const canvas = document.createElement("canvas");
-	     if(version == 1){
-	          var MAX_WIDTH = 80;
-                  document.getElementById("imageurlF1").disabled = true;
-		  document.getElementById("imageurlF2").disabled = true;
-	     } else if(version == 2) {	
-	          var MAX_WIDTH = 30;			
-                  document.getElementById("imageurlF1").disabled = false;
-		  document.getElementById("imageurlF2").disabled = true;
-	     } else if(version == 3){
-		  var MAX_WIDTH = 10;
-                  document.getElementById("imageurlF1").disabled = false;
-		  document.getElementById("imageurlF2").disabled = false;
-	    };
-
-	    const scaleSize = MAX_WIDTH / e.target.width;
-            canvas.width = MAX_WIDTH;
-            canvas.height = e.target.height * scaleSize;
-				
-	    const ctx = canvas.getContext("2d");
-				
-	    ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
-	    const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg");
-			
-	    $('#imageurlF'+ number+'').val(srcEncoded); 
-        };			
-    };	
-}; 
-
-//Add New ELements To Main Page
+//4. Add New ELements To Main Page
 function addToMain(number) {
     var formArrayName = 'formArray' + number + '';
+	var getArray = localStorage.getItem(formArrayName);
+	if(getArray !== "" && getArray !== null && getArray !== undefined){
 	var formdata = JSON.parse(localStorage.getItem(formArrayName));
 	var logo = formdata.logo;
 	var color = formdata.color;
@@ -331,9 +335,11 @@ function addToMain(number) {
 	
 	if(numberofFiles == 1){
 		var newMainElement = `
-	<div class="col s12 m6 l4">
+	<div class="col s12 m6 l4" id="postnumber${number}">
 	  <div class="panel center main">
         <div class="panel-heading center" style="background-color:${color};">
+		<button style="width:100%;" class="deletebutton w3-button w3-red" onclick="deletepost(${number})">
+		<i class="fas fa-times"></i></button>
         </div>
 		<div class="display w3-hover-opacity" style="background-image:url('${imageurl1}');"></div>
         <div class="panel-body w3-left-align" style="padding:10px;">
@@ -354,9 +360,11 @@ function addToMain(number) {
         $("#showElement").prepend(newMainElement);
 	} else if(numberofFiles == 2){
 		var newMainElement = `
-	<div class="col s12 m6 l4">
+	<div class="col s12 m6 l4" id="postnumber${number}">
 	  <div class="panel center main">
         <div class="panel-heading center" style="background-color:${color};">
+		<button style="width:100%;" class="deletebutton w3-button w3-red" onclick="deletepost(${number})">
+		<i class="fas fa-times"></i></button>
         </div>
 		<div class="w3-content w3-display-container">
 		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl1}');display:block;"></div>
@@ -402,9 +410,11 @@ function addToMain(number) {
         $("#showElement").prepend(newMainElement);
 	}else if(numberofFiles == 3){
 		var newMainElement = `
-	<div class="col s12 m6 l4">
+	<div class="col s12 m6 l4"  id="postnumber${number}">
 	  <div class="panel center main">
         <div class="panel-heading center" style="background-color:${color};">
+		<button style="width:100%;" class="deletebutton w3-button w3-red" onclick="deletepost(${number})">
+		<i class="fas fa-times"></i></button>
         </div>
 		<div class="w3-content w3-display-container">
 		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl1}');display:block;"></div>
@@ -450,29 +460,201 @@ function addToMain(number) {
 	`;
         $("#showElement").prepend(newMainElement);
 	};
-
+  };
 };
 
+//5. Delete Post
+function deletepost(number){
+	var postelement = document.getElementById("postnumber" + number + "");
+    postelement.remove();
+	var formArrayName = 'formArray' + number + '';
+	localStorage.removeItem(formArrayName);
+	var submittimes = localStorage.getItem( 'submittimes' );
+};
+
+//6. Page Refresh Functions
 $(document).ready(function(){
-	localStorage.setItem( 'geolocation' , '' );
+	
+	//A. setting localstorage items
 	var submittimes = localStorage.getItem( 'submittimes' );
 	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
-            localStorage.setItem( 'submittimes' , 0 );
-        };
+        localStorage.setItem( 'submittimes' , 0 );
+    };
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
             addToMain(i);
     };
 	
-	$('#smeform').keydown(function(){
-            $('#smeform *').removeClass('error');
-        });
-	
-	$('#type, #myFileInput').click(function(){
-            $('#smeform *').removeClass('error');
-        });
-
+	//B. All the Basic HTML functions
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    	
+    }
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+    
+    document.getElementById("mySidebar").style.display = "none";
+    
+    function myFunction(x) {
+      if (x.matches) { // If media query matches
+        $("#mySidebar").addClass("w3-animate-left");
+    	$("#leftSpace").hide();
+    	$(".lhide").show();
+        document.getElementById("mySidebar").style.display = "none";
+    	document.getElementById("mySidebar").style.top = "75px";
+    	document.getElementById("map-popup").style.width = "90%";
+    	document.getElementById("confirm-popup").style.left = "10%";
+      } else {
+        $("#mySidebar").removeClass("w3-animate-left");
+    	$("#leftSpace").show();
+    	$(".lhide").hide();
+        document.getElementById("mySidebar").style.display = "block";
+    	document.getElementById("mySidebar").style.top = "0px";
+    	document.getElementById("map-popup").style.width = "50%";
+    	document.getElementById("confirm-popup").style.left = "30%";
+      }
+    }
+    
+    var largeScreen = window.matchMedia("(max-width: 1224px)")
+    myFunction(largeScreen) // Call listener function at run time
+    largeScreen.addListener(myFunction) 
+    
+    document.getElementById("settingbubble").style.display = "none";
+    document.getElementById("introduction").style.display = "none";
+    document.getElementById("instruction").style.display = "none";
+    hideallpreviews();
+    document.getElementById("map-popup").style.display = "none";
+    document.getElementById("confirm-popup").style.display = "none";
+    document.getElementById("darkscreen").style.display = "none";
+    
+    $('.tab-content').hide();
+    $('.tabs > span').hide();
+    $('.tabs > span:first').show();
+    $('.tabs > span:nth-child(2)').show();
+    
+    $('.tab-content:first').show();
+    
+    $('.tabs > span').removeClass('active');
+    $('.tabs > span:first').addClass('active');
+    
+    $(".deletebutton").hide();
+    document.getElementById("deletetext").style.display = "none";
+    
+    $('#setting').click(function(){
+      document.getElementById("settingbubble").style.display = "block";
+    });
+    
+    $('#closesetting').click(function(){
+      document.getElementById("settingbubble").style.display = "none";
+    });
+    
+    
+    $('#clearstorage').click(function(){
+        localStorage.clear();
+    	var submittimes = localStorage.getItem( 'submittimes' );
+    	if (submittimes === undefined || submittimes === null || submittimes.length === 0){
+            localStorage.setItem( 'submittimes' , 0 );
+        }
+        window.location.reload();
+    });
+    
+    $('#sortdown').click(function(){
+      document.getElementById("introduction").style.display = "block";
+      document.getElementById("sortdown").style.display = "none";
+      
+      return false;
+    });
+    	
+    $('#sortup').click(function(){
+       document.getElementById("introduction").style.display = "none";
+       document.getElementById("sortdown").style.display = "block";
+      
+      return false;
+    });
+    
+    $('.sidebar a').click(function(){
+    
+      document.getElementById("instruction").style.display = "none";
+      document.getElementById("deletetext").style.display = "none";
+      $(".deletebutton").hide();
+    
+      var href = $(this).attr('href');
+      
+      // show only the target tab.
+      $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+      $(this).addClass('w3-leftbar w3-border-indigo');
+      
+      $('.tabs > span' + href + '').show();
+      $('.tabs > span').removeClass('active');
+      $('.tabs > span' + href + '').addClass('active');
+      
+      $('.tab-content').hide();
+      $('div' + href +'').show();
+      
+      // disable default browser behavior.
+      return false;
+    });
+    
+    
+    $('#deletepage').click(function(){
+      $(".deletebutton").show();
+      document.getElementById("deletetext").style.display = "block";
+      
+      return false;
+    });
+    
+    $('.closs_button').click(function(){
+      document.getElementById("instruction").style.display = "none";
+      
+      var href = $(this).attr('href');
+      $(href).hide();
+      
+      $('.tabs > span').removeClass('active');
+      $('.tabs > span:first').addClass('active');
+      $('.tab-content:first').show();
+      
+      $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
+      $('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
+      
+      // disable default browser behavior.
+      return false;
+    });
+    
+    // when click on the tab link.
+    $('.tabs > span').click(function(){
+    
+      document.getElementById("instruction").style.display = "none";
+      document.getElementById("deletetext").style.display = "none";
+      $(".deletebutton").hide();
+    
+      var href = $(this).attr('href');
+      
+      $('.tab-content').hide();
+      
+      $('div' + href +'').show();
+    
+      $('.tabs > span').removeClass('active');
+      $(this).addClass('active');
+      
+      $('.sidebar a[href="' + href + '"]:first').click();
+      
+      // disable default browser behavior.
+      return false;
+    });
+    
+    $('.tabs > span:first').click(function(){	  
+    
+      return false;	
+    });	
+    					 
+    $('.tabs > span:nth-child(2)').click(function(){
+      document.getElementById("instruction").style.display = "block";
+      
+      return false;
+    });
+    
 	$("#finalsubmit").click(function(){	
 	    document.getElementById("confirm-popup").style.display = "none";
         document.getElementById("darkscreen").style.display = "none";
@@ -488,7 +670,19 @@ $(document).ready(function(){
 		  
 	    return false;
     });
+	
+    //C. form validation
+    $('#smeform').keydown(function(){
+        $('#smeform *').removeClass('error');
+    });
+    	
+	$('#type, #myFileInput').click(function(){
+        $('#smeform *').removeClass('error');
+    });
+
     
+	//D. geolocation asks for permission the first time
+	localStorage.setItem( 'geolocation' , '' );
 	document.getElementById("get_location").addEventListener("click", function(){
      
       var mylocation = localStorage.getItem( 'geolocation' ); 
@@ -529,4 +723,44 @@ $(document).ready(function(){
     return false;
    });
    
+   //E. file input and preview images
+   const hiddenInput = document.querySelector('#myFileInput');
+   const label = document.querySelector('.file-upload__label');
+   const defaultLabelText = "暫時沒有圖片";
+	
+   label.textContent = defaultLabelText;
+   label.title = defaultLabelText;
+	
+   $('.file-upload__button').click( function(){
+       $("#myFileInput").click();
+   });
+	
+   document.querySelector("#myFileInput").addEventListener("change", function() {
+      const filenameList = Array.from(hiddenInput.files).map(function(file){
+	    return file.name;
+	  });
+      
+	  function setlabel(){
+	    label.textContent = filenameList.join(", ") || defaultLabelText;
+	    label.title = label.textContent;
+	  };
+	
+	  var numberofFiles = Object.keys(hiddenInput.files).length;
+
+      if( numberofFiles && numberofFiles !== 0){
+	    if(numberofFiles < 4){
+            var i;
+		    for(i=0;i<numberofFiles;i++){
+		        compressImage(numberofFiles,i,hiddenInput.files[i]);
+				ImageSubmit(numberofFiles,i,hiddenInput.files[i]);
+		    };
+		    setlabel();
+		} else if(numberofFiles >= 4) {
+		    alert("不能上傳多於三張圖片!");
+		};
+      }else{
+	    alert("圖片未能正確上傳，請再次嘗試");
+      };	
+    });
+
 });
