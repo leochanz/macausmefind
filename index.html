@@ -59,10 +59,6 @@
    <tr>
       <td><a href="#main" class="w3-bar-item w3-light-grey w3-button" id="deletepage">
 	  <i class="fas fa-trash"></i>刪除帖文</a></td>
-  </tr>
-  <tr>
-      <td><a href="#record" class="w3-bar-item w3-light-grey w3-button">
-	  <i class="far fa-clipboard"></i>記錄</a></td>
   </tr> 
   </tbody>
 </table>
@@ -126,9 +122,6 @@
   </span>
   <span class="w3-bar-item w3-quarter tab" href="#about" id="about">
   <span class="closs_button" href="#about"><i class="fas fa-times-circle"></i></span>關於
-  </span>
-  <span class="w3-bar-item w3-quarter tab" href="#record" id="record">
-  <span class="closs_button" href="#record"><i class="fas fa-times-circle"></i></span>記錄
   </span>
 </div>
 
@@ -315,7 +308,8 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
     <input name="地址" type="hidden" form="finalform" id="address2">
     <input name="意見" type="hidden" form="finalform" id="comment2">
     <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
-    <p style="margin-left:5px;">按下「提交表單」傳送表單到FORMSUBMIT</p>
+    <h5 style="margin-left:5px;">填寫你的gmail以傳送回答</h5>
+	<input type="email" class="w3-input center" id="youremail" style="width:80%" placeholder='例子："yourusername@example.com"'></input>
     <div>
     <button id="finalcancel" onclick="event.preventDefault()"
             class="w3-button w3-light-gray w3-text-black" style="border:0px;border-radius:2px;float:left; position:relative;margin-left:5%; width:42.5%;" >
@@ -329,16 +323,6 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
 </form> 
 </div>
  
-</div>
-
-
-<!--Record-->
-<div class='tab-content' id="record">
-<p>
-dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
-dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
-dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
-</p>
 </div>
 
 </div>
