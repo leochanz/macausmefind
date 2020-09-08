@@ -495,8 +495,9 @@ $(document).ready(function(){
             addToMain(i);
     };
 	
-	//B. All the Basic HTML functions   
-    function myFunction(x) {
+    //B. All the Basic HTML functions  
+    document.getElementById("mySidebar").style.display = "none";
+    function LargeResponsive(x) {
       if (x.matches) { // If media query matches
         $("#mySidebar").addClass("w3-animate-left");
     	$("#leftSpace").hide();
@@ -517,10 +518,9 @@ $(document).ready(function(){
     }
     
     var largeScreen = window.matchMedia("(max-width: 1224px)")
-    myFunction(largeScreen) // Call listener function at run time
-    largeScreen.addListener(myFunction) 
+    LargeResponsive(largeScreen) // Call listener function at run time
+    largeScreen.addListener(LargeResponsive) 
     
-    document.getElementById("mySidebar").style.display = "none";
     document.getElementById("settingbubble").style.display = "none";
     document.getElementById("introduction").style.display = "none";
     document.getElementById("instruction").style.display = "none";
