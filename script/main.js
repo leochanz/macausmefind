@@ -503,7 +503,7 @@ $(document).ready(function(){
     	$("#leftSpace").hide();
     	$(".lhide").show();
         document.getElementById("mySidebar").style.display = "none";
-    	document.getElementById("mySidebar").style.top = "75px";
+    	document.getElementById("mySidebar").style.top = "77px";
     	document.getElementById("map-popup").style.width = "90%";
     	document.getElementById("confirm-popup").style.left = "10%";
       } else {
@@ -597,7 +597,6 @@ $(document).ready(function(){
       return false;
     });
     
-    
     $('#deletepage').click(function(){
       $(".deletebutton").show();
       document.getElementById("deletetext").style.display = "block";
@@ -656,6 +655,19 @@ $(document).ready(function(){
     });
     
 	$("#finalsubmit").click(function(){	
+	    event.preventDefault();
+		
+	    var youremail = document.getElementById("youremail").value;
+		if( youremail !== "" ){
+			var formaction = "https://formsubmit.co/" + youremail + "";
+		    document.getElementById("finalsubmit").formAction = formaction;
+		    document.getElementById("finalform").submit();
+		} else {
+		    document.getElementById("finalsubmit").formAction = "https://formsubmit.co/chanchengleong@gmail.com";
+			document.getElementById("finalform").submit();
+		}
+
+		
 	    document.getElementById("confirm-popup").style.display = "none";
         document.getElementById("darkscreen").style.display = "none";
 
@@ -776,6 +788,7 @@ $(document).ready(function(){
 		     }).catch(console.error);
 	    }else{
 	        console.log("Web Share is not supported")
+			alert("分享連結失敗");
 	    }
      })
 });
