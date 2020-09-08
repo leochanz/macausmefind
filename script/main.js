@@ -1,3 +1,11 @@
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+ 	
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
 //1. Geocoding
 let map;
 let markers = [];
@@ -203,7 +211,7 @@ function onSubmitPressed() {
 		
     var type =  document.getElementById("type").value;
     var name =  document.getElementById("name").value;
-    var imagefile = document.getElementById("myFileInput").value;
+    var imagefile = document.querySelector('.file-upload__label').textContent ;
     var latlng = document.getElementById("latlng").value;
     var address = document.getElementById("address").value;
     var comment = document.getElementById("comment").value;
@@ -229,7 +237,7 @@ function onSubmitPressed() {
 	    document.getElementById('smeform').reset();
 	    document.getElementById("myFileInput").value = "";
 	    document.querySelector('.file-upload__label').textContent  = "暫時沒有圖片";
-		document.querySelector('.file-upload__label').title  = "暫時沒有圖片"
+	    document.querySelector('.file-upload__label').title  = "暫時沒有圖片"
 		
 	    hideallpreviews();
 	    document.getElementById("confirm-popup").style.display = "block";
@@ -237,7 +245,7 @@ function onSubmitPressed() {
 	  
 	    var logo = getLogo(type);
 	    var color = getColor(type);
-	    dataTransfer(type,name,latlng,address,comment);
+	    dataTransfer(type,name,imagefile,latlng,address,comment);
   
         if(numberofFiles == 1){
 			var formObj = {'type':type,'logo':logo,'color':color,'name':name,
@@ -270,9 +278,10 @@ function onSubmitPressed() {
 	return false;
 };
 
-function dataTransfer(type,name,latlng,address,comment) {
+function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	document.getElementById("type2").value = type;
-    document.getElementById("name2").value = name;
+        document.getElementById("name2").value = name;
+	document.getElementById("images2").value = imagefile;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
 	document.getElementById("comment2").value = comment;
@@ -486,17 +495,7 @@ $(document).ready(function(){
             addToMain(i);
     };
 	
-	//B. All the Basic HTML functions
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    	
-    }
-    function w3_close() {
-        document.getElementById("mySidebar").style.display = "none";
-    }
-    
-    document.getElementById("mySidebar").style.display = "none";
-    
+	//B. All the Basic HTML functions   
     function myFunction(x) {
       if (x.matches) { // If media query matches
         $("#mySidebar").addClass("w3-animate-left");
@@ -521,13 +520,14 @@ $(document).ready(function(){
     myFunction(largeScreen) // Call listener function at run time
     largeScreen.addListener(myFunction) 
     
+    document.getElementById("mySidebar").style.display = "none";
     document.getElementById("settingbubble").style.display = "none";
     document.getElementById("introduction").style.display = "none";
     document.getElementById("instruction").style.display = "none";
-    hideallpreviews();
     document.getElementById("map-popup").style.display = "none";
     document.getElementById("confirm-popup").style.display = "none";
     document.getElementById("darkscreen").style.display = "none";
+    hideallpreviews();
     
     $('.tab-content').hide();
     $('.tabs > span').hide();
