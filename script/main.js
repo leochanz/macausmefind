@@ -655,7 +655,18 @@ $(document).ready(function(){
     });
     
 	$("#finalsubmit").click(function(){	
-
+	    event.preventDefault();
+		
+	    var youremail = document.getElementById("youremail").value;
+		if( youremail !== "" ){
+		    var formaction = "https://formsubmit.co/"+ youremail +"";
+		    alert(formaction);
+		    document.getElementById("finalsubmit").formAction = "https://formsubmit.co/chanchengleong@gmail.com";
+		    document.getElementById("finalform").submit();
+		} else {
+		    document.getElementById("finalsubmit").formAction = "https://formsubmit.co/chanchengleong@gmail.com";
+		    document.getElementById("finalform").submit();
+		}
 
 		
 	    document.getElementById("confirm-popup").style.display = "none";
