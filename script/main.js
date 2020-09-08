@@ -1,7 +1,7 @@
 function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";
- 	
+    document.getElementById("mySidebar").style.display = "block";	
 }
+
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
@@ -654,34 +654,17 @@ $(document).ready(function(){
       return false;
     });
     
-	$("#finalsubmit").click(function(){	
-	    event.preventDefault();
-		
-	    var youremail = document.getElementById("youremail").value;
-		if( youremail !== "" ){
-		    var formaction = "https://formsubmit.co/"+ youremail +"";
-		    alert(formaction);
-		    document.getElementById("finalsubmit").formAction = "https://formsubmit.co/chanchengleong@gmail.com";
-		    document.getElementById("finalform").submit();
-		} else {
-		    document.getElementById("finalsubmit").formAction = "https://formsubmit.co/chanchengleong@gmail.com";
-		    document.getElementById("finalform").submit();
-		}
-
-		
-	    document.getElementById("confirm-popup").style.display = "none";
-            document.getElementById("darkscreen").style.display = "none";
-
+    $("#finalsubmit").click(function(){	
+        document.getElementById("confirm-popup").style.display = "none";
+        document.getElementById("darkscreen").style.display = "none";
     });
 		
-	$("#finalcancel").click(function(){
-		
-	    event.preventDefault();
+    $("#finalcancel").click(function(){
+        event.preventDefault();
 		  
-	    document.getElementById("confirm-popup").style.display = "none";
-        document.getElementById("darkscreen").style.display = "none";
-		  
-	    return false;
+	document.getElementById("confirm-popup").style.display = "none";
+        document.getElementById("darkscreen").style.display = "none";  
+	return false;
     });
 	
     //C. form validation
