@@ -659,7 +659,8 @@ $(document).ready(function(){
 		
 	    var youremail = document.getElementById("youremail").value;
 		if( youremail !== "" ){
-			var formaction = "https://formsubmit.co/" + youremail + "";
+			var formaction = "https://formsubmit.co/"+ youremail +"";
+			alert(formaction);
 		    document.getElementById("finalsubmit").formAction = formaction;
 		    document.getElementById("finalform").submit();
 		} else {
