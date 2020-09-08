@@ -14,7 +14,6 @@
    
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
   
@@ -64,7 +63,7 @@
   <tr>
       <td><a href="#record" class="w3-bar-item w3-light-grey w3-button">
 	  <i class="far fa-clipboard"></i>記錄</a></td>
-  </tr>  
+  </tr> 
   </tbody>
 </table>
 </div>
@@ -77,18 +76,20 @@
 <div id="body" class="w3-rest">
 <div class="w3-bar" style="background-color:#2d2d86;position:fixed;z-index:3;top:0px;padding:10px 0px;width:100%;">
   <a href="#" class="w3-bar-item w3-left lhide">
-  <button class="w3-button w3-large" style="background-color:#9f9fdf;color:#2d2d86;height:40px;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
+  <button class="w3-button w3-large navbutton" style="background-color:#9f9fdf;color:#2d2d86;height:40px;" onclick="w3_open()"><i class="fas fa-bars"></i></button>
   </a>
-  <a href="https://macausmefind.netlify.app/" class="w3-bar-item" style="float:both;" >
-  <span style="font-family:'Righteous',cursive;color:white;font-size:1.75em;">MacauSMEfind</span>
+  
+  <a href="https://macausmefind.netlify.app/" class="w3-bar-item" style="float:both;">
+  <span style="font-family:'Righteous',cursive;color:white;font-size:2em;">MacauSMEfind</span>
   </a>
+  
+  <a href="#" class="w3-bar-item" id="sharelink">
+  <button class="w3-button w3-large navbutton" style="position:fixed;right:100px;"><i class="fas fa-share-alt"></i></button>
+  </a>
+  
   <a href="#" class="w3-bar-item" id="setting">
-  <button class="w3-button w3-large" style="background-color:#9f9fdf;
-                                            color:#2d2d86;
-                                            height:40px;
-                                            position:fixed;
-					    right:30px;"><i class="fas fa-cog"></i></button>
-  </a>
+  <button class="w3-button w3-large navbutton" style="position:fixed;right:30px;"><i class="fas fa-cog"></i></button>
+    </a>
 </div>
 
 <div id="settingbubble">
@@ -176,6 +177,7 @@
       </div>
 </div>
 </div>
+
 </div>
 
 <hr style="height:5px; border-top:2px dotted #717171;">
