@@ -30,9 +30,26 @@
 <div class="w3-sidebar w3-bar-block w3-animate-left sidebar" id="mySidebar">
  <table class="w3-table">
   <thead class="thead-light">
-  <tr class="w3-light-grey" style="display:block; width:100%; height:60px;">
-      <th class="w3-bar-item lhide">
-           <button class="w3-bar-item  w3-button w3-large" onclick="w3_close()"><i class="fas fa-times"></i>關閉</button>
+  
+  <div class="w3-container w3-white w3-margin-bottom profilecard lshow" style="padding:10px 20px">
+      <div class="w3-hover-opacity w3-circle avatar center" style="width:200px;height:200px;overflow:hidden;background-image:url('avatar.jpg');">
+          <h6 class="avatarname">陳政良</h6>
+      </div>
+          <h6 class="center w3-text-grey w3-margin-top">網頁開發者</h6>
+          <div style="text-decoration:none;white-space:nowrap;">
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-purple"></i>澳門培正中學學生</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-purple"></i>現居澳門</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-purple"></i>0703257-9@g.puiching.edu.mo</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-purple"></i>+853 62831088</p>
+         
+          <a href="https://www.facebook.com/profile.php?id=100007751854162"><i class="fab fa-facebook fa-fw w3-large w3-text-grey"></i></i></a> 
+          <a href="https://www.instagram.com/leochanz4567/?fbclid=IwAR36s_Z6TfqqP3GRtxJms5JkSUm4IIANQCWpUX58yR1tsDL0HkE6zvWANlI"><i class="fab fa-instagram fa-fw w3-large w3-text-grey"></i></i></a>  
+          </div>
+  </div>
+
+  <tr class="w3-light-grey lhide" style="display:block; width:100%; height:60px;">
+      <th class="w3-bar-item">
+           <button class="w3-bar-item w3-button w3-large" onclick="w3_close()"><i class="fas fa-times"></i>關閉</button>
       </th>
 	  <th></th>
   </tr>
@@ -45,23 +62,40 @@
    </td>
   </tr>
   <tr class="w3-margin-top">
-      <td><a href="#main"  class="w3-bar-item w3-light-grey w3-button w3-leftbar w3-border-indigo">
+      <td><a href="#main" class="w3-bar-item w3-light-grey w3-button w3-leftbar w3-border-indigo baritem">
 	  <i class="fas fa-home"></i>首頁</a></td>
   </tr>
   <tr>
-      <td><a href="#about" class="w3-bar-item w3-light-grey w3-button">
+      <td><a href="#about" class="w3-bar-item w3-light-grey w3-button baritem">
 	  <i class="fas fa-info-circle"></i>關於網頁</a></td>
   </tr>
   <tr class="w3-margin-top">
-      <td><a href="#form" id="showinstruction" class="w3-bar-item w3-light-grey w3-button">
+      <td><a href="#form" id="showinstruction" class="w3-bar-item w3-light-grey w3-button baritem">
 	  <i class="fas fa-plus"></i>新增帖文</a></td>
   </tr>
    <tr>
-      <td><a href="#main" class="w3-bar-item w3-light-grey w3-button" id="deletepage">
+      <td><a href="#main" class="w3-bar-item w3-light-grey w3-button baritem" id="deletepage">
 	  <i class="fas fa-trash"></i>刪除帖文</a></td>
   </tr> 
   </tbody>
 </table>
+
+  <div class="w3-container w3-white w3-margin-top profilecard lhide" style="padding:10px 20px;position:absolute;width:100%;bottom:70px;">
+      <div class="w3-hover-opacity w3-circle avatar center" style="background-image:url('avatar.jpg');">
+          <h6 class="avatarname">陳政良</h6>
+      </div>
+          <h6 class="center w3-text-grey w3-margin-top">網頁開發者</h6>
+          <div style="text-decoration:none;white-space:nowrap;">
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-purple"></i>澳門培正中學學生</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-purple"></i>現居澳門</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-purple"></i>0703257-9@g.puiching.edu.mo</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-purple"></i>+853 62831088</p>
+         
+          <a href="https://www.facebook.com/profile.php?id=100007751854162"><i class="fab fa-facebook fa-fw w3-large w3-text-grey"></i></i></a> 
+          <a href="https://www.instagram.com/leochanz4567/?fbclid=IwAR36s_Z6TfqqP3GRtxJms5JkSUm4IIANQCWpUX58yR1tsDL0HkE6zvWANlI"><i class="fab fa-instagram fa-fw w3-large w3-text-grey"></i></i></a>  
+          </div>
+  </div>
+
 </div>
 
 <div class="w3-row">
@@ -178,13 +212,8 @@
 
 <!--About-->
 <div class='tab-content' id="about">
-<p>
-dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
-dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
-dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text 
-</p>
+<div class="w3-hover-opacity w3-circle avatar" style="background-image:url('avatar.jpg');margin-left:100px;"></div>
 </div>
-
 
 <!--Form-->
 <div class='tab-content' id="form">
@@ -308,8 +337,9 @@ dummy text dummy text dummy text dummy text dummy text dummy text dummy text dum
     <input name="地址" type="hidden" form="finalform" id="address2">
     <input name="意見" type="hidden" form="finalform" id="comment2">
     <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
-    <h5 style="margin-left:5px;">按下「提交表單」傳送表單到FORMSUBMIT</h5>
-	    
+    <h5 style="margin-left:5px;">填寫你的gmail以傳送回答</h5>
+	<input type="email" class="w3-input center" id="youremail" style="width:80%" placeholder='例子："yourusername@example.com"'></input>
+    <div>
     <button id="finalcancel" onclick="event.preventDefault()"
             class="w3-button w3-light-gray w3-text-black" style="border:0px;border-radius:2px;float:left; position:relative;margin-left:5%; width:42.5%;" >
             取消</button>
