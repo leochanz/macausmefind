@@ -80,7 +80,7 @@
   </tbody>
 </table>
 
-  <div class="w3-container w3-white w3-margin-top profilecard lhide" style="padding:10px 20px;">
+  <div class="w3-container w3-white w3-margin-top profilecard lhide" style="padding:10px 20px;width:100%;">
       <div class="w3-hover-opacity w3-circle avatar center" style="background-image:url('avatar.jpg');">
           <h6 class="avatarname">陳政良</h6>
       </div>
@@ -211,24 +211,56 @@
 </div>
 
 <!--About-->
-<div class='tab-content' id="about">
-<div class="w3-hover-opacity w3-circle avatar" style="background-image:url('avatar.jpg');margin-left:100px;"></div>
+<div class="tab-content" id="about">
+<div class="w3-margin-top row">
+<div class="col s12 m4 l4">
+<div class="w3-hover-opacity" style="width:100%;padding-top:70%;background-image:url('avatar.jpg');background-repeat: no-repeat;
+    background-size: 100%;
+	background-position:center top;"></div>
+</div>
+
+<div class="col s12 m8 l8" style="text-decoration:none;white-space:nowrap;">
+          <h4 class="w3-margin-top" style="color:grey;">網頁開發者--陳政良</h4>
+          <p class="w3-margin-top"><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-purple"></i>澳門培正中學學生</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-purple"></i>現居澳門</p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-purple"></i>0703257-9@g.puiching.edu.mo</p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-purple"></i>+853 62831088</p>
+         
+          <a href="https://www.facebook.com/profile.php?id=100007751854162"><i class="fab fa-facebook fa-fw w3-large w3-text-grey"></i></i></a> 
+          <a href="https://www.instagram.com/leochanz4567/?fbclid=IwAR36s_Z6TfqqP3GRtxJms5JkSUm4IIANQCWpUX58yR1tsDL0HkE6zvWANlI"><i class="fab fa-instagram fa-fw w3-large w3-text-grey"></i></i></a>  
+</div>
+</div>
+<hr style="height:5px; border-top:2px dotted #717171;">
+<div class="w3-margin-top w3-margin-left">
+<p>這個網頁的目標是讓使用者在路上發現有趣的中小企時，能夠透過網站方便快捷的將其記錄下來，填寫個人意見，
+再將其分享出去，讓更多人認識到澳門不同種類的有趣企業。</p>
+<h6>網頁功能：</h6>
+<ul style="list-style-type:circle;">
+<li>．可以拍攝一至三張照片並即時檢視</li>
+<li>．地圖獲取定位</li>
+<li>．表單資料在本機儲存並在首頁顯示</li>
+<li>．透過Form Submit收集表單</li>
+</ul>
+
+</div>
 </div>
 
 <!--Form-->
 <div class='tab-content' id="form">
 
 <div id="instruction">
-<h6 class="toptext w3-margin-top"> 步驟1.
-<span style="display:inline-block; width:80%;height:40px;">開啟手機gps([設定]->[私隱]->[定位服務])</span></h6>
-<h6 class="toptext"> 步驟2. 
+<h6 class="toptext w3-margin-top">
 <span style="display:inline-block; width:80%;height:40px;">
-把中小企拍照，最多上傳3張照片(若要上傳多於一張照片，要先把相片儲在手機相簿再上傳)</span></h6>
-<h6 class="toptext"> 步驟3. 
+1.開啟手機gps([設定]->[私隱]->[定位服務])</span></h6>
+<h6 class="toptext"> 
 <span style="display:inline-block; width:80%;height:40px;">
-按下「獲取位置」在地圖上確認當前位置，並填寫其餘資料</span></h6>
-<h6 class="toptext">步驟4. <span style="display:inline-block; width:80%;height:40px;">
-點擊「新增帖文」，便可以在首頁看到你的帖文 </span></h6>
+2.把中小企拍照，最多上傳3張照片(若要上傳多於一張照片，要先把相片儲在手機相簿再上傳)</span></h6>
+<h6 class="toptext">
+<span style="display:inline-block; width:80%;height:40px;">
+3.按下「獲取位置」在地圖上確認當前位置，並填寫其餘資料</span></h6>
+<h6 class="toptext">
+<span style="display:inline-block; width:80%;height:40px;">
+4.點擊「新增帖文」，便可以在首頁看到你的帖文 </span></h6>
 </div>
 
 
@@ -322,7 +354,7 @@
    </button>
 </form>
 
-<form method="POST" action="https://formsubmit.co/chanchengleong@gmail.com" id="finalform">	
+<form method="POST" id="finalform">	
 	      
     <div id="confirm-popup" class="w3-conatiner w3-white center" style="padding-bottom:10px;">
     <input name="類型" type="hidden" form="finalform" id="type2">
@@ -337,7 +369,7 @@
     <input name="地址" type="hidden" form="finalform" id="address2">
     <input name="意見" type="hidden" form="finalform" id="comment2">
     <h4 style="margin-left:5px;">太好了！你的帖文已經成功上傳到首頁</h4>
-    <p style="margin-left:5px;">按下「提交表單」傳送表單到FORMSUBMIT</p>
+    <h5 style="margin-left:5px;">按下「提交表單」傳送表單到FORMSUBMIT</h5>
     <div>
     <button id="finalcancel" onclick="event.preventDefault()"
             class="w3-button w3-light-gray w3-text-black" style="border:0px;border-radius:2px;float:left; position:relative;margin-left:5%; width:42.5%;" >
