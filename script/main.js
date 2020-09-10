@@ -664,28 +664,29 @@ $(document).ready(function(){
     
 	$("#finalsubmit").click(function(){	
 	    document.getElementById("confirm-popup").style.display = "none";
-            document.getElementById("darkscreen").style.display = "none";
-        });
+        document.getElementById("darkscreen").style.display = "none";
+
+    });
 		
 	$("#finalcancel").click(function(){
 		
 	    event.preventDefault();
 		  
 	    document.getElementById("confirm-popup").style.display = "none";
-            document.getElementById("darkscreen").style.display = "none";
+        document.getElementById("darkscreen").style.display = "none";
 		  
 	    return false;
-         });
+    });
 	
 	//C. Sharing Images	
 	$(".display").hover(function(){
         $(this).children(".sharebutton").show();
-		const url = this.style.backgroundImage;
+		const imageurl = this.style.backgroundImage;
 		$(this).children(".sharebutton").click(function(){
 			if(navigator.share){
 	            navigator.share({
 		            title: "發現中小企-相片",
-			        url: url
+			        url: imageurl
 		        }).then(() => {
 		            console.log("成功分享相片")
 		        }).catch(console.error);
@@ -698,6 +699,7 @@ $(document).ready(function(){
     });
 	
     $("#sharelink").click( function(){
+		const url = window.document.location.href;
         if(navigator.share){
 	        navigator.share({
 		        title: "發現中小企",
@@ -801,7 +803,4 @@ $(document).ready(function(){
 	    alert("圖片未能正確上傳，請再次嘗試");
       };	
     });
-    const shareButton = document.querySelector("#sharebutton");
-    const title = window.document.title;
-    const url = window.document.location.href;
 });
