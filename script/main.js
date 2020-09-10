@@ -1,7 +1,7 @@
 function w3_open() {
-    document.getElementById("mySidebar").style.display = "block";	
+    document.getElementById("mySidebar").style.display = "block";
+ 	
 }
-
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
@@ -280,7 +280,7 @@ function onSubmitPressed() {
 
 function dataTransfer(type,name,imagefile,latlng,address,comment) {
 	document.getElementById("type2").value = type;
-        document.getElementById("name2").value = name;
+    document.getElementById("name2").value = name;
 	document.getElementById("images2").value = imagefile;
 	document.getElementById("latlng2").value = latlng;
 	document.getElementById("address2").value = address;
@@ -350,7 +350,9 @@ function addToMain(number) {
 		<button style="width:100%;" class="deletebutton w3-button w3-red" onclick="deletepost(${number})">
 		<i class="fas fa-times"></i></button>
         </div>
-		<div class="display w3-hover-opacity" style="background-image:url('${imageurl1}');"></div>
+		<div class="display w3-hover-opacity" style="background-image:url('${imageurl1}');">
+		 <button class="w3-button w3-large w3-display-bottomright sharebutton"><i class="fas fa-share-alt"></i></button>
+		</div>
         <div class="panel-body w3-left-align" style="padding:10px;">
 		<h5><i class="${logo}"></i> ${name}</h5>
 	    <div class="w3-margin-top">
@@ -376,8 +378,10 @@ function addToMain(number) {
 		<i class="fas fa-times"></i></button>
         </div>
 		<div class="w3-content w3-display-container">
-		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl1}');display:block;"></div>
-		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl2}');"></div>
+		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl1}');display:block;">
+			<button class="w3-button w3-large w3-display-bottomright sharebutton"><i class="fas fa-share-alt"></i></button></div>
+		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl2}');">
+			<button class="w3-button w3-large w3-display-bottomright sharebutton"><i class="fas fa-share-alt"></i></button></div>
 
             <button class="w3-button w3-black w3-display-left" onclick="plusDivs${number}(-1)">&#10094;</button>
             <button class="w3-button w3-black w3-display-right" onclick="plusDivs${number}(1)">&#10095;</button>
@@ -426,9 +430,12 @@ function addToMain(number) {
 		<i class="fas fa-times"></i></button>
         </div>
 		<div class="w3-content w3-display-container">
-		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl1}');display:block;"></div>
-		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl2}');"></div>
-            <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl3}');"></div>
+		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl1}');display:block;">
+			<button class="w3-button w3-large w3-display-bottomright sharebutton"><i class="fas fa-share-alt"></i></button></div>
+		    <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl2}');">
+			<button class="w3-button w3-large w3-display-bottomright sharebutton"><i class="fas fa-share-alt"></i></button></div>
+            <div class="mySlides slide${number} display w3-hover-opacity" style="background-image:url('${imageurl3}');">
+			<button class="w3-button w3-large w3-display-bottomright sharebutton"><i class="fas fa-share-alt"></i></button></div>
 			
             <button class="w3-button w3-black w3-display-left" onclick="plusDivs${number}(-1)">&#10094;</button>
             <button class="w3-button w3-black w3-display-right" onclick="plusDivs${number}(1)">&#10095;</button>
@@ -492,7 +499,7 @@ $(document).ready(function(){
 	
 	var number = localStorage.getItem('submittimes');
 	for (i = 0; i < number; i++) {
-            addToMain(i);
+        addToMain(i);
     };
 	
     //B. All the Basic HTML functions  
@@ -502,6 +509,7 @@ $(document).ready(function(){
         $("#mySidebar").addClass("w3-animate-left");
     	$("#leftSpace").hide();
     	$(".lhide").show();
+		$(".lshow").hide();
         document.getElementById("mySidebar").style.display = "none";
     	document.getElementById("mySidebar").style.top = "77px";
     	document.getElementById("map-popup").style.width = "90%";
@@ -510,6 +518,7 @@ $(document).ready(function(){
         $("#mySidebar").removeClass("w3-animate-left");
     	$("#leftSpace").show();
     	$(".lhide").hide();
+		$(".lshow").show();
         document.getElementById("mySidebar").style.display = "block";
     	document.getElementById("mySidebar").style.top = "0px";
     	document.getElementById("map-popup").style.width = "50%";
@@ -528,6 +537,7 @@ $(document).ready(function(){
     document.getElementById("confirm-popup").style.display = "none";
     document.getElementById("darkscreen").style.display = "none";
     hideallpreviews();
+	$(".sharebutton").hide();
     
     $('.tab-content').hide();
     $('.tabs > span').hide();
@@ -574,7 +584,7 @@ $(document).ready(function(){
       return false;
     });
     
-    $('.sidebar a').click(function(){
+    $('.sidebar .baritem').click(function(){
     
       document.getElementById("instruction").style.display = "none";
       document.getElementById("deletetext").style.display = "none";
@@ -614,8 +624,8 @@ $(document).ready(function(){
       $('.tabs > span:first').addClass('active');
       $('.tab-content:first').show();
       
-      $('.sidebar a').removeClass('w3-leftbar w3-border-indigo');
-      $('.sidebar a:first').addClass('w3-leftbar w3-border-indigo');
+      $('.sidebar .baritem').removeClass('w3-leftbar w3-border-indigo');
+      $('.sidebar .baritem:first').addClass('w3-leftbar w3-border-indigo');
       
       // disable default browser behavior.
       return false;
@@ -637,9 +647,7 @@ $(document).ready(function(){
       $('.tabs > span').removeClass('active');
       $(this).addClass('active');
       
-      $('.sidebar a[href="' + href + '"]:first').click();
-      
-      // disable default browser behavior.
+      $('.sidebar .baritem[href="' + href + '"]:first').click();
       return false;
     });
     
@@ -654,20 +662,56 @@ $(document).ready(function(){
       return false;
     });
     
-    $("#finalsubmit").click(function(){	
-        document.getElementById("confirm-popup").style.display = "none";
-        document.getElementById("darkscreen").style.display = "none";
-    });
+	$("#finalsubmit").click(function(){	
+	    document.getElementById("confirm-popup").style.display = "none";
+            document.getElementById("darkscreen").style.display = "none";
+        });
 		
-    $("#finalcancel").click(function(){
-        event.preventDefault();
+	$("#finalcancel").click(function(){
+		
+	    event.preventDefault();
 		  
-	document.getElementById("confirm-popup").style.display = "none";
-        document.getElementById("darkscreen").style.display = "none";  
-	return false;
+	    document.getElementById("confirm-popup").style.display = "none";
+            document.getElementById("darkscreen").style.display = "none";
+		  
+	    return false;
+         });
+	
+	//C. Sharing Images	
+	$(".display").hover(function(){
+        $(this).children(".sharebutton").show();
+		const url = this.style.backgroundImage;
+		$(this).children(".sharebutton").click(function(){
+			if(navigator.share){
+	            navigator.share({
+		            title: "發現中小企-相片",
+			        url: url
+		        }).then(() => {
+		            console.log("成功分享相片")
+		        }).catch(console.error);
+	        }else{
+			    alert("分享相片失敗");
+	        }
+		});
+        }, function(){
+        $(this).children(".sharebutton").hide();
     });
 	
-    //C. form validation
+    $("#sharelink").click( function(){
+        if(navigator.share){
+	        navigator.share({
+		        title: "發現中小企",
+			    url: url
+		    }).then(() => {
+		        console.log("成功分享相片")
+		     }).catch(console.error);
+	    }else{
+	        console.log("Web Share is not supported")
+			alert("分享連結失敗");
+	    }
+    });
+	
+    //D. form validation
     $('#smeform').keydown(function(){
         $('#smeform *').removeClass('error');
     });
@@ -675,9 +719,8 @@ $(document).ready(function(){
 	$('#type, #myFileInput').click(function(){
         $('#smeform *').removeClass('error');
     });
-
     
-	//D. geolocation asks for permission the first time
+	//E. geolocation asks for permission the first time
 	localStorage.setItem( 'geolocation' , '' );
 	document.getElementById("get_location").addEventListener("click", function(){
      
@@ -719,7 +762,7 @@ $(document).ready(function(){
     return false;
    });
    
-   //E. file input and preview images
+   //F. file input and preview images
    const hiddenInput = document.querySelector('#myFileInput');
    const label = document.querySelector('.file-upload__label');
    const defaultLabelText = "暫時沒有圖片";
@@ -761,18 +804,4 @@ $(document).ready(function(){
     const shareButton = document.querySelector("#sharebutton");
     const title = window.document.title;
     const url = window.document.location.href;
-
-    $("#sharelink").click( function(){
-        if(navigator.share){
-	        navigator.share({
-		        title: "發現中小企",
-			    url: url
-		    }).then(() => {
-		        console.log("Web Share Successful")
-		     }).catch(console.error);
-	    }else{
-	        console.log("Web Share is not supported")
-			alert("分享連結失敗");
-	    }
-     })
 });
