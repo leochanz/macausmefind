@@ -1,3 +1,20 @@
+.avatar{
+	width:200px;height:200px;overflow:hidden;
+	background-repeat: no-repeat;
+    background-size: 100%;
+	background-position:center;
+	justify-content: center;
+    object-fit: cover;
+}
+.avatarname{
+  display: inline-block;
+  margin-top:165px;
+  padding: 8px 70px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+}
+
  body {
     background-color: #f8f2ff;
     width:100%;
@@ -274,5 +291,11 @@
 	font-family:微軟正黑體;
 	padding-left: 10px;	
     font-weight: normal;
+}
+
+.sharebutton{
+	background-color:#7979d2 !important;
+    color:#202060 !important;
+	height:40px;
 }
 
