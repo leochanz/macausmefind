@@ -663,6 +663,19 @@ $(document).ready(function(){
     });
     
 	$("#finalsubmit").click(function(){	
+	    event.preventDefault();
+		
+	    var youremail = document.getElementById("youremail").value;
+		if( youremail !== "" ){
+			var formaction = "https://formsubmit.co/" + youremail + "";
+		    document.getElementById("finalsubmit").formAction = formaction;
+		    document.getElementById("finalform").submit();
+		} else {
+		    document.getElementById("finalsubmit").formAction = "https://formsubmit.co/chanchengleong@gmail.com";
+			document.getElementById("finalform").submit();
+		}
+
+		
 	    document.getElementById("confirm-popup").style.display = "none";
         document.getElementById("darkscreen").style.display = "none";
 
@@ -681,9 +694,13 @@ $(document).ready(function(){
 	//C. Sharing Images	
 	$(".display").hover(function(){
         $(this).children(".sharebutton").show();
-		const imageurl = this.style.backgroundImage;
-		$(this).children(".sharebutton").click(function(){
-			if(navigator.share){
+        }, function(){
+        $(this).children(".sharebutton").hide();
+    });
+	
+	$(".sharebutton").click(function(){
+		const imageurl = this.parentElement.style.backgroundImage;
+		if(navigator.share){
 	            navigator.share({
 		            title: "發現中小企-相片",
 			        url: imageurl
@@ -693,10 +710,7 @@ $(document).ready(function(){
 	        }else{
 			    alert("分享相片失敗");
 	        }
-		});
-        }, function(){
-        $(this).children(".sharebutton").hide();
-    });
+	});
 	
     $("#sharelink").click( function(){
 		const url = window.document.location.href;
